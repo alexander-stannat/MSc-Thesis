@@ -1,0 +1,1693 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.6960 64-bit) (preloaded format=pdflatex 2019.3.13)  27 JAN 2020 14:47
+entering extended mode
+**./Report.tex
+(Report.tex
+LaTeX2e <2018-12-01>
+("C:\Users\alexa\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\article.cls"
+Document Class: article 2018/09/03 v1.4i Standard LaTeX document class
+("C:\Users\alexa\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\size11.clo"
+File: size11.clo 2018/09/03 v1.4i Standard LaTeX file (size option)
+)
+\c@part=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+("C:\Users\alexa\AppData\Local\Programs\MiKTeX 2.9\tex/latex/draftwatermark\dra
+ftwatermark.sty"
+Package: draftwatermark 2015/02/19 1.2 Put a gray textual watermark on document
+ pages
+
+("C:\Users\alexa\AppData\Local\Programs\MiKTeX 2.9\tex/latex/everypage\everypag
+e.sty"
+Package: everypage 2007/06/20 1.1 Hooks to run on every page
+)
+("C:\Users\alexa\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\graphicx.
+sty"
+Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
+
+("C:\Users\alexa\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\keyval.st
+y"
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+("C:\Users\alexa\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\graphics.
+sty"
+Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
+
+("C:\Users\alexa\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\trig.sty"
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+("C:\Users\alexa\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics-cfg\graph
+ics.cfg"
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 99.
+
+("C:\Users\alexa\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics-def\pdfte
+x.def"
+File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen103
+\Gin@req@width=\dimen104
+)
+("C:\Users\alexa\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\color.sty
+"
+Package: color 2016/07/10 v1.1e Standard LaTeX Color (DPC)
+
+("C:\Users\alexa\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics-cfg\color
+.cfg"
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package color Info: Driver file: pdftex.def on input line 147.
+)
+\sc@wm@hcenter=\skip43
+\sc@wm@vcenter=\skip44
+\sc@wm@fontsize=\skip45
+)
+("C:\Users\alexa\AppData\Local\Programs\MiKTeX 2.9\tex/latex/tools\verbatim.sty
+"
+Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks15
+\verbatim@line=\toks16
+\verbatim@in@stream=\read1
+)
+("C:\Users\alexa\AppData\Local\Programs\MiKTeX 2.9\tex/generic/babel\babel.sty"
+Package: babel 2018/11/13 3.27 The Babel package
+("C:\Users\alexa\AppData\Local\Programs\MiKTeX 2.9\tex/generic/babel\switch.def
+"
+File: switch.def 2018/11/13 3.27 Babel switching mechanism
+)
+*************************************
+* Local config file bblopts.cfg used
+*
+("C:\Users\alexa\AppData\Local\Programs\MiKTeX 2.9\tex/latex/arabi\bblopts.cfg"
+File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
+ babel
+)
+("C:\Users\alexa\AppData\Local\Programs\MiKTeX 2.9\tex/latex/babel-english\engl
+ish.ldf"
+Language: english 2017/06/06 v3.3r English support from the babel system
+
+("C:\Users\alexa\AppData\Local\Programs\MiKTeX 2.9\tex/generic/babel\babel.def"
+File: babel.def 2018/11/13 3.27 Babel common definitions
+\babel@savecnt=\count88
+\U@D=\dimen105
+
+("C:\Users\alexa\AppData\Local\Programs\MiKTeX 2.9\tex/generic/babel\txtbabel.d
+ef")
+\bbl@dirlevel=\count89
+)
+\l@canadian = a dialect from \language\l@american 
+\l@australian = a dialect from \language\l@british 
+\l@newzealand = a dialect from \language\l@british 
+))
+("C:\Users\alexa\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amscls\amsthm.sty"
+Package: amsthm 2017/10/31 v2.20.4
+\thm@style=\toks17
+\thm@bodyfont=\toks18
+\thm@headfont=\toks19
+\thm@notefont=\toks20
+\thm@headpunct=\toks21
+\thm@preskip=\skip46
+\thm@postskip=\skip47
+\thm@headsep=\skip48
+\dth@everypar=\toks22
+) ("C:\Users\alexa\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\inputenc.st
+y"
+Package: inputenc 2018/08/11 v1.3c Input encoding file
+\inpenc@prehook=\toks23
+\inpenc@posthook=\toks24
+)
+("C:\Users\alexa\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\latexsym.sty"
+Package: latexsym 1998/08/17 v2.2e Standard LaTeX package (lasy symbols)
+\symlasy=\mathgroup4
+LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
+(Font)                  U/lasy/m/n --> U/lasy/b/n on input line 52.
+)
+("C:\Users\alexa\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\amsfonts.
+sty"
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\@emptytoks=\toks25
+\symAMSa=\mathgroup5
+\symAMSb=\mathgroup6
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)
+("C:\Users\alexa\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\amssymb.s
+ty"
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+)
+("C:\Users\alexa\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\amsmath.st
+y"
+Package: amsmath 2018/12/01 v2.17b AMS math features
+\@mathmargin=\skip49
+
+For additional information on amsmath, use the `?' option.
+
+("C:\Users\alexa\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\amstext.st
+y"
+Package: amstext 2000/06/29 v2.01 AMS text
+
+("C:\Users\alexa\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\amsgen.sty
+"
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks26
+\ex@=\dimen106
+))
+("C:\Users\alexa\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\amsbsy.sty
+"
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen107
+)
+("C:\Users\alexa\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\amsopn.sty
+"
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count90
+LaTeX Info: Redefining \frac on input line 223.
+\uproot@=\count91
+\leftroot@=\count92
+LaTeX Info: Redefining \overline on input line 385.
+\classnum@=\count93
+\DOTSCASE@=\count94
+LaTeX Info: Redefining \ldots on input line 482.
+LaTeX Info: Redefining \dots on input line 485.
+LaTeX Info: Redefining \cdots on input line 606.
+\Mathstrutbox@=\box27
+\strutbox@=\box28
+\big@size=\dimen108
+LaTeX Font Info:    Redeclaring font encoding OML on input line 729.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 730.
+\macc@depth=\count95
+\c@MaxMatrixCols=\count96
+\dotsspace@=\muskip10
+\c@parentequation=\count97
+\dspbrk@lvl=\count98
+\tag@help=\toks27
+\row@=\count99
+\column@=\count100
+\maxfields@=\count101
+\andhelp@=\toks28
+\eqnshift@=\dimen109
+\alignsep@=\dimen110
+\tagshift@=\dimen111
+\tagwidth@=\dimen112
+\totwidth@=\dimen113
+\lineht@=\dimen114
+\@envbody=\toks29
+\multlinegap=\skip50
+\multlinetaggap=\skip51
+\mathdisplay@stack=\toks30
+LaTeX Info: Redefining \[ on input line 2844.
+LaTeX Info: Redefining \] on input line 2845.
+) ("C:\Users\alexa\AppData\Local\Programs\MiKTeX 2.9\tex/latex/float\float.sty"
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count102
+\float@exts=\toks31
+\float@box=\box29
+\@float@everytoks=\toks32
+\@floatcapt=\box30
+)
+("C:\Users\alexa\AppData\Local\Programs\MiKTeX 2.9\tex/latex/geometry\geometry.
+sty"
+Package: geometry 2018/04/16 v5.8 Page Geometry
+
+("C:\Users\alexa\AppData\Local\Programs\MiKTeX 2.9\tex/generic/oberdiek\ifpdf.s
+ty"
+Package: ifpdf 2018/09/07 v3.3 Provides the ifpdf switch
+)
+("C:\Users\alexa\AppData\Local\Programs\MiKTeX 2.9\tex/generic/oberdiek\ifvtex.
+sty"
+Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+)
+("C:\Users\alexa\AppData\Local\Programs\MiKTeX 2.9\tex/generic/ifxetex\ifxetex.
+sty"
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+\Gm@cnth=\count103
+\Gm@cntv=\count104
+\c@Gm@tempcnt=\count105
+\Gm@bindingoffset=\dimen115
+\Gm@wd@mp=\dimen116
+\Gm@odd@mp=\dimen117
+\Gm@even@mp=\dimen118
+\Gm@layoutwidth=\dimen119
+\Gm@layoutheight=\dimen120
+\Gm@layouthoffset=\dimen121
+\Gm@layoutvoffset=\dimen122
+\Gm@dimlist=\toks33
+
+("C:\Users\alexa\AppData\Local\Programs\MiKTeX 2.9\tex/latex/geometry\geometry.
+cfg"))
+\c@definition=\count106
+
+
+Package amsthm Warning: Unknown theoremstyle `theorem' on input line 27.
+
+\c@theorem=\count107
+
+Package amsthm Warning: Unknown theoremstyle `proposition' on input line 29.
+
+\c@proposition=\count108
+
+Package amsthm Warning: Unknown theoremstyle `corollary' on input line 31.
+
+\c@corollary=\count109
+
+Package amsthm Warning: Unknown theoremstyle `lemma' on input line 33.
+
+\c@lemma=\count110
+
+Package amsthm Warning: Unknown theoremstyle `example' on input line 35.
+
+\c@example=\count111
+\c@remark=\count112
+(Report.aux)
+\openout1 = `Report.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+
+("C:\Users\alexa\AppData\Local\Programs\MiKTeX 2.9\tex/context/base/mkii\supp-p
+df.mkii"
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count113
+\scratchdimen=\dimen123
+\scratchbox=\box31
+\nofMPsegments=\count114
+\nofMParguments=\count115
+\everyMPshowfont=\toks34
+\MPscratchCnt=\count116
+\MPscratchDim=\dimen124
+\MPnumerator=\count117
+\makeMPintoPDFobject=\count118
+\everyMPtoPDFconversion=\toks35
+)
+("C:\Users\alexa\AppData\Local\Programs\MiKTeX 2.9\tex/latex/oberdiek\epstopdf-
+base.sty"
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
+
+("C:\Users\alexa\AppData\Local\Programs\MiKTeX 2.9\tex/generic/oberdiek\infware
+rr.sty"
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+)
+("C:\Users\alexa\AppData\Local\Programs\MiKTeX 2.9\tex/latex/oberdiek\grfext.st
+y"
+Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
+
+("C:\Users\alexa\AppData\Local\Programs\MiKTeX 2.9\tex/generic/oberdiek\kvdefin
+ekeys.sty"
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+
+("C:\Users\alexa\AppData\Local\Programs\MiKTeX 2.9\tex/generic/oberdiek\ltxcmds
+.sty"
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+)))
+("C:\Users\alexa\AppData\Local\Programs\MiKTeX 2.9\tex/latex/oberdiek\kvoptions
+.sty"
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+
+("C:\Users\alexa\AppData\Local\Programs\MiKTeX 2.9\tex/generic/oberdiek\kvsetke
+ys.sty"
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+
+("C:\Users\alexa\AppData\Local\Programs\MiKTeX 2.9\tex/generic/oberdiek\etexcmd
+s.sty"
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+
+("C:\Users\alexa\AppData\Local\Programs\MiKTeX 2.9\tex/generic/oberdiek\ifluate
+x.sty"
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+))))
+("C:\Users\alexa\AppData\Local\Programs\MiKTeX 2.9\tex/generic/oberdiek\pdftexc
+mds.sty"
+Package: pdftexcmds 2018/09/10 v0.29 Utility functions of pdfTeX for LuaTeX (HO
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+38.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 456.
+)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(14.22636pt, 569.05515pt, 14.22636pt)
+* v-part:(T,H,B)=(14.22636pt, 816.59412pt, 14.22636pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=455.24408pt
+* \textheight=711.3189pt
+* \oddsidemargin=5.69046pt
+* \evensidemargin=-58.04362pt
+* \topmargin=-28.45274pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=11.0pt
+* \footskip=30.0pt
+* \marginparwidth=50.0pt
+* \marginparsep=10.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/bx/sc' undefined
+(Font)              using `OT1/cmr/bx/n' instead on input line 48.
+
+<"TU Delft Logo".png, id=1, 374.39874pt x 230.8625pt>
+File: "TU Delft Logo".png Graphic file (type png)
+<use "TU Delft Logo".png>
+Package pdftex.def Info: "TU Delft Logo".png  used on input line 53.
+(pdftex.def)             Requested size: 224.64098pt x 138.51855pt.
+
+LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <142.26378> not available
+(Font)              size <24.88> substituted on input line 57.
+
+[1{C:/Users/alexa/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
+
+ <./TU Delft Logo.png>] (Report.toc
+LaTeX Font Info:    Try loading font information for U+lasy on input line 3.
+
+("C:\Users\alexa\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\ulasy.fd"
+File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
+)
+LaTeX Font Info:    Try loading font information for U+msa on input line 3.
+
+("C:\Users\alexa\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsa.fd"
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 3.
+("C:\Users\alexa\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsb.fd"
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+))
+\tf@toc=\write3
+\openout3 = `Report.toc'.
+
+ [2]
+Underfull \hbox (badness 10000) in paragraph at lines 67--68
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 69--70
+
+ []
+
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 75.
+("C:\Users\alexa\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\omscmr.fd"
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 75.
+
+[1]
+Underfull \hbox (badness 10000) in paragraph at lines 80--81
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 83--84
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 85--86
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 89--90
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 91--92
+
+ []
+
+[2]
+Underfull \hbox (badness 10000) in paragraph at lines 96--97
+
+ []
+
+
+LaTeX Warning: Citation `The Early Days of Mass Internet Piracy Were Awesome Ye
+t Awful' on page 3 undefined on input line 98.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 98--99
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 100--101
+
+ []
+
+[3]
+Underfull \hbox (badness 10000) in paragraph at lines 126--127
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 129--130
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 133--134
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 137--138
+
+ []
+
+[4]
+<"BitTorrent File Distribution 1".png, id=29, 358.33875pt x 335.2525pt>
+File: "BitTorrent File Distribution 1".png Graphic file (type png)
+<use "BitTorrent File Distribution 1".png>
+Package pdftex.def Info: "BitTorrent File Distribution 1".png  used on input li
+ne 140.
+(pdftex.def)             Requested size: 89.58446pt x 83.81291pt.
+<"BitTorrent File Distribution 2".png, id=30, 358.33875pt x 335.2525pt>
+File: "BitTorrent File Distribution 2".png Graphic file (type png)
+<use "BitTorrent File Distribution 2".png>
+Package pdftex.def Info: "BitTorrent File Distribution 2".png  used on input li
+ne 141.
+(pdftex.def)             Requested size: 89.58446pt x 83.81291pt.
+<"BitTorrent File Distribution 3".png, id=31, 358.33875pt x 335.2525pt>
+File: "BitTorrent File Distribution 3".png Graphic file (type png)
+<use "BitTorrent File Distribution 3".png>
+Package pdftex.def Info: "BitTorrent File Distribution 3".png  used on input li
+ne 142.
+(pdftex.def)             Requested size: 89.58446pt x 83.81291pt.
+<"BitTorrent File Distribution 4".png, id=32, 358.33875pt x 335.2525pt>
+File: "BitTorrent File Distribution 4".png Graphic file (type png)
+<use "BitTorrent File Distribution 4".png>
+Package pdftex.def Info: "BitTorrent File Distribution 4".png  used on input li
+ne 143.
+(pdftex.def)             Requested size: 89.58446pt x 83.81291pt.
+<"BitTorrent File Distribution 5".png, id=33, 358.33875pt x 335.2525pt>
+File: "BitTorrent File Distribution 5".png Graphic file (type png)
+<use "BitTorrent File Distribution 5".png>
+Package pdftex.def Info: "BitTorrent File Distribution 5".png  used on input li
+ne 144.
+(pdftex.def)             Requested size: 89.58446pt x 83.81291pt.
+<"BitTorrent File Distribution 6".png, id=34, 358.33875pt x 335.2525pt>
+File: "BitTorrent File Distribution 6".png Graphic file (type png)
+<use "BitTorrent File Distribution 6".png>
+Package pdftex.def Info: "BitTorrent File Distribution 6".png  used on input li
+ne 145.
+(pdftex.def)             Requested size: 89.58446pt x 83.81291pt.
+<"BitTorrent File Distribution 7".png, id=35, 358.33875pt x 335.2525pt>
+File: "BitTorrent File Distribution 7".png Graphic file (type png)
+<use "BitTorrent File Distribution 7".png>
+Package pdftex.def Info: "BitTorrent File Distribution 7".png  used on input li
+ne 146.
+(pdftex.def)             Requested size: 89.58446pt x 83.81291pt.
+<"BitTorrent File Distribution 8".png, id=36, 358.33875pt x 335.2525pt>
+File: "BitTorrent File Distribution 8".png Graphic file (type png)
+<use "BitTorrent File Distribution 8".png>
+Package pdftex.def Info: "BitTorrent File Distribution 8".png  used on input li
+ne 147.
+(pdftex.def)             Requested size: 89.58446pt x 83.81291pt.
+<"BitTorrent File Distribution 9".png, id=37, 358.33875pt x 335.2525pt>
+File: "BitTorrent File Distribution 9".png Graphic file (type png)
+<use "BitTorrent File Distribution 9".png>
+Package pdftex.def Info: "BitTorrent File Distribution 9".png  used on input li
+ne 148.
+(pdftex.def)             Requested size: 89.58446pt x 83.81291pt.
+<"BitTorrent File Distribution 10".png, id=38, 358.33875pt x 335.2525pt>
+File: "BitTorrent File Distribution 10".png Graphic file (type png)
+<use "BitTorrent File Distribution 10".png>
+Package pdftex.def Info: "BitTorrent File Distribution 10".png  used on input l
+ine 149.
+(pdftex.def)             Requested size: 89.58446pt x 83.81291pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 154--155
+
+ []
+
+[5 <./BitTorrent File Distribution 1.png> <./BitTorrent File Distribution 2.png
+> <./BitTorrent File Distribution 3.png> <./BitTorrent File Distribution 4.png>
+ <./BitTorrent File Distribution 5.png> <./BitTorrent File Distribution 6.png> 
+<./BitTorrent File Distribution 7.png> <./BitTorrent File Distribution 8.png> <
+./BitTorrent File Distribution 9.png> <./BitTorrent File Distribution 10.png>]
+
+LaTeX Warning: Citation `An optimal strategy to solve the prisoner's dilemma' o
+n page 6 undefined on input line 156.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 156--157
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 158--159
+
+ []
+
+
+LaTeX Warning: Citation `Bitcoin: A peer-to-peer electronic cash system' on pag
+e 6 undefined on input line 168.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 168--169
+
+ []
+
+<"Blockchain".jpg, id=53, 491.58656pt x 201.00093pt>
+File: "Blockchain".jpg Graphic file (type jpg)
+<use "Blockchain".jpg>
+Package pdftex.def Info: "Blockchain".jpg  used on input line 174.
+(pdftex.def)             Requested size: 294.95421pt x 120.60147pt.
+[6]
+Underfull \hbox (badness 10000) in paragraph at lines 180--181
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 182--183
+
+ []
+
+<Trustchain.png, id=57, 331.2375pt x 153.57375pt>
+File: Trustchain.png Graphic file (type png)
+<use Trustchain.png>
+Package pdftex.def Info: Trustchain.png  used on input line 186.
+(pdftex.def)             Requested size: 198.74402pt x 92.14494pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 192--193
+
+ []
+
+[7 <./Blockchain.jpg> <./Trustchain.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 218--219
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 220--221
+
+ []
+
+[8]
+
+LaTeX Warning: Citation `DropEdge' on page 9 undefined on input line 222.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 222--223
+
+ []
+
+
+LaTeX Warning: Citation `Jetse's work' on page 9 undefined on input line 224.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 224--225
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 226--227
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 230--231
+
+ []
+
+
+LaTeX Warning: Citation `How Should We Define Goodness' on page 9 undefined on 
+input line 234.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 234--235
+
+ []
+
+[9]
+Underfull \hbox (badness 10000) in paragraph at lines 239--240
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 241--242
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 243--244
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 247--248
+
+ []
+
+[10]
+Underfull \hbox (badness 10000) in paragraph at lines 250--252
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 254--256
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 262--265
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 275--277
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 278--279
+
+ []
+
+[11]
+
+LaTeX Warning: Citation `Jetse's work' on page 12 undefined on input line 285.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 285--286
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 287--289
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 301--302
+
+ []
+
+[12]
+Underfull \hbox (badness 10000) in paragraph at lines 320--321
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 330--332
+
+ []
+
+[13]
+Underfull \hbox (badness 10000) in paragraph at lines 348--349
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 364--365
+
+ []
+
+[14]
+Underfull \hbox (badness 10000) in paragraph at lines 385--386
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 387--388
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 393--394
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 407--408
+
+ []
+
+[15]
+Underfull \hbox (badness 10000) in paragraph at lines 429--430
+
+ []
+
+[16]
+Underfull \hbox (badness 10000) in paragraph at lines 447--449
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 450--451
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 453--454
+
+ []
+
+<"Sybil Region".jpg, id=98, 478.78876pt x 287.57437pt>
+File: "Sybil Region".jpg Graphic file (type jpg)
+<use "Sybil Region".jpg>
+Package pdftex.def Info: "Sybil Region".jpg  used on input line 458.
+(pdftex.def)             Requested size: 239.39378pt x 143.78683pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 464--465
+
+ []
+
+[17 <./Sybil Region.jpg>]
+Overfull \hbox (16.28691pt too wide) in paragraph at lines 474--475
+[]\OT1/cmr/m/n/10.95 Other agents' scores are low-ered such that $\OML/cmm/m/it
+/10.95 j \OMS/cmsy/m/n/10.95 2 []\OML/cmm/m/it/10.95 A[]\OT1/cmr/m/n/10.95 (\OM
+L/cmm/m/it/10.95 S[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 G[]; C[]\OT1/cmr/m/
+n/10.95 ))$ when be-fore $\OML/cmm/m/it/10.95 j \OMS/cmsy/m/n/10.95 62 []\OML/c
+mm/m/it/10.95 A[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 S[]\OT1/cmr/m/n/10.95 
+(\OML/cmm/m/it/10.95 G[]; C[]\OT1/cmr/m/n/10.95 ))$ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 479--480
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 481--482
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 490--491
+
+ []
+
+[18]
+Underfull \hbox (badness 10000) in paragraph at lines 498--499
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 500--501
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 502--503
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 504--505
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 508--509
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 510--511
+
+ []
+
+[19]
+Underfull \hbox (badness 10000) in paragraph at lines 518--519
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 520--521
+
+ []
+
+
+Overfull \hbox (13.6802pt too wide) detected at line 526
+\U/msb/m/n/10.95 P [] \OMS/cmsy/m/n/10.95  \U/msb/m/n/10.95 P [] \OML/cmm/m/it
+/10.95 :[] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 528--529
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 530--531
+
+ []
+
+[20]
+Underfull \hbox (badness 10000) in paragraph at lines 553--554
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 555--556
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 562--564
+
+ []
+
+[21]
+Underfull \hbox (badness 10000) in paragraph at lines 565--566
+
+ []
+
+<"Queries Count".png, id=116, 722.7pt x 361.35pt>
+File: "Queries Count".png Graphic file (type png)
+<use "Queries Count".png>
+Package pdftex.def Info: "Queries Count".png  used on input line 569.
+(pdftex.def)             Requested size: 433.62334pt x 216.81168pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 573--574
+
+ []
+
+<Acc_0s_Dist.png, id=117, 925.056pt x 450.2421pt>
+File: Acc_0s_Dist.png Graphic file (type png)
+<use Acc_0s_Dist.png>
+Package pdftex.def Info: Acc_0s_Dist.png  used on input line 579.
+(pdftex.def)             Requested size: 370.01584pt x 180.09364pt.
+<Acc_0s_Top_4_Dist.png, id=118, 925.056pt x 450.2421pt>
+File: Acc_0s_Top_4_Dist.png Graphic file (type png)
+<use Acc_0s_Top_4_Dist.png>
+Package pdftex.def Info: Acc_0s_Top_4_Dist.png  used on input line 580.
+(pdftex.def)             Requested size: 370.01584pt x 180.09364pt.
+<Acc_0s_Top_4_No_Dist.png, id=119, 925.056pt x 450.2421pt>
+File: Acc_0s_Top_4_No_Dist.png Graphic file (type png)
+<use Acc_0s_Top_4_No_Dist.png>
+Package pdftex.def Info: Acc_0s_Top_4_No_Dist.png  used on input line 581.
+(pdftex.def)             Requested size: 370.01584pt x 180.09364pt.
+<Acc_0s_Winner.png, id=120, 925.056pt x 450.2421pt>
+File: Acc_0s_Winner.png Graphic file (type png)
+<use Acc_0s_Winner.png>
+Package pdftex.def Info: Acc_0s_Winner.png  used on input line 582.
+(pdftex.def)             Requested size: 370.01584pt x 180.09364pt.
+[22 <./Queries Count.png>]
+Overfull \vbox (24.05568pt too high) has occurred while \output is active []
+
+
+[23 <./Acc_0s_Dist.png> <./Acc_0s_Top_4_Dist.png> <./Acc_0s_Top_4_No_Dist.png> 
+<./Acc_0s_Winner.png>]
+<Acc_Deg_Dist.png, id=133, 925.056pt x 450.2421pt>
+File: Acc_Deg_Dist.png Graphic file (type png)
+<use Acc_Deg_Dist.png>
+Package pdftex.def Info: Acc_Deg_Dist.png  used on input line 588.
+(pdftex.def)             Requested size: 370.01584pt x 180.09364pt.
+<Acc_Deg_Top_4_Dist.png, id=134, 925.056pt x 450.2421pt>
+File: Acc_Deg_Top_4_Dist.png Graphic file (type png)
+<use Acc_Deg_Top_4_Dist.png>
+Package pdftex.def Info: Acc_Deg_Top_4_Dist.png  used on input line 589.
+(pdftex.def)             Requested size: 370.01584pt x 180.09364pt.
+<Acc_Deg_Top_4_No_Dist.png, id=135, 925.056pt x 450.2421pt>
+File: Acc_Deg_Top_4_No_Dist.png Graphic file (type png)
+<use Acc_Deg_Top_4_No_Dist.png>
+Package pdftex.def Info: Acc_Deg_Top_4_No_Dist.png  used on input line 590.
+(pdftex.def)             Requested size: 370.01584pt x 180.09364pt.
+<Acc_Deg_Winner.png, id=136, 925.056pt x 450.2421pt>
+File: Acc_Deg_Winner.png Graphic file (type png)
+<use Acc_Deg_Winner.png>
+Package pdftex.def Info: Acc_Deg_Winner.png  used on input line 591.
+(pdftex.def)             Requested size: 370.01584pt x 180.09364pt.
+
+Overfull \vbox (24.05568pt too high) has occurred while \output is active []
+
+
+[24 <./Acc_Deg_Dist.png> <./Acc_Deg_Top_4_Dist.png> <./Acc_Deg_Top_4_No_Dist.pn
+g> <./Acc_Deg_Winner.png>]
+<Acc_PGR_Dist.png, id=144, 925.056pt x 450.2421pt>
+File: Acc_PGR_Dist.png Graphic file (type png)
+<use Acc_PGR_Dist.png>
+Package pdftex.def Info: Acc_PGR_Dist.png  used on input line 597.
+(pdftex.def)             Requested size: 370.01584pt x 180.09364pt.
+<Acc_PGR_Top_4_Dist.png, id=145, 925.056pt x 450.2421pt>
+File: Acc_PGR_Top_4_Dist.png Graphic file (type png)
+<use Acc_PGR_Top_4_Dist.png>
+Package pdftex.def Info: Acc_PGR_Top_4_Dist.png  used on input line 598.
+(pdftex.def)             Requested size: 370.01584pt x 180.09364pt.
+<Acc_PGR_Top_4_No_Dist.png, id=146, 925.056pt x 450.2421pt>
+File: Acc_PGR_Top_4_No_Dist.png Graphic file (type png)
+<use Acc_PGR_Top_4_No_Dist.png>
+Package pdftex.def Info: Acc_PGR_Top_4_No_Dist.png  used on input line 599.
+(pdftex.def)             Requested size: 370.01584pt x 180.09364pt.
+<Acc_PGR_Winner.png, id=147, 925.056pt x 450.2421pt>
+File: Acc_PGR_Winner.png Graphic file (type png)
+<use Acc_PGR_Winner.png>
+Package pdftex.def Info: Acc_PGR_Winner.png  used on input line 600.
+(pdftex.def)             Requested size: 370.01584pt x 180.09364pt.
+
+Overfull \vbox (24.05568pt too high) has occurred while \output is active []
+
+
+[25 <./Acc_PGR_Dist.png> <./Acc_PGR_Top_4_Dist.png> <./Acc_PGR_Top_4_No_Dist.pn
+g> <./Acc_PGR_Winner.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 604--605
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 606--607
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 608--609
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 610--611
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 612--613
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 614--615
+
+ []
+
+[26]
+Underfull \hbox (badness 10000) in paragraph at lines 616--617
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 624--625
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 626--627
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 628--629
+
+ []
+
+[27]
+Underfull \hbox (badness 10000) in paragraph at lines 642--643
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 650--651
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 652--653
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 666--667
+
+ []
+
+[28]
+Underfull \hbox (badness 10000) in paragraph at lines 668--669
+
+ []
+
+<"Cost Rep(1)".PNG, id=164, 135.00438pt x 164.615pt>
+File: "Cost Rep(1)".PNG Graphic file (type png)
+<use "Cost Rep(1)".PNG>
+Package pdftex.def Info: "Cost Rep(1)".PNG  used on input line 672.
+(pdftex.def)             Requested size: 94.5024pt x 115.2297pt.
+<"Cost Rep(2)".PNG, id=165, 204.765pt x 163.61125pt>
+File: "Cost Rep(2)".PNG Graphic file (type png)
+<use "Cost Rep(2)".PNG>
+Package pdftex.def Info: "Cost Rep(2)".PNG  used on input line 673.
+(pdftex.def)             Requested size: 143.3345pt x 114.52708pt.
+<"Cost Rep(3)".PNG, id=166, 132.495pt x 161.60374pt>
+File: "Cost Rep(3)".PNG Graphic file (type png)
+<use "Cost Rep(3)".PNG>
+Package pdftex.def Info: "Cost Rep(3)".PNG  used on input line 674.
+(pdftex.def)             Requested size: 92.74585pt x 113.12184pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 680--681
+
+ []
+
+[29 <./Cost Rep(1).PNG> <./Cost Rep(2).PNG> <./Cost Rep(3).PNG>]
+Underfull \hbox (badness 10000) in paragraph at lines 695--696
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 702--703
+
+ []
+
+[30]
+Underfull \hbox (badness 10000) in paragraph at lines 722--725
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 726--727
+
+ []
+
+<"Example of Ratio (1)".png, id=177, 332.74312pt x 165.11688pt>
+File: "Example of Ratio (1)".png Graphic file (type png)
+<use "Example of Ratio (1)".png>
+Package pdftex.def Info: "Example of Ratio (1)".png  used on input line 732.
+(pdftex.def)             Requested size: 232.91858pt x 115.58102pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 741--743
+
+ []
+
+<"Example of Ratio (2)".png, id=178, 330.73563pt x 162.10562pt>
+File: "Example of Ratio (2)".png Graphic file (type png)
+<use "Example of Ratio (2)".png>
+Package pdftex.def Info: "Example of Ratio (2)".png  used on input line 748.
+(pdftex.def)             Requested size: 231.51335pt x 113.47316pt.
+[31 <./Example of Ratio (1).png>]
+Underfull \hbox (badness 10000) in paragraph at lines 765--766
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 767--768
+
+ []
+
+[32 <./Example of Ratio (2).png>]
+Underfull \hbox (badness 10000) in paragraph at lines 783--784
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 788--789
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 790--792
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 797--798
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 805--806
+
+ []
+
+[33]
+Underfull \hbox (badness 10000) in paragraph at lines 811--812
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 813--814
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 839--840
+
+ []
+
+[34]
+<"Sybil Attack on BarterCast".PNG, id=194, 314.67563pt x 156.08313pt>
+File: "Sybil Attack on BarterCast".PNG Graphic file (type png)
+<use "Sybil Attack on BarterCast".PNG>
+Package pdftex.def Info: "Sybil Attack on BarterCast".PNG  used on input line 8
+48.
+(pdftex.def)             Requested size: 220.27142pt x 109.25743pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 857--858
+
+ []
+
+[35 <./Sybil Attack on BarterCast.PNG>]
+Underfull \hbox (badness 10000) in paragraph at lines 907--908
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 923--924
+
+ []
+
+[36]
+Underfull \hbox (badness 10000) in paragraph at lines 938--939
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 940--941
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 948--949
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 955--956
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 960--961
+
+ []
+
+[37]
+<"Path-Responsiveness (1)".png, id=206, 713.66624pt x 200.24812pt>
+File: "Path-Responsiveness (1)".png Graphic file (type png)
+<use "Path-Responsiveness (1)".png>
+Package pdftex.def Info: "Path-Responsiveness (1)".png  used on input line 967.
+
+(pdftex.def)             Requested size: 499.56296pt x 140.17273pt.
+
+Overfull \hbox (44.31888pt too wide) in paragraph at lines 967--968
+ [] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 973--974
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 975--976
+
+ []
+
+<"Path-Responsiveness (2)".png, id=207, 808.01875pt x 314.67563pt>
+File: "Path-Responsiveness (2)".png Graphic file (type png)
+<use "Path-Responsiveness (2)".png>
+Package pdftex.def Info: "Path-Responsiveness (2)".png  used on input line 979.
+
+(pdftex.def)             Requested size: 404.00839pt x 157.33742pt.
+[38 <./Path-Responsiveness (1).png>]
+Underfull \hbox (badness 10000) in paragraph at lines 1017--1018
+
+ []
+
+[39 <./Path-Responsiveness (2).png>]
+Underfull \hbox (badness 10000) in paragraph at lines 1035--1036
+
+ []
+
+
+Overfull \hbox (3.71939pt too wide) in paragraph at lines 1039--1041
+\OT1/cmr/m/it/10.95 Every ac-count-ing mech-a-nism that sat-is-fies in-de-pen-d
+ence of dis-con-nected agents, sym-me-try, single-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1043--1044
+
+ []
+
+[40]
+Underfull \hbox (badness 10000) in paragraph at lines 1060--1062
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1063--1064
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1065--1066
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1067--1068
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1069--1070
+
+ []
+
+<"Single-Report Responsiveness of PR".png, id=219, 615.29875pt x 89.33376pt>
+File: "Single-Report Responsiveness of PR".png Graphic file (type png)
+<use "Single-Report Responsiveness of PR".png>
+Package pdftex.def Info: "Single-Report Responsiveness of PR".png  used on inpu
+t line 1073.
+(pdftex.def)             Requested size: 430.70618pt x 62.53319pt.
+[41]
+Underfull \hbox (badness 10000) in paragraph at lines 1079--1080
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1081--1082
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1083--1084
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1085--1086
+
+ []
+
+[42 <./Single-Report Responsiveness of PR.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 1111--1112
+
+ []
+
+[43]
+Underfull \hbox (badness 10000) in paragraph at lines 1134--1135
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1140--1141
+
+ []
+
+[44]
+Underfull \hbox (badness 10000) in paragraph at lines 1146--1147
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1148--1149
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1150--1151
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1159--1160
+
+ []
+
+[45]
+Underfull \hbox (badness 10000) in paragraph at lines 1173--1174
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1181--1182
+
+ []
+
+[46]
+<"Parallel Sybil Attack".png, id=240, 373.395pt x 225.34187pt>
+File: "Parallel Sybil Attack".png Graphic file (type png)
+<use "Parallel Sybil Attack".png>
+Package pdftex.def Info: "Parallel Sybil Attack".png  used on input line 1223.
+(pdftex.def)             Requested size: 261.37471pt x 157.73822pt.
+ [47]
+Underfull \hbox (badness 10000) in paragraph at lines 1229--1230
+
+ []
+
+<"Serial Sybil Attack".png, id=245, 477.28313pt x 100.375pt>
+File: "Serial Sybil Attack".png Graphic file (type png)
+<use "Serial Sybil Attack".png>
+Package pdftex.def Info: "Serial Sybil Attack".png  used on input line 1240.
+(pdftex.def)             Requested size: 334.0959pt x 70.26201pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 1246--1247
+
+ []
+
+[48 <./Parallel Sybil Attack.png> <./Serial Sybil Attack.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 1254--1255
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1260--1261
+
+ []
+
+[49]
+Underfull \hbox (badness 10000) in paragraph at lines 1333--1335
+
+ []
+
+[50]
+Underfull \hbox (badness 10000) in paragraph at lines 1341--1342
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1352--1353
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1399--1400
+
+ []
+
+[51]
+Underfull \hbox (badness 10000) in paragraph at lines 1412--1413
+
+ []
+
+<"One-layer trust model".png, id=261, 404.00937pt x 90.83937pt>
+File: "One-layer trust model".png Graphic file (type png)
+<use "One-layer trust model".png>
+Package pdftex.def Info: "One-layer trust model".png  used on input line 1420.
+(pdftex.def)             Requested size: 363.60507pt x 81.75467pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 1426--1427
+
+ []
+
+<"Two-layer trust model".png, id=262, 670.505pt x 93.34875pt>
+File: "Two-layer trust model".png Graphic file (type png)
+<use "Two-layer trust model".png>
+Package pdftex.def Info: "Two-layer trust model".png  used on input line 1429.
+(pdftex.def)             Requested size: 469.35031pt x 65.34366pt.
+
+Overfull \hbox (14.10623pt too wide) in paragraph at lines 1429--1430
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1433--1434
+
+ []
+
+[52 <./One-layer trust model.png> <./Two-layer trust model.png>] [53]
+Overfull \hbox (42.87944pt too wide) detected at line 1443
+\OMS/cmsy/m/n/10.95 8[]\OML/cmm/m/it/10.95 i \OMS/cmsy/m/n/10.95 2 []\OML/cmm/m
+/it/10.95 V[];  \OMS/cmsy/m/n/10.95 9[]\OML/cmm/m/it/10.95 j \OMS/cmsy/m/n/10.9
+5 2 []\OML/cmm/m/it/10.95 V[]; \OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 i; j\OT1
+/cmr/m/n/10.95 ) \OMS/cmsy/m/n/10.95 2 []\OML/cmm/m/it/10.95 E[]  \OT1/cmr/m/n/
+10.95 :  \OMS/cmsy/m/n/10.95 8[]\OML/cmm/m/it/10.95 j \OMS/cmsy/m/n/10.95 2 []\
+OML/cmm/m/it/10.95 N[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 i\OT1/cmr/m/n/10.
+95 ) \OMS/cmsy/m/n/10.95 [ []f[]\OML/cmm/m/it/10.95 i\OMS/cmsy/m/n/10.95 g\OML/
+cmm/m/it/10.95 ;  j \OMS/cmsy/m/n/10.95 62 []\OML/cmm/m/it/10.95 V[]; \OMS/cmsy
+/m/n/10.95 8[]\OML/cmm/m/it/10.95 j; k \OMS/cmsy/m/n/10.95 2 []\OML/cmm/m/it/10
+.95 N[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 i\OT1/cmr/m/n/10.95 )\OML/cmm/m/
+it/10.95 ; \OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 j; k\OT1/cmr/m/n/10.95 ) \OM
+S/cmsy/m/n/10.95 2 []\OML/cmm/m/it/10.95 E[]  \OT1/cmr/m/n/10.95 :  (\OML/cmm/m
+/it/10.95 j; k\OT1/cmr/m/n/10.95 ) \OMS/cmsy/m/n/10.95 62 []\OML/cmm/m/it/10.95
+ E[];  [] \OMS/cmsy/m/n/10.95 2 []\OML/cmm/m/it/10.95 V[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1443--1445
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1471--1472
+
+ []
+
+[54]
+Underfull \hbox (badness 10000) in paragraph at lines 1477--1478
+
+ []
+
+[55]
+Overfull \hbox (6.29704pt too wide) in paragraph at lines 1516--1517
+\OT1/cmr/m/n/10.95 ca-tion pol-icy $\OML/cmm/m/it/10.95 A$ \OT1/cmr/m/n/10.95 f
+or an agent $\OML/cmm/m/it/10.95 i$ \OT1/cmr/m/n/10.95 takes an ac-count-ing me
+ch-a-nism $\OML/cmm/m/it/10.95 S[]$ \OT1/cmr/m/n/10.95 with scores $[]$
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1532--1533
+
+ []
+
+[56]
+Underfull \hbox (badness 10000) in paragraph at lines 1539--1540
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1553--1554
+
+ []
+
+[57] [58]
+Underfull \hbox (badness 10000) in paragraph at lines 1599--1602
+
+ []
+
+<"Behavioural Strategies".png, id=287, 306.14375pt x 117.43875pt>
+File: "Behavioural Strategies".png Graphic file (type png)
+<use "Behavioural Strategies".png>
+Package pdftex.def Info: "Behavioural Strategies".png  used on input line 1608.
+
+(pdftex.def)             Requested size: 183.68765pt x 70.46378pt.
+<"Reputation Dynamics".png, id=288, 644.90938pt x 95.85812pt>
+File: "Reputation Dynamics".png Graphic file (type png)
+<use "Reputation Dynamics".png>
+Package pdftex.def Info: "Reputation Dynamics".png  used on input line 1617.
+(pdftex.def)             Requested size: 386.94861pt x 57.5153pt.
+[59 <./Behavioural Strategies.png> <./Reputation Dynamics.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 1636--1638
+
+ []
+
+
+LaTeX Warning: Reference `subsec:Utility of Trust/Reputation, etc' on page 60 u
+ndefined on input line 1639.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1643--1644
+
+ []
+
+[60]
+<"ESS Pairs".png, id=298, 633.86812pt x 204.26312pt>
+File: "ESS Pairs".png Graphic file (type png)
+<use "ESS Pairs".png>
+Package pdftex.def Info: "ESS Pairs".png  used on input line 1659.
+(pdftex.def)             Requested size: 380.3238pt x 122.5588pt.
+ [61 <./ESS Pairs.png>] [62]
+Underfull \hbox (badness 10000) in paragraph at lines 1707--1708
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1709--1710
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1721--1722
+
+ []
+
+<"Reputation Transfer Function".png, id=306, 401.5pt x 401.5pt>
+File: "Reputation Transfer Function".png Graphic file (type png)
+<use "Reputation Transfer Function".png>
+Package pdftex.def Info: "Reputation Transfer Function".png  used on input line
+ 1725.
+(pdftex.def)             Requested size: 200.7495pt x 200.7495pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 1733--1735
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1736--1737
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1738--1739
+
+ []
+
+[63]
+Underfull \hbox (badness 10000) in paragraph at lines 1740--1741
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1742--1743
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1744--1745
+
+ []
+
+[64 <./Reputation Transfer Function.png (PNG copy)>]
+Underfull \hbox (badness 10000) in paragraph at lines 1746--1747
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1748--1749
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1750--1751
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1752--1753
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1761--1774
+
+ []
+
+[65]
+Underfull \hbox (badness 10000) in paragraph at lines 1796--1797
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1803--1804
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1824--1825
+
+ []
+
+[66]
+Underfull \hbox (badness 10000) in paragraph at lines 1826--1827
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1828--1829
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1832--1833
+
+ []
+
+[67] [68] (Report.aux)
+
+LaTeX Font Warning: Size substitutions with differences
+(Font)              up to 117.38377pt have occurred.
+
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 4026 strings out of 492946
+ 62659 string characters out of 3126266
+ 140416 words of memory out of 3000000
+ 7775 multiletter control sequences out of 15000+200000
+ 11470 words of font info for 44 fonts, out of 3000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 41i,11n,32p,2112b,337s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Users/alexa/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts
+/cm/cmbx10.pfb><C:/Users/alexa/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pu
+blic/amsfonts/cm/cmbx12.pfb><C:/Users/alexa/AppData/Local/Programs/MiKTeX 2.9/f
+onts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/alexa/AppData/Local/Programs
+/MiKTeX 2.9/fonts/type1/public/amsfonts/cmextra/cmex8.pfb><C:/Users/alexa/AppDa
+ta/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/User
+s/alexa/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.
+pfb><C:/Users/alexa/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfon
+ts/cm/cmmi8.pfb><C:/Users/alexa/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/p
+ublic/amsfonts/cm/cmr10.pfb><C:/Users/alexa/AppData/Local/Programs/MiKTeX 2.9/f
+onts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/alexa/AppData/Local/Programs/
+MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/alexa/AppData/Loca
+l/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/alexa/A
+ppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/
+Users/alexa/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
+sy6.pfb><C:/Users/alexa/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/am
+sfonts/cm/cmsy8.pfb><C:/Users/alexa/AppData/Local/Programs/MiKTeX 2.9/fonts/typ
+e1/public/amsfonts/cm/cmti10.pfb><C:/Users/alexa/AppData/Local/Programs/MiKTeX 
+2.9/fonts/type1/public/amsfonts/cm/cmti8.pfb><C:/Users/alexa/AppData/Local/Prog
+rams/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/alexa/
+AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm7.pfb
+>
+Output written on Report.pdf (70 pages, 1660093 bytes).
+PDF statistics:
+ 385 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 221 words of extra memory for PDF output out of 10000 (max. 10000000)
+

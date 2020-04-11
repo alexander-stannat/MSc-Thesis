@@ -1,0 +1,325 @@
+\chapter{On the Impossibility of Sybil-Proofness}
+\label{chap:On the Impossibility of Sybil-Proofness}
+\noindent{}Recall that our overarching goal was to investigate the resistance of accounting mechanisms against strongly beneficial sybil attacks, in terms of work, of course. But we could only investigate sybil-proofness in terms of accounting values. This in combination with representativeness gave us a necessary requirement for sybil resistance in terms of work. In this section we will exactly define the kind of resistance we are looking for in a ranking algorithm, i.e. accounting mechanism and analyse some of the requirements accounting mechanisms must satisfy in order for them \textbf{not} to be resistant to such attacks. We critically examine some results from existing literature and expand on them.\vspace{1em}\\
+
+\noindent{}We should mention here that many of the results below are phrased in a way that includes the possibility of misreports. This might seem redundant as we have already eliminated the possibility of misreports in chapter \ref{chap:Mathematical Framework for Accounting Mechanisms}, however we will keep it as we are analysing existing literature. This means, we will maintain the notation of $w_i=(w_i^j(j,k),w_i^k(j,k))$.\vspace{1em}\\
+
+
+\section{Analysis of Existing Impossibility Results}
+\label{Analysis of Existing Impossibility Results}
+\noindent{}Seuken and Parkes (2011) introduce a rather strong impossibility result \cite{On the Sybil-Proofness of Accounting Mechanisms}, which we will recap here. They begin by defining the concept of single-report responsiveness. 
+
+\begin{definition}[Single-Report Responsiveness]\ \\
+\label{def:Single-Report Responsiveness}
+\noindent{}Let $G_i=(V_i,E_i,w_i)$ be the subjective work graph of agent $i$ with nodes $j$ and $k$, such that $(i,j)\in{}E$ with $w(i,j)>0$ and no path in $G_i$ connecting $i$ and $k$. A report $(w^j_i(j,k),w^k_i(j,k))$ with $w^j_i(j,k)>0$ yields a new subjective work graph $G_i'$. We call an accounting mechanism $S^M$ {\it single-report responsive} if it then holds $S^M_i(G_i,k)<S^M_i(G'_i,k)$. \vspace{1em}\\
+\end{definition}
+
+\noindent{}This definition implies that a single (positive) report by a known neighbour about an unknown node will immediately result in an increase in the reputation of the unknown node. Note that this definition only covers two hops, i.e. if node $k$ were to be further away from $i$ then an accounting mechanism may be single-report responsive, despite node $k$ not gaining any reputation from a report.\vspace{1em}\\
+
+\noindent{}Differently put, if in the subjective work graph $G_i$ there are nodes $j,k,l$ such that $w_i(i,j)>0$, $w_i^j(j,k),w_i^k(j,k)>0$ and if a new report about an interaction is received by $i$ with $w_i^k(k,l),w_i^l(k,l)>0$ then it needn't hold $S^M_i(G_i,l) < S^M_i(G'_i,l)$, which is an important distinction to make. \vspace{1em}\\
+
+\noindent{}We will explain later why the single-report responsiveness axiom is in fact, a problematic one, leading to an impossibility result introduced by Seuken \& Parkes (2011) \cite{On the Sybil-Proofness of Accounting Mechanisms}. \vspace{1em}\\
+
+\noindent{}The next definition introduced is called Independence of disconnected nodes. \vspace{1em}\\
+
+\begin{definition}[Independence of Disconnected Nodes]\ \\
+\label{def:Independence of Disconnected Nodes}
+\noindent{}Given a subjective work graph $G_i=(V_i,E_i,w_i)$ and node $k\in{}V_i$ such that $w_i^j(j,k)=w_i^j(k,j)=w_i^k(k,j)=w_i^k(j,k)=0$ for all $j\in{}V_i$. Let $G_i'$ now denote the subjective work graph of $i$, with $V_i'=V_i\backslash{}\left\lbrace{}k\right\rbrace$ and $w'^i(j,l)=w^i(j,l)$ for all $j,l\neq{}k$. An accounting mechanism $S^M$ is said to satisfy {\it independence of disconnected nodes} if $S^M_i(G_i,j)=S^M_i(G'_i,j)$ for all $j\in{}V_i'$.  
+\end{definition}
+\noindent{}This means that removing a node that is not connected to any nodes from the work graph, will not affect the accounting values of any other nodes in the network.\vspace{1em}\\
+
+\noindent{}The third relevant property is called symmetry, also referred to as anonymity. \vspace{1em}
+
+\begin{definition}[Symmetry]\ \\
+\label{def:Symmetry}
+\noindent{}Given a subjective work graph $G_i$ an accounting mechanism $S^M$ is said to be {\it symmetric}, if for any graph isomorphism $f$
+with $G_i'=f(G_i)$ and $f(i)=i$ it holds
+\[
+\forall{}j\in{}V_i\backslash\left\lbrace{}i\right\rbrace: S^M_i(G_i,j)=S^M_i(f(G_i),f(j)).
+\]
+\end{definition}
+
+\noindent{}This means that from each individual's perspective, other agents' scores are invariant under relabelling. This is also a rather trivial necessity. Renaming agents in the network returns the exact same scores. This means that values returned by accounting mechanisms only depend on the structure of the subjective work graph and nothing else. \vspace{1em}\\
+
+\noindent{}Seuken \& Parkes (2011) introduce an impossibility result in which they prove the following theorem \cite{On the Sybil-Proofness of Accounting Mechanisms}.
+
+\begin{theorem}[]\ \\
+\label{th:SnP Impossibility Result}
+\noindent{}Every accounting mechanism that satisfies independence of disconnected agents, symmetry, single-report responsiveness and is misreport-proof there exists a passive strongly beneficial sybil attack (in terms of work).
+\end{theorem}
+
+\noindent{}Recall that we had introduced two definitions of misreport-proofness in chapter \ref{chap:Mathematical Framework for Accounting Mechanisms}. The upper theorem relies on the former, definition \ref{def:Misreport-Proofness on the Choice Set}, i.e. misreport-proofness on the choice set. However, seeing as general misreport-proofness is a stronger result, we can extrapolate this to definition \ref{def:Misreport-Proofness}.
+
+\begin{proof}
+\noindent{}The proof to this theorem is based on the following idea. Let $G_i$ be the subjective work graph of agent $i$ containing nodes $j,k\in{}V_i$, where node $j$ is malicious and connected to node $i$, i.e. $w_i(i,j)>0$. Let $k$ not be connected to any other nodes in $i$'s subjective work graph $G_i$ at all. \vspace{1em}\\
+
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.8]{"SnP_Impossibility0".PNG}
+\label{fig:SnP_Impossibility0}
+\caption{Step 1 in the Sybil Attack}
+\end{center}
+\end{figure}
+
+\noindent{}Now, $j$ may create a sybil identity $s_{j1}$ which will not affect the scores any nodes in $V_i$, due to the independence of disconnected agents. If $k$ now performs work for $j$ then $j$ is best off reporting this interaction to $i$, due to the misreport-proofness, and by single-report responsiveness it follows from this report that $S^M_i(G_i,k) < S^M_i(G_i',k)$. The symmetry condition now implies that one can apply a graph isomorphism $f$ to $G_i$ switching the labels of $s_{j1}$ and $k$, i.e. $f(k)=s_{j1}$. From single-report responsiveness it now follows that $S^M_i(f(G_i),s_{j1}) > S^M_i(G_i,s_{j1})$ and due to misreport-proofness $j$ does not suffer from the report on this edge.\vspace{1em}\\
+
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.5]{"SnP_Impossibility1".PNG}
+\label{fig:SnP_Impossibility1}
+\caption{Step 2 in the Sybil Attack}
+\end{center}
+\end{figure}
+
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.5]{"SnP_Impossibility2".PNG}
+\label{fig:SnP_Impossibility2}
+\caption{Step 3 in the Sybil Attack}
+\end{center}
+\end{figure}
+
+\noindent{}The authors argue that because there was no actual work involved in this process, the attack given above is in fact a strongly beneficial sybil attack. They claim that therefore $\omega^n_{-}({\rm work})=0$ and that if $w(j,s_{j1})$ is large enough for $s_{j1}$ to be chosen by $i$'s allocation policy, it must hold $\omega^n_{+}>0$. This implies $\frac{\omega^n_{+}({\rm work})}{\omega^n_{-}({\rm work})}=\infty$. \vspace{1em}\\
+\end{proof}
+
+\noindent{}We disagree with the conclusion of this theorem. In fact, we believe that the attack mentioned above is not strongly beneficial, but weakly beneficial at best. The authors argue that no work is involved in the attack above as the only edge that was added to $G_i$ by $j$ is the edge $(j,s_{j1})$ which involved no work. We would disagree with this claim as the amount of work invested into a passive sybil attack should include all attack edges launched by $j$ (see definition \ref{def:Sybil Attack Profit}) and therefore be given by
+
+\[
+\omega_{-}^n({\rm work}) = w(i,j),
+\]
+
+\noindent{}which in the case of the proof above is greater than zero. Now, depending on the allocation policy of $i$, it will most likely hold $A_i(S^M_i(G_i),C_i)\in{}\lbrace{}j,s_{j1}\rbrace$, if $j$ or $s_{j1}$ query it, provided the edge weight $w^i(j,s_{j1})$ is large enough. However, this may only be true for finitely many rounds, after which $i$ stops serving the attacker. Hence, we find that it will most likely hold:
+
+\[
+\frac{\omega_{+}^n({\rm work})}{\omega_{-}^n({\rm work})}<\infty.
+\]
+
+\noindent{}And therefore we have a weakly beneficial sybil attack at best. \vspace{1em}\\
+
+\noindent{}Note that it also holds 
+
+\[
+\frac{\omega_{+}^n({\rm rep})}{\omega_{-}^n({\rm rep})}<\infty,
+\]
+
+\noindent{}so long as $S^M_i(G'_i,s_{j1}), S^M_i(G'_i,j)<\infty$. \vspace{1em}\\
+
+\noindent{}Hence, we argue that by our definition of sybil attack profit, theorem 1 from \cite{On the Sybil-Proofness of Accounting Mechanisms} is no longer valid. The problem with this theorem is that the authors were not rigorous enough in their definitions of $\omega_{+}^n$ and $\omega_{-}^n$. This is the reason they were able to argue that $\omega_{-}^n=0$. At closer inspection however, it should be clear that the edge $(i,j)$ was created by the attacker and without it the attack would not be beneficial at all. We feel like it is clear that this edge should be weighted into $\omega_{-}^n$. The authors argue as though the edge had already been part of the work graph and not created by the attacker for the sake of the attack. If that is the case then the authors should have specified that the attack above is only applicable in a very particular work graph, in which the upper edge already exists. Seeing as they did not do this, but instead argued on the grounds of an arbitrary work graph, we believe that this theorem above is not valid. \vspace{1em}\\
+
+\noindent{}This has highlighted the necessity for our much more rigorous definitions of sybil attack cost and profit introduced in chapter \ref{chap:Mathematical Framework for Accounting Mechanisms}, as the ambiguity of their definitions for $\omega_{+}^n$ and $\omega_{-}^n$ has lead to an inaccurate/flawed result. We have shown that the upper sybil attack was not actually strongly beneficial.\vspace{1em}\\
+
+\noindent{}Another mistake made in this theorem is that absolutely no restrictions were made on the allocation policy of $i$. It was simply assumed that $j$ could increase its sybils scores by enough for it to follow $A_i(S^M_i(G_i'),C_i')\in\lbrace{}j,s_{j1}\rbrace$. This may not necessarily be the case and so we would argue that the theorem above does not actually imply a beneficial sybil attack in terms of work, but only in terms of accounting values. And again, it really is just weakly beneficial with respect to accounting values as well, for the same reasons as given above. If the reader wants to verify this, we refer them to our definitions in chapter \ref{chap:Representativeness of Accounting Mechanisms}. \vspace{1em}\\
+
+\section{Improving Existing Impossibility Results}
+\label{Improving Existing Impossibility Results}
+\noindent{}However, the existence of a strongly beneficial passive sybil attack under the conditions in theorem \ref{th:SnP Impossibility Result} is not yet disproven. Note that in the upper attack it may still be possible to add additional sybil nodes $s_{j2},s_{j3},\ldots$ such that $w_i(j,s_{jl})>0$. By single-report responsiveness all of these nodes obtain accounting values $S^M_{i}(G_i,s_{jl})>0$. By symmetry, it must hold $S^M_{i}(G_i,s_{jl})=S^M_{i}(G_i,s_{jk})$ f.a. $l,k\in\mathbb{N}$ so long as $w_i(j,s_{jl})=w_i(j,s_{jk})$ f.a. $l,k\in\mathbb{N}$. \vspace{1em}\\
+
+\subsection{Parallel-Report Responsiveness}
+\label{subsec:Parallel-report Responsiveness}
+\noindent{}If we now introduce one additional condition, we can prove that a strongly beneficial passive sybil attack does exist. For this we introduce a new definition called parallel-report responsiveness. \vspace{1em}\\
+
+\begin{definition}[Parallel-Report Responsiveness]\ \\
+\label{def:Parallel-Report Responsiveness}
+\noindent{}Given a subjective work graph $G_i=(V_i,E_i,w_i)$ with choice set $C_i$ and nodes $j,k,l$ such that $w^i(i,j)>0$ and no path connecting $i$ and the two nodes $k,l$. If $G_i'$ is the graph given by the single-report responsiveness to the edge report $w^j_i(j,k)'>0$ and $G_i''$ is the subjective work graph given by $G_i'$ combined with the onset of the edge $w^j_i(j,l)''>0$. We call an accounting mechanism $S^M$ {\it parallel-report responsive} if it is single report responsive and the addition of a second report does not influence the value of $S^M$, i.e.:
+\[
+S^M_i(G_i',k)\not>S^M_i(G_i'',k).
+\] 
+%S^M_k(G_i',C_i')\leq{}S^M_k(G_i'',C_i'')
+\noindent{}This means that if node $j$ adds multiple sybil nodes, one after the other then the reputation of the sybils won't be influenced by the introduction of newer sybils. Sybils sharing the same node as perpetrator of a passive sybil attack do not have to "share" the increase in reputation gained.
+\end{definition}
+
+\noindent{}This definition leads to a new theorem
+
+\begin{theorem}[]\ \\
+\label{th:Strongly Beneficial Sybil Attack Parallel-Report Responsive}
+\noindent{}Every accounting mechanism $S^M$ that satisfies independence of disconnected nodes, symmetry, single-report responsiveness and parallel-report responsiveness as well as being misreport-proof has a passive strongly beneficial sybil attack in terms of accounting values. 
+\end{theorem}
+\begin{proof}\ \\
+\noindent{}Let $G_i$ be the subjective work graph of agent $i$ containing agents $j,k\in{}V_i$, where $j$ is the attacker (analogously to theorem \ref{th:SnP Impossibility Result}). Now $j$ launches a sybil attack $\sigma_j^n$ creating $n$ sybil identities $s_{j1},\ldots,s_{jn}$ as indicated in figure \ref{fig:Parallel Sybil Attack}. This yields a graph $G_i'=G\downarrow\sigma^n_j=(V_i',E_i',w_i')$ with $V_i'=V_i\cup\left\lbrace{}s_{j1}\ldots{}s_{jn}\right\rbrace$. Due to the independence of disconnected agents the scores of all agents in $V_i$ have not changed. Since there is no edge connecting $i$ to any nodes in $\left\lbrace{}k,s_{j1},\ldots,s_{jn}\right\rbrace$ from $i$'s perspective they are indistinguishable. \vspace{1em}\\
+
+\noindent{}Now assume that $k$ performs $c$ units of work for $j$ then due to misreport-proofness $j$ is best off reporting the transaction honestly and by single-report responsiveness it will follow $S^M_i(G'_i,k)>S^M_i(G_i,k)$. Due to the symmetry of $S^M$ we can apply a number of graph isomorphisms $f_1,\ldots,f_n$ where $f_l$ only switches the labels of nodes $k$ and $s_{jl}$. Consequently, there exists a report that $j$ can make about each of its sybil nodes such that $w_i^j(j,s_{jl})=c$, leading to a graph $G_i^{(l)}$ where $S^M_i(G_i^{(l)},s_{jl})>0$. \vspace{1em}\\
+
+\noindent{}Now, due to {\it parallel-report responsiveness} we find that in a graph $\tilde{G}^{(l)}_i$ with $w_i^j(j,s_{j1})=,\ldots,=w_i^j(j,s_{jl})=c$ and $w_i^j(j,s_{jl+1}),\ldots,w_i^j(j,s_{jn})=0$ such that $S^M_i(\tilde{G}^{(l)}_i,s_{j1}) = \ldots{} = S^M_i(\tilde{G}^{(l)}_i,s_{jl})>0$ and $S^M_i(\tilde{G}^{(l)}_i,s_{jl+1}) = \ldots = S^M_i(\tilde{G}^{(l)}_i,s_{jn})=0$, adding a report $w_i^j(s_{jl+1},j)=c$ leads to a graph $\tilde{G}^{(l+1)}_i$ with $S^M_i(\tilde{G}^{(l+1)}_i,s_{jl+1})>S^M_i(\tilde{G}^{(l)}_i,s_{jl+1})$ and $S^M_i(\tilde{G}^{(l+1)}_i,s_{jr})\geq{}S^M_i(\tilde{G}^{(l)}_i,s_{jr})$ f.a. $r\in\mathbb{N}_{\leq{}l}$. Now we find that by symmetry and the fact that all edges in the sybil region have the same weight, it must hold
+
+\[
+\frac{\omega_{+}^n({\rm rep})}{\omega_{+}^{n+1}({\rm rep})}\leq\frac{n}{n+1}.
+\]
+
+\noindent{}Because there is only one attack edge $w_i(i,j)>0$, we find that $\omega_{-}^n({\rm rep})$ must be constant f.a. $n\in\mathbb{N}$. From this we conclude that in fact it holds
+
+\[
+\lim\limits_{n\rightarrow\infty}\frac{\omega^n_{+}({\rm rep})}{\omega^n_{-}({\rm rep})}=\infty.
+\]
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=1]{"Sybil Attack on Shortest Paths".png}
+\caption{Sybil Attack on Parallel-report Responsive Accounting Mechanism}
+\label{fig:Parallel Sybil Attack}
+\end{center}
+\end{figure}
+\end{proof}
+
+\noindent{}This theorem only returns a strongly beneficial sybil attack in terms of accounting values and not in terms of work performed. However, if the accounting mechanism additionally is weakly representative, it will imply a strongly beneficial sybil attack in terms of work as well.\vspace{1em}\\
+
+
+\noindent{}Some confusion may arise because, while an additional sybil node may not reduce the reputation values of existing sybil nodes, due to parallel-report responsiveness, the sum of reputations may still converge to a finite value. For example one could imagine that it may hold $S^M_i(\tilde{G}^{(n)}_i,s_{jn})=2^{-n}$. Then it would follow $\sum\limits_{n\in\mathbb{N}}S^M_i(\tilde{G}_i^{(n)},s_{jn})=1$ and consequently $\lim\limits_{n\rightarrow\infty}\frac{\omega^n_{+}({\rm rep})}{\omega^n_{-}({\rm rep})}<\infty$. This is prevented by the symmetry assumption. Because from $i$'s perspective all sybils look the same their respective reputation values must be the same, which justifies our claim that $\frac{\omega_{+}^{n+1}({\rm rep})}{\omega_{+}^n({\rm rep})}\geq\frac{n+1}{n}$ Due to the symmetry assumption, it must hold that $S^M_i(\tilde{G}_i^{(n)},s_{jl})=S^M_i(\tilde{G}_i^{(n)},s_{jk})$ f.a. $l,k\leq{}n$. Therefore, the return of the sybil attack in terms of accounting values is given by $n\cdot{}S^M_i(\tilde{G}_i^{(n)},s_{jn})$ and it is therefore strongly beneficial if $S^M_i(\tilde{G}_i^{(1)},s_{j1})>0$, which we know is true by single-report responsiveness. \vspace{1em}\\ 
+
+\begin{remark}[]\ \\
+\label{rem:PGR parallel-report responsive}
+\noindent{}We have introduced the property of parallel-report responsiveness for good reason. Without it, the upper attack seen in figure \ref{fig:Parallel Sybil Attack} may not actually be strongly beneficial. To highlight this, we return to the example of the personalised PageRank accounting mechanism. $S^{\rm PGR}$ satisfies all properties required for theorem \ref{th:Strongly Beneficial Sybil Attack Parallel-Report Responsive}, except for parallel-report responsiveness.\vspace{1em}\\
+
+\noindent{}Altman et al. (2005) have shown that the personalised PageRank algorithm satisfies symmetry \cite{Ranking Systems: The PageRank Axioms}. The independence of disconnected nodes and single-report responsiveness properties are trivially satisfied as well. Lastly, we know that misreport-proofness is obviously satisfied, due to the TrustChain data structure underlying all accounting mechanisms discussed in here. However, the upper attack is not strongly beneficial in terms of accounting values as it must hold $\sum\limits_{l=1}^{n}S^{\rm PGR}_i(\tilde{G}_i^{(n)},s_{jl}) = \sum\limits_{l=1}^{n+1}S^{\rm PGR}_i(\tilde{G}_i^{(n+1)},s_{jl})$ f.a. $n\in\mathbb{N}$ and therefore $S^{\rm PGR}_i(\tilde{G}_i^{(n+1)},s_{jn+1})\leq{}S^{\rm PGR}_i(\tilde{G}_i^{(n)},s_{jn})$ The lack of parallel-report responsiveness in PageRank leads to a non-strongly beneficial sybil attack in terms of accounting values. \vspace{1em}\\
+\end{remark}
+
+\noindent{}From theorem \ref{th:Strongly Beneficial Sybil Attack Parallel-Report Responsive}, we can derive a slightly weaker definition of parallel-report responsiveness and derive an even stronger corollary. 
+
+\begin{definition}[Weak Parallel-report responsiveness]\ \\
+\label{def:Weak Parallel-report responsiveness}
+Given a subjective work graph $G_i=(V_i,E_i,w_i)$ with nodes $j,s_{j1},\ldots{},s_{jn}$ such that $w^i(i,j)>0$ and no path connecting $i$ and the nodes $s_{j1},\ldots{},s_{jn}$. Let $G_i^{(1)}$ be the graph given by the single-report responsiveness to the edge report $w^j_i(j,s_{j1})>0$ and $G_i^{(2)}$ the subjective work graph given by $G_i^{(1)}$ combined with the onset of the edge $w^j_i(j,s_{j2})>0$. More generally, we define $G^{(l)}$ as the graph $G^{(l-1)}$ with the edge $w(j,s_{jl})^{(l)}>0.$ We call an accounting mechanism $S^M$ {\it weakly parallel-report responsiveness} if it is single-report responsive and the additional reports yield an infinite sum, i.e.
+
+\[
+\lim\limits_{n\rightarrow\infty}\sum\limits_{l=1}^{n}S^M_i(G_i^{(n)},s_{jl})=\infty .
+\] 
+
+\noindent{}If the accounting mechanism is also symmetric and all values $w(j,s_{jl})$ are equal then this implies $S^M_i(G_i^{(n)},s_{jl})$ are all equal f.a. $l\leq{}n$. The upper definition then becomes equivalent to $S^M_i(G_i^{(n)},s_{j1}) = \omega(\frac{1}{n})$.
+\end{definition}
+
+\noindent{}Note that parallel-report responsiveness implies weak parallel-report responsiveness and is therefore a stricter condition. We obtain the following corollary. 
+
+\begin{corollary}[]\ \\
+\label{cor:Weak Parallel-report Responsiveness sybil attack}
+Every accounting mechanism $S^M$ that satisfies independence of disconnected nodes, symmetry, single-report responsiveness and weak parallel-report responsiveness, as well as being misreport-proof, has a strongly beneficial sybil attack in terms of accounting values.
+\end{corollary}
+
+\noindent{}Note that the upper theorem and corollary hold for active sybil attacks as well, because any passive sybil attack is also an active sybil attack, but not every active sybil attack is also a passive sybil attack. Active sybil attacks are generally stronger than passive sybil attacks as there can be more attack edges, but not every active sybil attack is more beneficial than a passive one. There may be cases in which an additional attack edge increases the cost/investment of a sybil attack without increasing the return proportionately. \vspace{1em}\\
+
+\noindent{}In some cases it may be more beneficial to launch an active attack, distributing the attack edges over several nodes, while in others it may be advantageous to confine the attacking nodes to a single agent. This very much depends on the accounting mechanism at hand and the structure of the work graph. However, the main take-away is that if there exists a strongly beneficial passive sybil attack under certain conditions then there must also exist an active one. Consequently, if an accounting mechanism satisfies requirements that imply immunity to any strongly beneficial active sybil attack then there can also not be any passive sybil attacks. We can rewrite this as a lemma. \vspace{1em}\\
+
+\begin{lemma}[]\ \\
+\label{lem:Active attacks stronger passive attacks}
+\noindent{}Let $G_i=(V_i,E_i,w_i)$ be an arbitrary subjective work graph with $j\in{}V_i$. Then for any passive sybil attack of arbitrary size $n$, $\sigma_j^n$ there exists an active sybil attack $\tilde{\sigma}_j^n$ such that $\tilde{\omega}_{+}^n \geq \omega_{+}^n$. Additionally, it holds that every accounting mechanism $S^M$ that is resistant to active strongly beneficial sybil attacks is also resistant to passive strongly beneficial sybil attacks in terms of accounting values. \vspace{1em}\\
+
+\noindent{}This holds both for beneficial sybil attacks in terms of work and in terms of accounting values, which is why we simply wrote $\omega_{+}^n$ instead of $\omega_{+}^n$(work) or $\omega_{+}^n$(rep).\vspace{1em}\\
+\end{lemma}
+
+\noindent{}From this lemma we can derive a corollary to theorem \ref{th:Strongly Beneficial Sybil Attack Parallel-Report Responsive} corollary and \ref{cor:Weak Parallel-report Responsiveness sybil attack}. \vspace{1em}\\
+
+\begin{corollary}[]\ \\
+\label{cor:Active Parallel-report Responsiveness Sybil Attack}
+Every accounting mechanism $S^M$ that satisfies independence of disconnected nodes, symmetry, single-report responsiveness and (weak) parallel-report responsiveness, as well as being misreport-proof, has an active strongly beneficial sybil attack in terms of accounting values. 
+\end{corollary}
+
+\noindent{}We have now seen that any accounting mechanism satisfying the conditions of misreport-proofness, symmetry, independence of disconnected agents, as well as single-report responsiveness and parallel-report responsiveness is susceptible to strongly beneficial sybil attacks. Misreport-proofness is, in our case, always guaranteed, due to the reasons discussed in chapter \ref{chap:Mathematical Framework for Accounting Mechanisms}. The condition of symmetry is also an appropriate condition and should be satisified by any sensible accounting mechanism. The condition "independence of disconnected agents" is also a very sensible property for any accounting mechanism to have and we will not contest it in here. However, we do have some reservations about the definitions of single-report responsiveness and parallel-report responsiveness, which weaken the importance of this theorem. \vspace{1em}\\
+
+
+\subsection{Extending the Model to Multiple Hops}
+\label{subsec:Extending the Model to Multiple Hops}
+\noindent{}While the upper two theorems may seem like very strong assertions, they are, in fact, rather weak. The definitions of single-report responsiveness and parallel-report responsiveness above are quite narrowly defined. The problem here is that they are only defined for agents in the work graph that are exactly two "hops" away from the node determining the accounting values. We would like to extend this definition to an arbitrary distance from the seed node. We now extend our definitions to multiple hops.\vspace{1em}\\
+
+\begin{definition}[Several-Hop Single-report Responsiveness]\ \\
+\label{def:Several-Hop Single-report Responsiveness}
+Given an arbitrary subjective work graph $G_i=(V_i,E_i,w_i)$, in which there exists a node $k\in{}V_i$ such that there is no path in $G_i$ connecting $i$ and $k$. Now, let $G_i'$ be the same subjective work graph as $G_i$, but with a path of arbitrary length $n$ given by $\left\lbrace{}j_1,\ldots,j_n\right\rbrace$ added, such that there exists some $c>0$ with $w_i(i,j_1)\geq{}c$, $w_i^{j_{l-1}}(j_{l-1},j_l)\geq{}c$ f.a. $l\in\mathbb{N}_{\leq{}n}$ and $w_i^{j_n}(j_n,k)\geq{}c$. We say that an accounting mechanism $S^M$ satisfies several-hop single-report responsiveness, if it holds
+\[
+S^M_i(G'_i,k)>S^M_i(G_i,k).
+\]
+\end{definition}
+
+\begin{definition}[Several-Hop Parallel-report Responsiveness]\ \\
+\label{def:Several-Hop Parallel-report Responsiveness}
+Given an arbitrary subjective work graph $G_i=(V_i,E_i,w_i)$, in which there exist nodes $j,k,l\in{}V_i$ such that there is no path in $G_i$ connecting $i$ and $k,l$ and there exists a path of length $n$ given by $\left\lbrace{}j_1,\ldots,j_n\right\rbrace$, such that there exists some $c>0$ with $w_i(i,j_1)\geq{}c$, $w_i^{j_{l-1}}(j_{l-1},j_l)\geq{}c$ f.a. $l\in\mathbb{N}_{\leq{}n}$ and $w_i^{j_n}(j_n,j)\geq{}c$. Now, let $G_i'$ be the same subjective work graph as $G_i$, but with $i$ having received the report $w_i^j(j,k)>0$ and let $G_i''$ be the subjective work graph $G_i'$ with the additional report $w_i^j(j,l)>0$. We say that an accounting mechanism $S^M$ satisfies several-hop parallel-report responsiveness, if it holds
+\[
+S^M_i(G'_i,k)\not > S^M_i(G''_i,k).
+\]
+\end{definition}
+
+\noindent{}Note that the definitions of (single-hop) single-report responsiveness and (single-hop) parallel-report responsiveness are special cases of several-hop single-report responsiveness and several-hop parallel-report responsiveness. Hence, the following corollary is a simple extrapolation of theorem \ref{th:Strongly Beneficial Sybil Attack Parallel-Report Responsive}.
+
+\begin{corollary}[]\ \\
+\label{cor:Strongly Beneficial Sybil Attack Several-hop Parallel-Report Responsive}
+Every accounting mechanism $S^M$ that satisfies symmetry, independence of disconnected nodes, several-hop single-report responsiveness, several hop parallel-report responsiveness as well as being misreport-proof has a strongly beneficial (passive) sybil attack in terms of accounting values. 
+\end{corollary}
+
+\noindent{}The proof to this is equivalent to the proof of theorem \ref{th:Strongly Beneficial Sybil Attack Parallel-Report Responsive} with the only difference being that the sybil attack can be "further away". What we have now achieved is that the upper results are true for far more work graphs. \vspace{1em}\\
+
+\noindent{}Analogously, we can extend the definition of weak parallel-report responsiveness to multiple hops as well and derive an equivalent corollary to corollary \ref{cor:Weak Parallel-report Responsiveness sybil attack} for sybil attacks that are further away. Lastly, we can then also derive a corollary that is equivalent to corollary \ref{cor:Active Parallel-report Responsiveness Sybil Attack}, which conclude this section.
+
+\subsection{Serial-Report Responsiveness}
+\label{subsec:Serial-Report Responsiveness}
+\noindent{}We have now proven the existence of a strongly beneficial sybil attack in terms of accounting values under the assumption of several-hop (weak) parallel-report responsiveness. Next, we introduce another requirement, based on which an accounting mechanism might not be resistant to strongly beneficial sybil attacks, which we call serial-report responsiveness.
+
+\begin{definition}[Serial-report responsiveness]\ \\
+\label{def:Serial-report Responsiveness}
+Given a subjective work graph $G_i=(V_i,E_i,w_i)$ of agent $i$ with nodes $j,k,l$ such that there exists no path in $G_i$ connecting $i$ and $k,l$ and there exists a path of arbitrary length $n$ given by $\left\lbrace{}j_1,\ldots,j_n\right\rbrace$ such that there exists some $c>0$ with $w_i(i,j_1)\geq{}c$, $w_i^{j_{l-1}}(j_{l-1},j_l)\geq{}c$ f.a. $l\in\mathbb{N}_{l\leq{}n}$ and $w_i^{j_n}(j_n,j)\geq{}c$. Now let $G_i'$ be the same as $G_i$ except for an added report $w_i^j(j,k)>0$. Now, a several-hop single-report responsive accounting mechanism $S^M$ will satisfy $S^M_i(G_i',k)>S^M_i(G_i,k)$. Let $G_i''$ be the same as $G_i'$ with the additional report $w_i^k(k,l)\geq{}w_i^j(j,k)>0$. We say that the accounting mechanism $S^M$ is serial-report responsive if the following two conditions are satisfied
+\[ 
+S^M_i(G_i'',l)\geq{}S^M_i(G_i',k)
+\]
+\noindent{}and 
+\[
+S^M_i(G_i'',k)\geq{}S^M_i(G_i',k).
+\]
+\end{definition}
+
+\noindent{}There is a reason we have defined parallel-report responsiveness and single-report responsiveness twice, but serial-report responsiveness only once. Single-report responsiveness and parallel-report responsiveness can be defined for single-hops and several-hops. Serial-report responsiveness, however cannot be defined for only a single hop. This is because the very definition itself implies several hops from the seed node $i$. A single-hop serial-report responsiveness definition does not make sense in this situation. This leads us to our next theorem.\vspace{1em}\\
+
+\begin{theorem}[]\ \\
+\label{th:Serial-Report Responsiveness Sybil Attack}
+\noindent{}Every accounting mechanism $S^M$ that satisfies independence of disconnected nodes, symmetry, several-hop single-report responsiveness and serial-report responsiveness as well as being misreport-proof has a passive strongly beneficial sybil attack in terms of accounting values. 
+\end{theorem}
+\begin{proof}\ \\
+Let $G_i$ be the subjective work graph of agent $i$ containing agents $j,k\in{}V_i$ and a path of arbitrary length $n$ given by $\left\lbrace{}j_1,\ldots,j_n\right\rbrace$, such that there exists some $c>0$ with $w_i(i,j_1)\geq{}c,w_i^{j_{l-1}}(j_{l-1},j_l)\geq{}c$ f.a. $l\in\mathbb{N}_{\leq{}n}$ and $w^{j_n}(j_n,j)\geq{}c$. Here $j$ is the attacker launching a sybil attack $\sigma_j^n$ creating $n$ sybil nodes $s_{j1},\ldots,s_{jn}$. This yields a graph $G_i'=G_i\downarrow\sigma_j^n=(V_i',E_i',w_i')$ with $V_i'=V_i\cup\left\lbrace{}s_{j1},\ldots,s_{jn}\right\rbrace$. \vspace{1em}\\
+
+\noindent{}Due to independence of disconnected nodes and the fact that no edges have been added yet, the scores of all nodes in $V_i$ have not changed. From $i$'s perspective the nodes $k,s_{j1},\ldots,s_{jn}$ are indistinguishable. Now assume $k$ performs some $c$ units of work for $j$, then due to misreport-proofness $j$ is best off reporting about this transaction honestly and by several-hop single-report responsiveness it will follow $S_i^M(G_i',k)>S^M_i(G_i,k)$.\vspace{1em}\\
+
+\noindent{}Due to symmetry, one could perform any of the isomorphic functions in $\left\lbrace{}f_1,\ldots,f_n\right\rbrace$ where $f_l$ is a graph isomorphism on $G_i'$ which simply swaps the labels of $k$ and $s_{jl}$. The symmetry requirement implies that any of these graph isomorphisms will yield the same accounting values for all nodes in $G_i'$. Consequently there exists a report $j$ could make about $s_{j1}$ such that $w_i^j(j,s_{j1})\geq{}c$ returning a new graph $G_i^{(1)}$ such that $S^M_i(G_i^{(1)},s_{j1})=S^M_i(G_i',k)$. In the next step $k$ may perform some work for $s_{j1}$ and we could apply the graph isomorphism $f_2$ switching labels $k$ and $s_{j2}$ yielding the graph $G_i^{(2)}$ such that there exists an edge between $s_{j2}$ and $s_{j1}$ with weight $w_i^{s_{j1}}(s_{j1},s_{j2})=w_i^j(j,s_{j1})$. By serial-report responsiveness it now follows $S^M_i(G_i^{(2)},s_{j2}) \geq S^M_i(G_i^{(1)},s_{j1})$ and $S^M_i(G_i^{(2)},s_{j1})\geq{}S^M_i(G_i^{(1)},s_{j1})$.\vspace{1em}\\
+
+\noindent{}We can continue this for all sybil identities, creating edges with weights $w_i^{s_{jl-1}}(s_{jl-1},s_{jl})=w_i^{s_{jl}}(s_{jl},s_{jl+1})$ as indicated in figure \ref{fig:Serial Sybil Attack} and obtain
+\[
+\sum\limits_{l=1}^{n}S^M_i(G_i^{(n)},s_{jl}) \geq n\cdot{}S^M_i(G_i^{(1)},s_{j1}).
+\]
+
+\noindent{}Due to several-hop single-report responsiveness we know that it now holds $S^M_i(G_i^{(1)},s_{j1})>S^M_i(G_i,s_{j1})=0$ and therefore $\lim\limits_{n\rightarrow\infty}\sum\limits_{l=1}^{n}S^M_i(G_i^{(n)},s_{jl})=\infty$.\vspace{1em}\\
+
+\noindent{}Lastly, it obviously holds $\omega_{-}^n({\rm rep}) = S^M_i(G_i^{(1)},s_{j1}) > 0$. Hence it follows
+
+\[
+\lim\limits_{n\rightarrow\infty}\frac{\omega_{+}^n({\rm rep})}{\omega_{-}^n({\rm rep})}\geq\lim\limits_{n\rightarrow\infty}\frac{n\cdot{}S^M_i(G_i^{(1)},s_{j1})}{S^M_i(G_i^{(1)},s_{j1})} = \infty.
+\] 
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.7]{"Serial Sybil Attack".png}
+\caption{Sybil Attack on Serial-report Responsive Accounting Mechanism}
+\label{fig:Serial Sybil Attack}
+\end{center}
+\end{figure}
+\end{proof}
+
+\noindent{}Analogously, to the corollary, we derived from our theorem about parallel-report responsiveness, we can weaken our definition of serial-report responsiveness, such that it may hold $S^M_i(G_i'',l)\leq{}S_i(G_i',k)$ and $S^M_i(G_i'',k)\leq{}S_i(G_i',k)$.\vspace{1em}\\
+
+\begin{definition}[Weak Serial-report Responsiveness]\ \\
+\label{def:Weak Serial-report Responsiveness}
+\noindent{}Given a subjective work graph $G_i=(V_i,E_i,w_i)$ of agent $i$ with malicious agent $j\in{}V_i$ that is not connected to $i$ creating sybil identities $s_{j1},s_{j2},\ldots$. We say that an accounting mechanism $S^M_i$ satisfies weak serial-report responsiveness if for a sequence of subjective work graphs $(G_i^{(n)})_{n\in\mathbb{N}}$ with nodes $(s_{jn})_{n\in\mathbb{N}}$ added in each graph with $w_i^{s_{jl-1}}(s_{jl-1},s_{jl})\geq{}c$ and $w_i^j(j,s_{j1})\geq{}c$ it holds $\lim\limits_{n\rightarrow\infty}\sum\limits_{l=1}^{n}S^M_i(G_i^{(n)},s_{jl})=\infty$. Hence, every serial-report responsive accounting mechanism also satisfies weak serial-report responsiveness. \vspace{1em}\\
+\end{definition}
+
+\noindent{}We can derive a rather simple corollary from the upper definition of weak serial-responsiveness.\vspace{1em}\\
+
+\begin{corollary}[]\ \\
+\label{cor:Weak Serial-report Responsiveness sybil attack}
+Every accounting mechanism $S^M$ that satisfies independence of disconnected nodes, symmetry, several-hop single-report responsiveness and weak serial-report responsiveness as well as being misreport-proof has a passive strongly beneficial sybil attack in terms of accounting values. 
+\end{corollary}
+\begin{proof}
+\noindent{}The proof is analogous to the one in theorem \ref{th:Serial-Report Responsiveness Sybil Attack}.
+\end{proof}
+
+\noindent{}Analogously to corollary \ref{cor:Active Parallel-report Responsiveness Sybil Attack}, we can infer that if a strongly beneficial \textbf{passive} sybil attack exists for accounting mechanisms satisfying the properties above, then an equivalent active sybil attack with benefit at least as large as above exists.\vspace{1em}\\
+
+\begin{corollary}[]\ \\
+\label{cor:Active Serial-report Responsiveness Sybil Attack}
+Every accounting mechanism $S^M$ that satisfies independence of disconnected nodes, symmetry, single-report responsiveness and weak serial-report responsiveness, as well as being misreport-proof, has an active strongly beneficial sybil attack in terms of accounting values.
+\end{corollary}
+
+\noindent{}Note that all of the attacks discussed in the theorems above, were strongly beneficial in terms of accounting values only. If the accounting mechanisms satisfying these properties are, in addition to this {\it strongly representative}, we conclude that these attacks must be strongly beneficial in terms of work as well. \vspace{1em}\\

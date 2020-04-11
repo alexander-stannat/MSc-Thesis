@@ -1,0 +1,404 @@
+\chapter{On the Sybil-Proofness of Accounting Mechanisms}
+\label{chap:Sybil-Proofness of Accounting Mechanisms}
+
+\noindent{}In chapter \ref{chap:On the Impossibility of Sybil-Proofness} we analysed some important properties that accounting mechanisms must satisfy in order for them {\bf not} to be sybil resistant against strongly beneficial attacks. In this chapter, we would like to do the inverse, namely find properties accounting mechanisms should satisfy in order for them to be resistant to strongly beneficial attacks. \vspace{1em}\\
+
+
+\section{Characterising Sybil Attacks}
+\label{sec:Characterising Sybil Attacks}
+\noindent{}We have shown that the properties of parallel-report responsiveness and serial-report responsiveness, in combination with single-report responsiveness, symmetry and independence of disconnected nodes, leads to the existence of strongly beneficial sybil attacks. In terms of accounting values of course. For both of these properties we could conjure a type of attack in an arbitrary work graph which would capitalise on either parallel-report responsiveness or serial-report responsiveness. In the case of parallel-report responsiveness this would be a parallel sybil attack and in the case of serial-report responsiveness it is a serial attack. We will introduce the two below. \vspace{1em}\\
+
+
+\begin{definition}[Parallel Sybil Attack]\ \\
+\label{def:Parallel Sybil Attack}
+Given an arbitrary objective work graph $G=(V,E,w)$ with malicious node $j\in{}V$. A passive sybil attack of arbitrary size $n\in\mathbb{N}$ given by $\sigma^n_j=(S,E_S,w_S)$ is called a parallel sybil attack if it holds 
+
+\[
+\forall\,(u,v)\in{}E_S:\,v\in{}S,\,u=j .
+\]
+
+\noindent{}This means that every node in the set of sybils created by the attacker is connected to $j$, i.e. performs some work for $j$. Of course, this work is not actually performed, but simply reported to other nodes in the network. The point behind this kind of attack is that all sybil nodes will directly gain from the work $j$ has performed, i.e. the attack edges. An illustration of this kind of attack is given in figure \ref{fig:Parallel Sybil Attack} below. \vspace{1em}\\
+
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.7]{"Parallel Sybil Attack".png}
+\caption{Parallel Sybil Attack}
+\label{fig:Parallel Sybil Attack}
+\end{center}
+\end{figure}
+
+\end{definition}
+
+
+\noindent{}Next, we define the concept of a serial attack with the definition \ref{def:Serial-report Responsiveness} of serial-report responsiveness in mind. \vspace{1em}\\
+
+\begin{definition}[Serial Sybil Attack]\ \\
+\label{def:Serial Sybil Attack}
+Given an arbitrary objective work graph $G=(V,E,w)$ with malicious node $j\in{}V$. A passive sybil attack of arbitrary size $n\in\mathbb{N}$ given by $\sigma^n_j=(S,E_S,w_S)$ with $S=\left\lbrace{}s_{j1},\ldots,s_{jn}\right\rbrace$ is called a serial sybil attack if it holds
+\[
+E_S=\left\lbrace{}(j,s_{j1}), (s_{j1},s_{j2}), \ldots, (s_{jn-1},s_{jn})\right\rbrace
+\]
+
+\noindent{}This means that the set of sybil identities is given by a path-like structure in which every sybil is connected to a "predecessor sybil". Visually, this would look like the image given in figure \ref{fig:Serial Sybil Attack}. 
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.7]{"Serial Sybil Attack".png}
+\caption{Serial Sybil Attack}
+\label{fig:Serial Sybil Attack}
+\end{center}
+\end{figure}
+
+\end{definition}
+
+\section{Requirements for Sybil-Proofness to Parallel and Serial Attacks}
+\label{sec:Requirements for Sybil-Proofness to Parallel and Serial Attacks}
+\noindent{}In chapter \ref{chap:On the Impossibility of Sybil-Proofness} we introduced two requirements for accounting mechanisms to be susceptible to strongly beneficial parallel- and serial sybil attacks. In this chapter, we will do the inverse, namely introduce requirements for them to be resistant to these types of attacks. We introduce the definitions of convergence of parallel reports and convergence of serial reports. \vspace{1em}\\
+
+
+\begin{definition}[Convergence of parallel reports]\ \\
+\label{def:Convergence of Parallel Reports}
+Given a subjective work graph $G_i=(V_i,E_i,w_i)$ of agent $i$ with malicious node $j\in{}V_i$ such that there exists a path of arbitrary, but finite length $\left\lbrace{}j_1,\ldots,j_n\right\rbrace$ connecting $i$ and $j$ and some $c>0$ with $w_i^{j_{l-1}}(j_{l-1},j_l)\geq{}c$ f.a. $l\leq{}n$ and $w_i^j(j_n,j),w_i(i,j_1)\geq{}c$. Now let $j$ perpetrate a parallel sybil attack $\sigma_j^n$ with sybil identities $\lbrace{}s_{j1},\ldots,s_{jn}\rbrace$.\vspace{1em}\\
+
+\noindent{}Without loss of generality we assume that it holds for the edges $w_i^j(j,s_{jl})=c_l\leq{}c_{l-1}$ f.a. $l\leq{}n$, i.e. we assume non-increasing edge weights, leading to the subjective work graph $G^{(n)}_i$. An accounting mechanism $S^M$ is said to satisfy the \textbf{parallel-report bound} if it holds $S^M_i(G^{(n)}_i,s_{jl})\geq{}0$ f.a. $l\leq{}n$ and for any $n\in\mathbb{N}$ we have  
+
+\[
+\sum\limits_{l=1}^{n}S^M_i(G^{(n)}_i,s_{jl})\leq{}S^M_i(G^{(1)}_i,s_{j1}).
+\]
+
+\noindent{}We now say that the accounting mechanism $S^M$ satisfies \textbf{convergence of parallel reports} if it satisfies the parallel-report bound and additionally it holds for any arbitrary sequence $(c_l)_{l\in\mathbb{N}}\subset\mathbb{R}_{\geq{}0}$, 
+
+\[
+\lim\limits_{n\rightarrow\infty}\sum\limits_{l=1}^{n}S^M_i(G^{(n)}_i,s_{jl})<\infty.
+\]
+
+\end{definition}
+
+\noindent{}We can now also define an equivalent, albeit slightly relaxed definition for the resistance to serial attacks. \vspace{1em}\\
+
+\begin{definition}[Convergence of serial reports]\ \\
+\label{def:Convergence of Serial Reports}
+Given a subjective work graph $G_i=(V_i,E_i,w_i)$ of agent $i$ with malicious node $j\in{}V_i$ such that there exists a path of arbitrary, but finite length $\left\lbrace{}j_1,\ldots,j_n\right\rbrace$ connecting $i$ and $j$ and some $c>0$ with $w_i^{j_{l-1}}(j_{l-1},j_l)\geq{}c$ f.a. $l\leq{}n$ and $w_i^j(j_n,j),w_i(i,j_1)\geq{}c$. Now let $j$ perpetrate a serial sybil attack $\sigma_j^n$ with sybil identities $\lbrace{}s_{j1},\ldots,s_{jn}\rbrace$. \vspace{1em}\\
+
+\noindent{}An accounting mechanism is said to satisfy the \textbf{serial-report bound} if it holds for any two edge weights $w^j_i(j,s_{j1})=c_1, w_i^{s_{j1}}(s_{j1},s_{j2})=c_2$
+\[
+S^M_i(G^{(n)},j_n)\leq{}S^M_i(G^{(1)},j_1).
+\]
+
+\noindent{}We now say that an accounting mechanism $S^M$ satisfies \textbf{convergence of serial reports} if it holds for some arbitrary sequence $(c_l)_{l\in\mathbb{N}}\subset\mathbb{R}_{\geq{}0}$, $S^M_i(G^{(n)}_i,s_{jl})\geq{}0$ f.a. $l\leq{}n$ with a convergent sum 
+\[
+\lim\limits_{n\rightarrow\infty}\sum\limits_{l=1}^{n}S^M_i(G^{(n)}_i,s_{jl})<\infty.
+\]
+\end{definition}
+
+\noindent{}From the upper 4 definitions we can derive two rather simple auxiliary lemmas, which we will apply a bit further down the line.\vspace{1em}\\
+
+\begin{lemma}[]\ \\
+\label{lem:Sybil-proofness Against Parallel Attacks}
+\noindent{}Let $G_i$ be the subjective work graph of honest agent $i$ with attacker $j\in{}V_i$, launching a parallel sybil attack $\sigma_j^n$, according to definition \ref{def:Parallel Sybil Attack}. Let $S_i^M$ be some accounting mechanism of agent $i$ which satisfies convergence of parallel reports according to definition \ref{def:Convergence of Parallel Reports} and path-responsiveness. Then we know already that this attack cannot be strongly beneficial in terms of accounting values. 
+\end{lemma} 
+\begin{proof}
+\noindent{}The reason this attack cannot be strongly beneficial lies in the fact that due to convergence of parallel reports it must hold $\omega_{+}^n({\rm rep})<\infty$ and due to path-responsiveness it must hold $\omega_{-}^n({\rm rep})>0$. This already concludes the proof.
+\end{proof}
+
+\begin{lemma}[]\ \\
+\label{lem:Sybil-proofness Against Serial Attacks}
+\noindent{}Let $G_i$ be the subjective work graph of honest agent $i$ with attacker $j\in{}V_i$ launching a serial sybil attack $\sigma_j^n$, according to definition \ref{def:Serial Sybil Attack}. Let $S_i^M$ be some accounting mechanism of agent $i$ which satisfies convergence of serial reports according to definition \ref{def:Convergence of Serial Reports} and path-responsiveness. Then we know already that the attack cannot be strongly beneficial in terms of accounting values.
+\end{lemma}
+\begin{proof}
+\noindent{}The proof to this follows the exact same line of reasoning as the proof to lemma \ref{lem:Sybil-proofness Against Parallel Attacks}.
+\end{proof}
+
+\subsection{Pyramid Sybil Attacks}
+\label{subsec:Pyramid Sybil Attacks}
+\noindent{}We believe that making such a strongly highlighted distinction between parallel attacks and serial attacks is done for good reason. We claim that the profit of any passive sybil attack on any arbitrary graph structure can be bounded from above by attacks that are given by the combination of parallel and serial attacks. We refer to the combination of these two as {\it pyramid attacks}. This will not be as obvious a conclusion as the ones above.\vspace{1em}\\
+
+\begin{definition}[Pyramid Sybil Attack]\ \\
+\label{def:Pyramid Sybil Attack}
+Given an arbitrary objective work graph $G=(V,E,w)$ with malicious node $j\in{}V$. A passive sybil attack of arbitrary size $N\in\mathbb{N}\quad{}$ $\left(N=\sum\limits_{i=1}^{m}n_i\right)\quad$ given by $\sigma^N_j=(S,E_S,w_S)$ with $S=\left\lbrace{}s_{j11},s_{j12},\ldots,s_{j1n_1},s_{j21}\ldots,s_{j2n_2}\ldots,s_{jm1},\ldots,s_{jmn_m}\right\rbrace$ is called a pyramid sybil attack if it holds 
+
+
+\[
+\forall{}(j,u)\in{}E_S\,:\,u\in\left\lbrace{}s_{j11},\ldots,s_{j1n_1}\right\rbrace
+\]
+
+\noindent{}and
+
+\[
+\forall{}1<l\leq{}m\,\forall{}i\leq{}n_l\exists{}!k\leq{}n_{l-1}\,:\,(s_{l-1k},s_{li})\in{}E_S.
+\]
+\noindent{}Visually, this type of attack looks as follows\vspace{1em}\\
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.5]{"Pyramid Sybil Attack".png}
+\caption{Pyramid Sybil Attack}
+\label{fig:Pyramid Sybil Attack}
+\end{center}
+\end{figure}
+\end{definition}
+
+
+\noindent{}This type of sybil attack is given by a set of layers. In each layer the sybil attack can be interpreted as given by a number of parallel sybil attacks. This means that every sybil identity created by the attacker performs some counterfeit work for exactly one other sybil identity, which is located one layer above in the sybil region. The point here is that this type of attack can be interpreted as a combination of serial and parallel attacks. The branches of the pyramid are serial attacks and the layers are parallel attacks. Our goal now is to combine the properties given in definitions \ref{def:Convergence of Parallel Reports} and \ref{def:Convergence of Serial Reports} to make an accounting mechanism resistant to the more generic pyramid attack. Note that parallel and serial sybil attacks are special cases of pyramid attacks and therefore any accounting mechanism that is resistant to pyramid attacks is also resistant to parallel and serial attacks. 
+
+\begin{proposition}[]\ \\
+\label{prop:Sybil-proofness Against Pyramid Attack}
+\noindent{}Let $G_i$ be the subjective work graph of honest agent $i$ with attacker $j\in{}V_i$ launching a pyramid sybil attack $\sigma_j^N$, according to definition \ref{def:Pyramid Sybil Attack} of variable size $N=\sum\limits_{i=1}^{m}n_i$. Let $S_i^M$ be some accounting mechanism of agent $i$ which satisfies convergence of serial reports, convergence of parallel reports and path-responsiveness. Then we know already that the attack cannot be strongly beneficial in terms of accounting mechanisms.
+\end{proposition}
+\begin{proof}
+\noindent{}The proof of this theorem follows from the fact that every pyramid sybil attack is nothing, but a combination of parallel and serial sybil attacks. We begin by only examining the first layer of the pyramid attack, i.e. $\left\lbrace{}s_{j11},\ldots,s_{j1n_1}\right\rbrace$. The given pyramid confined to this layer is a simple parallel sybil attack and we know by the convergence of parallel report property that it must hold 
+
+\[
+\lim\limits_{n_1\rightarrow\infty}\sum\limits_{k=1}^{n_1}S^M(G'_i,s_{j1k})<\infty.
+\]
+
+\noindent{}This means that the attacker cannot gain infinite accounting values in the first layer by only scaling this first layer of their sybil attack. Now, the second layer of the pyramid attack can be interpreted as a number of sybil attacks perpetrated by $n_1$ attackers. By the parallel-report bound property, we already know that the profit of each of these layer attacks must be bounded by
+
+\[
+\max\left\lbrace{}S^M_i(G_i,s_{j21}),\ldots,S^M_i(G_i,s_{j2n_2})\right\rbrace{},
+\]   
+
+\noindent{}and that the attacker cannot increase this to any arbitrarily large value by scaling the first layer. This is because the convergence of parallel reports dictates that it then follows $S^M_i(G_i,s_{j1l})\rightarrow{}0$ for all but finitely many $l\in\mathbb{N}$ and by the serial-report bound property it must then also follow $S^M_i(G_i,s_{j2l})\rightarrow{}0$ for all $l\leq{}n_2$ for which $s_{j2l}$ is connected to a node for which it holds $S^M_i(G_i,s_{j1l})\rightarrow{}0$. Hence scaling layer 1 will yield
+
+\[
+\lim\limits_{n_1\rightarrow\infty}\sum\limits_{l=1}^{n_2}S^M_i(G'_i,s_{j2l})<\infty
+\]
+
+\noindent{}and consequently
+
+\[
+\lim\limits_{n_1\rightarrow\infty}\sum\limits_{l=1}^{n_1}S^M_i(G_i,s_{j1l}) + \sum\limits_{l=1}^{n_2}S^M_i(G_i,s_{j2l})<\infty.
+\]
+
+\noindent{}By logic of mathematical induction we can conclude that scaling any layer $k\leq{}m$ of the sybil attack will always yield a finite aggregate of accounting values, i.e. 
+
+\[
+\lim\limits_{n_{k-1}\rightarrow\infty}\sum\limits_{l=1}^{n_1}S^M_i(G_i,s_{j1l}) + \sum\limits_{l=1}^{n_2}S^M_i(G_i,s_{j2l}) + \ldots + \sum\limits_{l=1}^{n_k}S^M_i(G_i,s_{jkl})<\infty.
+\]
+
+\noindent{}Hence we know that scaling any layer of the pyramid sybil attack will result in all following layers returning accounting values of $0$ for all but finitely many sybils.\vspace{1em}\\
+
+\noindent{}So far we have established that a pyramid sybil attack cannot be made to yield an infinite sum of accounting values by scaling any set of layers to infinity, due to convergence of parallel reports and bounded transitive trust. Now, the only other possible alternative for attempting this is by scaling the number of layers of the attack, i.e. $m\rightarrow\infty$, where each layer will contain finitely many sybils ($n_k<\infty$ f.a. $k\leq{}m$). \vspace{1em}\\
+
+\noindent{}Due to the parallel-report bound property this would mean that the profit of this type of scaling would then be bounded from above by the profit of an infinite serial sybil attack $G_i''=G_i\downarrow\tilde{\sigma}_j^n$ with sybil nodes $\left\lbrace{}j,s_{j1}, s_{j2},\ldots \right\rbrace$, where each $s_{jk}$ is given by
+
+\[
+s_{jk}=\argmax\left\lbrace{} S^M_i(G_i,s_{jkl})\,|\,l\leq{}n_k\right\rbrace.
+\]
+
+\noindent{}However, by convergence serial reports we know that it must follow
+
+\[
+\sum\limits_{l=1}^{\infty}S^M_i(G_i,s_{jl})<\infty.
+\]
+
+\noindent{}Therefore we know that for a pyramid attack of arbitrary size it must hold $\omega_{+}^n$(rep)$<\infty$, while by path-responsiveness we conclude that $\omega_{-}^n$(rep)$>0$, which concludes our proof.
+\end{proof}
+
+\section{Bounding the Profit of Arbitrary Passive Sybil Attacks}
+\label{sec:Bounding the Profit of Arbitrary Passive Sybil Attacks}
+\noindent{}At this point we know that all accounting mechanisms satisfying the properties discussed above are resistant to strongly beneficial pyramid attacks. Next, we introduce one additional property accounting mechanisms must satisfy in order for the profit of any passive sybil attack to be bounded by the profit of an arbitrary, but fixed number of pyramid attacks. We call this property {\it multiple-path response bound}.\vspace{1em}\\
+
+\begin{definition}[Multiple-Path Response Bound]\ \\
+\label{def:Multiple-path Response Bound}
+Let $G_i$ be the subjective work graph of honest node $i$ containing node $k\in{}V_i$ such that there exist $N$ paths $(P_n)_{n\leq{}N}$ connecting $k$ to $i$. Now, define $G_i'$ as an altered version of the subjective work graph of $i$, whereby the agent $k$ is "split" into several agents $k_{1},\ldots,k_{N}$, where every $k_l$ ($l\leq{}N$) is connected to $i$ by exactly one path. \vspace{1em}\\
+
+\noindent{}$G'_i$ is created by splitting the node $k$ into as many nodes as there are paths connecting to it. We begin with $k_1$ and remove all nodes and edges that are part of any of the paths $P_2,\ldots,P_N$ while keeping all which are part of $P_1$. This means, we only keep edges and nodes that are either part of the first path, or that are not in any of the paths at all. We now relabel $k$ (as the end-point of $P_1$), $k_1$. Next, we add path $P_2$ to the graph whereby we remove all edges and nodes that are part of any paths $P_3,\ldots{}P_N$. Any node $j$ (or edge $e$) in $P_2$ that is also part of $P_1$, is now duplicated into $j_1$ and $j_2$ such that $j_1\in{}P_1$ and $j_2\in{}P_2$, i.e. $(e_1\in{}P_1$ and $e_2\in{}P_2)$. We continue this for all paths $P_1,\ldots,P_N$ and obtain $G'_i$. \vspace{1em}\\
+
+\noindent{}Then we say that the accounting mechanism $S^M$ satisfies the multiple-path response bound if it holds
+\[
+S^M_i(G_i,k)\leq{}\sum\limits_{n=1}^{N}S^M_i(G'_i,k_n).
+\]
+
+\noindent{}Given below, in figures \ref{fig:Example of Multiple-path Response Bound (1)}, \ref{fig:Example of Multiple-path Response Bound (2)} and \ref{fig:Example of Multiple-path Response Bound (3)} are some examples of graphs $G_i$ and $G_i'$ illustrating the multiple-path response bound
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.7]{"Path-Responsiveness (1)".png}
+\caption{Example of Multiple-path Response Bound}
+\label{fig:Example of Multiple-path Response Bound (1)}
+\end{center}
+\end{figure}
+
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.6]{"Path-Responsiveness (2)".png}
+\caption{Example of another Multiple-path Response Bound}
+\label{fig:Example of Multiple-path Response Bound (2)}
+\end{center}
+\end{figure}
+
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.5]{"Path-Responsiveness (4)".png}
+\caption{Example of Multiple-path Response Bound with Loops}
+\label{fig:Example of Multiple-path Response Bound (3)}
+\end{center}
+\end{figure}
+\end{definition}
+
+
+
+\noindent{}This may at first seem like a rather restrictive assumption that eliminates many of the common accounting mechanisms. However, we find that this is in fact not true. The upper definition is satisfied by all accounting mechanisms defined in \cite{Hybrid Transitive Trust Mechanisms}. Instead, we provide an intuition for why this actually makes sense.\vspace{1em}\\
+
+\noindent{}In order for an accounting mechanism to determine the trustworthiness of another node, it needs to evaluate this node's contributions and leeches to and from the network. As there is always the possibility of faking edges, we want to limit the effect that edges which are in between unknown nodes have on the accounting values, and only take into account the contributions made to nodes that $i$ has at least an indirect connection to. This means we want to evaluate each node $j$ by the incoming edges from $i$. Each path connecting $j$ to $i$ can be considered an indirect contribution and therefore should influence the accounting value of $j$ in $i$'s subjective work graph. \vspace{1em}\\
+
+\noindent{}However, it is crucial that the effect of an additional path in the network should not exceed the effect that this additional path would have on $S^M_i(G_i,j)$ if it were the only path connecting $j$ to $i$. We feel like this is a fairly intuitive and sensible definition, which is satisfied by plenty of the existing accounting mechanisms such as PageRank, Maxflow and Netflow. \vspace{1em}\\
+
+\noindent{}The reason we introduce the definition of multiple-path response bound is that we can now bound the profit of every passive sybil attack from above by the profit of an equivalent pyramid sybil attack. \vspace{1em}\\
+
+\noindent{}In order to achieve this goal we introduce the additional definitions of transitive trust and bounded transitive trust. \vspace{1em}\\
+
+\begin{definition}[Transitive Trust]\ \\
+\label{def:Transitive Trust}
+\noindent{}Let $G_i$ be the subjective work graph of node $i$ containing nodes $j,k\in{}V_i$, such that $w_i(i,j),w_i(j,k)>0$. Then we say that an accounting mechanism $S^M_i$ satisfies the \textbf{transitive trust} property if it holds
+
+\[
+S^M_i(G_i,j)>0\,\,\&\,\,S^M_j(G_j,k)>0\,\,\Rightarrow\,\,S^M_i(G_i,k)>0.
+\]
+
+\noindent{}In line with earlier extensions to multiple hops we extend this to multiple hops as well and state that the accounting mechanism satisfies \textbf{several-hop transitive trust} if for a path $(i,j_1,\ldots,j_n,j)$ of fixed, but arbitrary length $n$ with $w_i(i,j_1)>0$, $w_i(j_{l-1},j_l)>0$ f.a. $l\leq{}n$ and $w_i(j_n,j)>0$ it holds  
+
+\[
+S^M_i(G_i,j_1)>0, S^M_{j_l}(G_{j_l},j_{l+1})>0, \ldots , S^M_{j_n}(G_{j_n},j)>0\Rightarrow\,\,S^M_i(G_i,j)>0.
+\]
+\end{definition}
+
+\begin{definition}[Bounded Transitive Trust]\ \\
+\label{def:Bounded Transitive Trust}
+\noindent{}Let $G_i$ be the subjective work graph of node $i$ containing nodes $j,k\in{}V_i$, such that $w_i(i,j),w_i(j,k)>0$. We now say that $S^M$ satisfies \textbf{bounded transitive trust} if it satisfies transitive trust and it additionally holds 
+\[
+S^M_i(G_i,k)\leq\min\left\lbrace{}S^M_i(G_i,j), S^M_j(G_j,k)\right\rbrace{}.
+\]
+
+\noindent{}Extended to several hops it should hold for a path $(i,j_1,\ldots,j_n,j)$ of fixed, but arbitrary length $n$ with $w_i(i,j_1)>0$, $w_i(j_{l-1},j_l)>0$ f.a. $l\leq{}n$ and $w_i(j_n,j)>0$ 
+
+\[
+S^M_i(G_i,j)\leq\min\left\lbrace{}S^M_i(G_i,j_1), S^M_{j_1}(G_{j_1},j_2),\ldots, S^M_{j_n}(G_{j_n},j)\right\rbrace.
+\]
+\noindent{}Note that if there are several paths connecting $i$ and $k$ then $S^M_i(G_i,k)$ must be bounded by the sum of the minimums given above (for each path). So if there are $N$ paths $(P_n)_{n\leq{}N}$ connecting $i$ and $k$ we should obtain the following upper bound. \vspace{1em}\\
+
+\[
+\sum\limits_{n=1}^{N}\min\lbrace{}S_{j_l}(G_{j_l},j_{l+1})\,|\,j_l\in{}P_n\rbrace .
+\]
+\end{definition}
+
+\noindent{}The definition of transitive trust describes the concept that if a node $i$ trusts another node $j$, and $j$ trusts another node $k$ then it must already follow that $i$ has some trust in node $k$ as well, while bounded transitive trust implies that the trust $i$ has in $k$ must be bounded from above by both the trust $i$ has in $j$ and the trust that $j$ has in $k$. \vspace{1em}\\ 
+
+\noindent{}We can now prove the lemma below.\vspace{1em}\\
+
+\begin{lemma}[]\ \\
+\label{lemma:Multiple-path Response Bound Lemma}
+\noindent{}Let $S^M_i$ be an accounting mechanism satisfying path-responsiveness, the multiple-path response bound and bounded transitive trust. Now let $G_i$ be the subjective work graph of honest agent $i$ with $|V_i|<\infty$. Let $j$ be a malicious agent launching a passive sybil attack $\sigma_j^n$ on $G_i$ such that there exist one or more paths connecting $j$ to $i$. Then the profit $\omega_{+}^n$(rep) is bounded by the profit $\tilde{\omega}_{+}^n$(rep) of an equivalent passive pyramid sybil attack mutiplied by a constant $c<\infty$.
+\end{lemma}
+\begin{proof}
+\noindent{}Let's start off with the simple case of the passive sybil attack by $j$ which is connected to $i$, where we assume that there is only one path connecting $i$ to $j$. In this case the multiple-path response bound makes the statement above trivially correct, we can simply restructure the sybil region in such a way that every sybil is connected to $j$ via a single path. Naturally, we obtain a pyramid sybil attack. \vspace{1em}\\
+
+\noindent{}Now assume that there are finitely many ($n$) paths connecting $i$ and $j$ then according to the multiple-path response bound, we can restructure the subjective work graph $G_i$ such that we obtain $j_1,\ldots,j_n$, each connected to $i$ via a single path and all perpetrating the same sybil attack. In the next step we apply the multiple-path response bound property again and obtain finitely many pyramid sybil attacks. We then obtain the upper bound for the sybil attack profit
+
+\[
+n\cdot\tilde{\omega}_{+}^n({\rm rep})
+\]
+
+\noindent{}where $\tilde{\omega}_{+}^n({\rm rep})$ is the largest profit of any of the $n$ pyramid sybil attacks. \vspace{1em}\\
+
+\noindent{}Lastly, if there are infinite paths connecting $i$ and $j$ then we know by $|V_i|<\infty$ that at least one of these paths must contain a loop. Now, the bounded transitive trust property ensures that the accounting values of any nodes that 'follow' the loop are not larger than any the accounting values of nodes that came before the loop and we can therefore without loss of generality remove all loops from the subjective work graph, without affecting the sybil attack profit. We arrive at the same conclusion as we did for sybil attacks with finitely many paths between $j$ and $i$.
+\end{proof}
+
+
+\section{Final Results on Sybil-proofness}
+\label{sec:Final Results on Sybil-proofness}
+\noindent{}We now have obtained a pretty strong result about the sybil-proofness of accounting mechanisms against pyramid attacks as well as a result about the fact that the profit of every passive sybil attack can be bounded by the multiple of the profit of a pyramid sybil attack. This leads to what we believe is a rather strong theorem on sybil resistance.\vspace{1em}\\
+
+\begin{theorem}[]\ \\
+\label{th:Strongly Beneficial Passive Sybil Attack Theorem}
+\noindent{}Any accounting mechanism $S^M$ satisfying path-responsiveness, multiple-path response bound, convergence of serial reports and convergence of parallel reports as well as bounded transitive trust on a finite subjective work graph $G_i$ is resistant to strongly beneficial passive sybil attacks. 
+\end{theorem}
+\begin{proof}
+
+\noindent{}Let $G_i=(V_i,E_i,w_i)$ be the subjective work graph of agent $i$ with $|V_i|<\infty$. Let $j$ be a malicious node launching a passive sybil attack $\sigma_j^n$ of arbitrary size $n\in\mathbb{N}$. Then due to the bounded transitive trust property we can without loss of generality assume that there are finite paths connecting $i$ and $j$. By mutiple-path responsiveness we know that the profit of the sybil attack is bounded from above by several pyramid attacks of equal size, each connected to $i$ by exactly one path. Now by convergence of serial reports and convergence of parallel reports we know that all of these pyramid attacks yield a bounded profit. Hence, we find that $\omega_{+}^n({\rm rep})<\infty$ and due to path-responsiveness we know that $\omega_{-}^n({\rm rep})>0$. This already concludes our theorem.\vspace{1em}\\
+\end{proof}
+
+\noindent{}We now extend this result to active sybil attacks and bound the profit of these by the same logic as in the theorems above.\vspace{1em}\\
+
+\begin{corollary}[]\ \\
+\label{cor:Strongly Beneficial Active Sybil Attack Corollary}
+\noindent{}Any accounting mechanism $S^M$ satisfying path-responsiveness, multiple-path response bound, convergence of serial reports and convergence of parallel reports as well as bounded transitive trust is resistant to strongly beneficial active sybil attacks. 
+\end{corollary}
+\begin{proof}
+\noindent{}In the case of an active sybil attacks there exist attack edges which connect to sybil agents in $S$. We can assume here that there are finitely many of these. By the multiple-path response bound we know that the profit of an active sybil attack is bounded by the the profit of a finite number of (passive) pyramid sybil attacks, each perpetrated by the sybil nodes in with attack edges connected to them. By the same multiple-path response bound we also know that the profit of each of these pyramid attacks is bounded through the number of paths connecting them to $i$. Both of these are finite as the subjective work graph $G_i$ is finite. \vspace{1em}\\ 
+
+\noindent{}The rest of the proof to this follows simply from theorem \ref{th:Strongly Beneficial Passive Sybil Attack Theorem} as we have obtained finitely many pyramid attacks. As before, the convergence of serial reports as well as the convergence of parallel reports and the bounded transitive trust property return a finite profit. Path-reponsiveness implies a sybil attack cost $>0$ which yields $\lim\limits_{n\rightarrow\infty}\frac{\omega_{+}^n({\rm rep})}{\omega_{-}^n({\rm rep})} < \infty$ as before. \vspace{1em}\\
+\end{proof}
+
+
+\noindent{}We can conclude this section by saying that any accounting mechanism that satisfies the requirements from theorem \ref{th:Strongly Beneficial Passive Sybil Attack Theorem} is resistant to strongly beneficial sybil attacks in terms of accounting mechanism. Any accounting mechanism that additionally satisfies at least weak representativeness will then also be resistant in terms of the amount of work that sybils can consume.\vspace{1em}\\
+
+\noindent{}The question now arises which accounting mechanisms actually satisfy these requirements and whether we can find such an accounting mechanism which is also at least weakly representative. A particular example of such an accounting mechanism is given in example \ref{ex: Modified Hitting Time Example} below.
+
+\begin{example}[]\ \\
+\label{ex: Modified Hitting Time Example}
+\noindent{}Let $G_i$ be the subjective work graph of agent $i$ and $S^{\rm PHT}_i$ be the personalised hitting time algorithm as introduced in  \cite{Personalised Hitting Time}, i.e. let $(X_0,X_1,\ldots,X_{\tau})$ be an $\alpha$-terminating random walk on the subjective work graph $G_i$, where each $X_i\in{}V_i$ and 
+\[
+\mathbb{P}\left(X_{t+1}=j\,|\,X_t=i\right) = \left(1-\alpha\right)\cdot\frac{w(i,j)}{\sum\limits_{(i,j')\in{}E_i}w(i,j')},
+\]
+\noindent{}and the walk length is a random variable $\tau\sim$Geom$(1-\alpha)$. \vspace{1em}\\
+
+\noindent{}Then the personalised hitting time values of agent $j\in{}V_i$ is given by 
+\[
+S^{\rm PHT}_i(G_i,j) = \mathbb{P}\left(j\in{}(X_t)_{t=0}^{\tau}\,|\,X_0=i\right).\vspace{1em}\\
+\] 
+\noindent{}The accounting mechanism $S^{\rm PHT}_i(G_i,j)$ then satisfies all of the requirements for theorem \ref{th:Strongly Beneficial Passive Sybil Attack Theorem} to hold, i.e. parallel-report bound, convergence of parallel reports, convergence of serial reports, bounded transitive trust and multiple-path response bound. \vspace{1em}\\
+
+\noindent{}By theorem \ref{th:Strongly Beneficial Passive Sybil Attack Theorem} we therefore know that $S^{\rm PHT}$ is resistant to strongly beneficial sybil attacks in terms of accounting values. However, the question arises whether it is also resistant to strongly beneficial sybil attacks in terms of work. In the example below, we will show that this is not the case, i.e. $S^{\rm PHT}$ does not satisfy weak representativeness.\vspace{1em}\\
+
+\noindent{}Let $G_i$ be a subjective work graph of agent $i$ containing honest agent $k$ and attacker $j$, creating a parallel sybil attack consisting of 3 sybils $s_{j1},s_{j2},s_{j3}$, each connected to $j$ by an edge of variable weight $N$. We set $w_i(i,j)=9$ and $w_i(i,k)=1$. Now, the hitting time algorithm with $\alpha=0.1$ returns the values given in figure 7.7 below.\vspace{1em}\\
+
+\begin{figure}[H]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline & & & & \\[-0.8ex]
+$S^M_i(G_i,k)$ & $S^M_i(G_i,j)$ & $S^M_i(G_i,s_{j1})$ & $S^M_i(G_i,s_{j2})$ & $S^M_i(G_i,s_{j3})$ \\[1.5ex] \hline & & & & \\[-0.8ex]
+$0.1$ & $0.9$ & $0.27$ & $0.27$ & $0.27$ \\[1ex] \hline 
+\end{tabular}
+\label{fig:Sybil attack profit in terms of accounting values (1)}
+\caption{Sybil attack profit in terms of accounting values (1)}
+\end{center}
+\end{figure}
+
+\noindent{}Now, if $k$ and $s_{j1}$ query $i$ for some data $s_{j1}$ will be served and we obtain a new subjective work graph $G_i'$ containing the edge $w(S_{j1},i)=1$. We now recompute the accounting values for all nodes in this new graph and obtain the values given in figure 7.8 below.
+
+\begin{figure}[H]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline & & & & \\[-0.8ex]
+$S^M_i(G_i',k)$ & $S^M_i(G_i',j)$ & $S^M_i(G_i',s_{j1})$ & $S^M_i(G_i',s_{j2})$ & $S^M_i(G_i',s_{j3})$ \\[1.5ex] \hline & & & & \\[-0.8ex]
+$0.12187$ & $0.9$ & $0.27$ & $0.33$ & $0.33$ \\[1ex] \hline 
+\end{tabular}
+\label{fig:Sybil attack profit in terms of accounting values (2)}
+\caption{Sybil attack profit in terms of accounting values (2)}
+\end{center}
+\end{figure}
+
+\noindent{}Hence, after leeching from $i$, $s_{j1}$ still has a higher accounting value than $k$ and therefore $s_{j1}$ can leech infinitely from $i$, which means the attack given in figure \ref{fig:Hitting Time Representativeness} is weakly beneficial in terms of accounting values, but strongly beneficial in terms of work. This means the existing personalised hitting time accounting mechanism is not weakly representative.
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.85]{"Hitting-Time Representativeness".PNG}
+\caption{Strongly Beneficial Sybill Attack in terms of work on PHT}
+\label{fig:Hitting Time Representativeness}
+\end{center}
+\end{figure}
+
+\noindent{}We now make $S^{\rm PHT}$ weakly representative by introducing an additional constraint, by choosing accounting mechanism
+
+\[
+S^M_i(G_i,j) = \max\left\lbrace\sum\limits_{k\in{}V_i}w_i(i,k)-w_i(k,i), 0\right\rbrace\cdot{}S^{\rm PHT}_i(G_i,j).
+\]
+
+\noindent{}This accounting mechanism satisfies all requirements from theorem \ref{th:Strongly Beneficial Passive Sybil Attack Theorem} as well as weak representativeness as any node in $V_i$ with finite accounting values can only leech finite amounts of data from a given node. In fact, it even satisfies strong representativeness as an agent $j$ leeching infinite amounts of work from a another agent $i$ must imply that agent $j$ has received infinite work. The only way this could have happened is if the attacking agent has made this infinite contribution. \vspace{1em}\\
+
+\end{example}

@@ -1,0 +1,192 @@
+\chapter{Appendix}
+\label{chap:Appendix}
+
+\section{Reputation Dynamics in Indirect Reciprocity}
+\label{sec:Reputation Dynamics in Indirect Reciprocity}
+
+\subsection{Axioms defining Reputation Mechanism}
+\label{subsec:Axioms defining Reputation Mechanism}
+In order for us to determine what properties a reputation mechanism needs to satisfy we looked into evolutionary biology. In \cite{How Should we Define Goodness} the concept of a binary honour score coupled with a set of behavioural strategies is introduced. An honour score is based not on a node's entire transaction history, but on its most recent transaction. The set of honour scores is given by $\{0,1\}$ and the set of strategies by $\{C,D\}$ , whereby $C$ stands for cooperate and $D$ for defect. It has been shown that conditional and unconditional altruism leads to cooperation among a population. Every node has a reputation value of either 0 or 1 and every node has a behavioral strategy, given by 
+\[
+p:\{0,1\}^2\rightarrow{}\{C,D\}.
+\]
+$p$ determines whether a node with a given reputation value will cooperate with a node of another reputation value. For instance $p(0,1)=C$ means that a node with reputation value 0 will cooperate with a node of reputation value 1. A reputation dynamic is a function that assigns a node that has made a decision whether to cooperate or defect with another node a new reputation value, i.e.
+\[
+d:\{0,1\}^2\times{}\{C,D\}\rightarrow{}\{0,1\}.
+\]
+In this case for instance $d(0,1,C)=1$ implies that if a node of reputation 0 cooperates with a node of reputation 1 then it will be assigned reputation 1. \vspace{1em}\\
+This yields $2^8$ possible reputation dynamics and $2^4$ behavioural strategies. Note that a reputation dynamic is fixed and population dependent whereas a behavioural strategy is personal and node-specific. \vspace{1em}\\
+
+\noindent{}Ohtsuki et al. identify a number of beahvioural strategies and reputation dynamics of particular importance \cite{How Should we Define Goodness}.
+
+{\centering
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.6]{"Behavioural Strategies".png}
+\end{center}
+\label{fig:BehvaiouralStrategies}
+\caption{Behavioural Strategies (taken from \cite{The leading eight: Social norms that can maintain cooperation by indirect reciprocity}).}
+\end{figure}
+}
+
+{\centering
+\begin{figure}[H]
+\includegraphics[scale=0.6]{"Reputation Dynamics".png}
+\label{fig:ReputationDynamics}
+\caption{Reputation Dynamics (taken from\cite{The leading eight: Social norms that can maintain cooperation by indirect reciprocity}).}
+\end{figure}
+}
+
+\subsection{Requirements for Reputation Mechanisms}
+\label{subsec:Requirements for Reputation Mechanisms}
+
+\noindent{}A combination of reputation dynamic and behavioural strategy $(p,d)$ is called evolutionary-stable strategy (ESS) if $p$ is evolutionarily stable among all 16 possbile behavioural strategies given the reputation dynamic $d$. This means that given the reputation dynamic $d$ the behavioural strategy $p$ receives on average the highest payoff among all other 15 behavioural strategies, given that the population is dominated by agents with the same behavioural strategy, i.e. more than $50\%$ of the network exhbibit the same strategy. As a corollary statement this implies that the benefit of increasing one's reputation must exceed the cost of the work performed for this increase in reputation. An ESS is a refined form of a Nash equilibrium.\vspace{1em}\\
+
+\noindent{}We assume that participating in a P2P-filesharing network constitutes a multi-player game-theoretical game, given by $\mathcal{G}_n=(S,d,E)$ where $n$ is the number of participants, $S=\left\lbrace{}p_i:\{0,1\}^2\rightarrow{}\{C,D\}|1\leq{}i\leq{}n\right\rbrace$ is the set of behavioural strategies of all agents in the network. $E(p,S)$ is then the expected payoff or profit of an agent with behavioral strategy $p$ in the network $\mathcal{G}_n$. Note that this payoff function is a stochastic expected value and not deterministic, because it depends on who the agent interacts with. This expected payoff is given by $\mathbb{E}[b(p_X(r(X),r(i))]-\mathbb{E}[c(p_i(r(i),r(X))]$, whereby $X$ is a random variable choosing players in the network with a predetermined probability distribution $f_X$, $b$ and $c$ correspond to the benefit and the cost of a possible cooperation and/or defection. \vspace{1em}\\
+
+\begin{definition}[ESS Strategy]
+The expected payoff of a player with strategy $p$ in a network where $l$ of the $n-1$ remaining nodes play with the strategy $p$ and $n-1-l$ of the players play with strategy $q$, can be written $E(p,p^l,q^{n-1-l})$. A strategy $p$ is said to be evolutionarily stable with respect to another strategy $q$ if there exists a $j\in\left\lbrace{}1,\ldots,n-1\right\rbrace$ such that
+\begin{align}
+&\forall{}i\leq{}j:\,\,E(p,p^{n-1-i},q^i)\geq{}E(q,p^{n-1-i},q^i)\\
+&\forall{}i>j:\,\,E(p,p^{n-i-1},q^i) > E(q,p^{n-i-1},q^i).
+\end{align}
+A strategy $p$ is then called evolutionarily stable if it is evolutionarily stable with respect to all strategies $q\neq{}p$. \vspace{1em}\\
+\end{definition}
+\noindent{}Note that we also allow for mixed strategies as well, whereby an agent may choose to play with strategy $p$, $x\%$ of the time and strategy $q$, $1-x\%$ of the time. This can be extended to countably finite convex combinations of pure strategies, as defined in \cite{Game Theory}. However, so far we have only worked with finite strategy spaces, which leads to finite convex combinations. \vspace{1em}\\
+
+\noindent{} Note that the payoff function above is stochastic. This is because opponents / interaction partners are chosen at random and therefore the strategy of the opponent is not deterministic. Note that in our evaluation we assume a uniform distribution for partner choice. \vspace{1em}\\
+
+\noindent{}The concept of evolutionarily stable strategies originated in evolutionary biology. Intuitively it means that a population of players with a particular strategy $p$, if invaded by a minority of players with a new/different strategy $q$ (genetic mutants), is resistant to the propagation of this strategy as a superior one (spread of genetic mutation). Applied to the context of P2P file-sharing, this means that no subset of cheaters can overrule the network, making it unusable for honest/cooperative players, through a dishonest strategy.\vspace{1em}\\  
+
+\noindent{} Ohtsuki et al. (2004) introduce a direct and an indirect observation model. In our case, because of TrustChain we can assume a direct observation model \cite{How Should we Define Goodness}. 
+
+
+{\centering
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.6]{"ESS Pairs".png}
+\label{fig:ESS Pairs}
+\caption{ESS Pairs (taken from \cite{The leading eight: Social norms that can maintain cooperation by indirect reciprocity})}
+\end{center}
+\end{figure}
+}
+
+
+\subsection{Leading 8}
+\label{subsec:Leading 8}
+Ohtsuki (2004) identify a set of ESS strategies, which they refer to as the {\it leading eight}, which have a relative payoff of over $94\%$. These are ESS pairs regardless of the cots-to-benefit ratio of transactions, so long as $b>c$. This is not the case for any other pair $(d,p).$ They are also ESS, independently of error rates. The leading 8 are characterised by the following properties, which they all satisfy.
+\begin{figure}[H]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline & & & & \\[-0.7ex] $d_{*1C}$: & $d_{*1D}$: & $d_{10D}$: & $d_{11D}$: & $d_{01D}$: \\[1.5ex] \hline & & & & \\[-0.7ex]
+$=1$ & $=0$ & $=1$ & $=0$ & $=0$ \\[1ex]\hline
+\end{tabular}
+\label{fig:Leading 8 strategies}
+\caption{Leading 8 strategies (taken from \cite{The leading eight: Social norms that can maintain cooperation by indirect reciprocity}).}
+\end{center}
+\end{figure}
+
+
+\noindent{}During our research visit to Sokendai Graduate School of Advanced Studies it was our goal to discuss these leading 8 with the authors of \cite{The leading eight: Social norms that can maintain cooperation by indirect reciprocity} and determine how we could apply these  concepts to our research of facilitating cooperation in P2P filesharing networks. The idea was to determine the crucial properties of the leading 8 and determine a reputation mechanisms in P2P filesharing networks that would satisfy these in the hopes that it would facilitate cooperation in that setting as well, i.e. prevent lazy freeriding. The problem we stumbled upon was that the reputation dynamics defined above were all binary, however we wanted our accounting mechanisms to be continuous, such that we could set up a ranking of nodes in the network, for agent to decide whom to contribute to. All attempts to make the upper reputation dynamics continuous without losing the cooperation-facilitating properties were in vein and we decided to pursue research in a different direction. Another problem we incurred was the fact that the reputation dynamics given above were all global. By this we mean that agents held a reputation value that all other agents in the network agreed upon. However, our accounting mechanisms were designed to be personalised, i.e. every agent assigns other agents in the network respective trust scores. It even occurred to us that for global reputation values in a networks it was impossible to achieve any kind of sybil-proofness. We could not reconcile these issues with our topic of research. \vspace{1em}\\
+
+
+
+
+
+\section{Sybil Resistance Based on Physical Proximity}
+\label{sec:Sybil Resistance Based on Physical Proximity}
+\noindent{}Recall that while incentivising cooperation through an accounting mechanism was our primary focus, we had to prevent agents from gaming the accounting mechanism through sybil attacks as introduced in chapter \ref{chap:Mathematical Framework for Accounting Mechanisms}. We wanted to be able to determine whether a group of nodes is, in fact, controlled by one and the same entity. It's extremely difficult to do this, only by looking at the subjective work graph of a participant. After considering a number of different attributes of nodes in the network that may be helpful in determining whether a set of nodes belong to the same agent in the network, we concluded that one such attribute may be their geographic location. We can determine whether a set of nodes is controlled by the same entity by determining and cross-referencing their respective IP adresses, or location in the Internet layer. In order to keep it as generic as possible, we introduced the notion of a {\it similarity vector} as a vector of attributes of a set of nodes that may hint at their likelihood of being controlled by the same entity. These could include values such as IP-address, Ping times from different established nodes as well as properties such as traceroutes, etc.  \vspace{1em}\\
+
+\begin{definition}[Similarity Vector]\ \\
+Given the set of agents in the network $V$ and an agent $i\in{}V$, we call $p_i$ a similarity vector if it has a set of properties such that if another set of sybil identities created by $i$, $S_i=\left\lbrace{}s_{i1},\ldots,s_{in}\right\rbrace$ all satisfy $\|p_{s_{ij}}-p_i\|<\varepsilon$ f.a. $j\in\left\lbrace{}1,\ldots,n\right\rbrace$ for a given, fixed $\varepsilon > 0$. The exact properties of such a similarity vector will be discussed later. % $p_i:{\left\lbrace 0,1\right\rbrace}^{128}\times{}PK$
+\end{definition}
+
+\begin{definition}[Proximity Graph]\ \\
+Given a set of vertices $V$ and a set of corresponding similarity vectors $\left\lbrace{}p_i\,|\,i\in{}V\right\rbrace$ we derive what we call a proximity graph $G_{Pr}:=(V,E)$, which is an undirected, unweighted graph, whereby for $i,j\in{}V$ we set $(i,j)\in{}E\Leftrightarrow\|p_i-p_j\|<\varepsilon$. Note that the proximity graph being undirected implies $(i,j)\in{}E\Leftrightarrow(j,i)\in{}E$.
+\end{definition}
+
+\noindent{}Nodes need to be able to cross-reference the similarity vectors (IP-adresses, etc.) of a group of nodes they find suspicious and subsequently group together nodes that are likely to be controlled by a single identity. Analogously to the aforementioned work and trust graphs, agents do not have full knowledge on the entire proxmity graph either. Instead, nodes have a subjective proximity graph, based on agents sharing/reporting their own respective similarity vectors to one another. Agents construct a subjective proximity graph based on the information that is available to them. \vspace{1em}\\
+
+\begin{definition}[Agent Information]\ \\
+Every node 'knows' about a subset of all similarity vectors in the network, i.e. agent $i$ has a set $S_i:=\left\lbrace{}p^{(i)}_j\,|\,j\in{}V^{(i)}\right\rbrace$ with $V^{(i)}\subset{}V$.
+\end{definition}
+\noindent{}From this subjective agent information every node constructs its own subjective proximity graph.
+\begin{definition}[Subjective Proximity Graph]
+Given a proximity graph $G_{Pr}=(V,E)$ with similarity vectors $\left\lbrace{}p_j\,|\,j\in{}V\right\rbrace$ an agent $i$ with agent information $S_i$ has the subjective proximity graph $G_{Pr}^{(i)}=(V^{(i)},E^{(i)})$ with $V^{(i)}\subset{}V$ and $E^{(i)}:=\left\lbrace{}(i,j)\,|\,\|p^{(i)}_j-p_i\|<\varepsilon\right\rbrace$.
+\end{definition}
+
+
+\noindent{}Note that the individual input values of this similarity vector may vary and can be determined based on what is deemed important information. In the case of the Tribler networks one should definitely include IP address, i.e. location in the network graph, as well as ping times from different nodes. One may even want to include some established nodes that are considered trustworthy who will ping new agents and report respective ping times to all other nodes. The point is that every component of the similarity vector will have some notion of a norm on it, i.e. one can measure distance in terms of ping times or in terms of hops in the traceroute tree. This norm will be applied to the similarity vectors to determine the neighbourhoods of nodes in the proximity graph. \vspace{1em}\\ 
+
+\noindent{}Now knowing that we have two respective graphs that we can work with, we introduce a two-layered trust model.\vspace{1em}\\
+
+\subsection{A Two-Layered Trust Model}
+\label{subsec:A Two-Layered Trust Model}
+Our model so far has consisted of an agent $i$'s subjective work graph $G_i$, a choice set $C_i$, an accounting mechanism $S^M(G_i,C_i)$ and an allocation policy $A_i(S^M(G_i,C_i))$. From this information, we derived a node or a set of nodes for $i$ to contribute to. 
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.9]{"One-layer trust model".png}
+\caption{One-Layer Trust Model}
+\label{fig:One-Layer Trust Model}
+\end{center}
+\end{figure}
+
+\noindent{}Now, we have a two-layered trust model, in which we are given a work graph and, using our notion of a similarity vector, we determine a proximity graph. Using this proximity graph we derive a newly formed subjective work graph. Then, using our existing accounting mechanisms and allocation policies, we determine a set of nodes to contribute to, analogously to our previous one-layer-model. \vspace{1em}\\
+
+\begin{figure}[H]
+\includegraphics[scale=0.7]{"Two-layer trust model".png}
+\caption{Two-Layer Trust Model}
+\label{fig:Two-Layer Trust Model}
+\end{figure}
+\noindent{}The idea is that using our proximity graph, we derive our subjective work graph, by collapsing all nodes in the subjective work graph that are connected in the proximity graph. \vspace{1em}\\
+
+\begin{definition}[Collapsing nodes in the work graph]
+Given a subjective work graph of agent $i$, $G_i=(V_i,E_i,w_i)$ and a subjective proximity graph of $i$, $G^{(i)}_{Pr}=(V^{(i)}, E^{(i)})$, with $V_i=V^{(i)}$, $i$ derives a new subjective work graph from $G^{(i)}_{Pr}$, by collapsing all nodes in $G_i$ that are connected in $G^{(i)}_{Pr}$. This means we obtain a new graph $G'_i:=(V'_i, E'_i, w'_i)$ with $|V'_i|\leq{}|V_i|$ such that
+\[
+\forall{}i\in{}V^{(i)},\,\neg\exists{}j\in{}V^{(i)},(i,j)\in{}E^{(i)}\,:\,i\in{}V'_i\,\,\&\,\,(i,j)\in{}E'_i\,\,\&\,\,w'_i(i,j)=w_i(i,j) .
+\]
+
+\[
+\forall{}i\in{}V^{(i)},\,\exists{}j\in{}V^{(i)},(i,j)\in{}E^{(i)}\,:\,\forall{}j\in{}N_{pr}(i)\cup{}\lbrace{}i\rbrace,\,j\not\in{}V'_i,\forall{}j,k\in{}N_{pr}(i), (j,k)\in{}E_i\,:\,(j,k)\not\in{}E'_i,\,\tilde{i}\in{}V'_i.
+\]
+This means that, any node in the subjective work graph, which does not have any neighbours in the proximity graph is adopted into the new subjective work graph, while any nodes that are connected in the proximitiy graph, are assigned a "proxy" node $\tilde{i}$ in the new work graph, and all edges connecting nodes in a neighbourhood of the subjective work graph are dropped. The outgoing and incoming edges of the neighbourhood of $i$ are now attached to $\tilde{i}$ in the new subjective work graph. \vspace{1em}\\
+\end{definition}
+
+\noindent{}Now we have obtained a new subjective work graph in which all sybil nodes (with a given probability) have been collapsed into a single node. Given this new subjective work graph, agents can run the same accounting mechanisms as before and determine agents' respective accounting values and then determine who to contribute to. If any node that has been removed or collapsed in the subjective work graph now queries an honest node for data, it will not be served and agents that attempt to boos their accounting values through sybil attacks will not be able to increase these values significantly, provided the similarity vectors and the norms have been rigorously defined.\vspace{1em}\\
+
+\noindent{}If the similarity vector only consists of IP-addresses we aim to find a mechanism with which nodes can prove to have different IP-addresses from other nodes without revealing their identities. For this we work with the concept of a hash function from the space of possible IP-addresses to the space of public keys.
+
+\begin{definition}[Hash Function]\ \\
+Let $PK:=\left\lbrace \right\rbrace$ be the set of public keys in the P2P network {\it tribler} and let ${\left\lbrace{}0,1\right\rbrace}^{128}$ be the set of IPv6 addresses, comprising 128-bit values. We define the hash function $H:PK\rightarrow{\left\lbrace{}0,1\right\rbrace}^{128}$ as a one-way encryption function satisfying the following 3 conditions:
+\begin{itemize}
+\item Preimage Resistance: Given a value $y$ in the codomain of $H$, it should be computationally infeasible to determine a value $x\in{}PK$ such that $H(x)=y$. More precisely, in our case it should take $\mathcal{O}(2^{128})$ time to determine the preimage of $y$.
+\item Second Preimage Resistance: Given a value $x$ in the domain it should be equally difficult to determine another $x'$ satisfying $H(x)=H(x')$.
+\item Collision Resistance: Given our hash function it should be computationally infeasible to determine two values $x$ and $x'$ such that $H(x)=H(x')$. To find such a collision an expected $\sqrt{2^{64}}$ tries are needed. This is due to the birthday paradox, which is introduced by \cite{Cryptography made simple}. 
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Neighbourhood of a node]\ \\
+\noindent{}A node $i$ that bootstraps in the network then computes the hash of its IP-address and determines the value in the space of possible public keys in the tribler network. Now the node finds all nodes in the network whose public key values are within a given radius $\delta$ of $H(x(i))$ whereby $x(i)$ is $i$'s IP-address, i.e. $x:PK\rightarrow{}{\left\lbrace 0,1\right\rbrace}^{128}$. Then we obtain
+\[
+N(i):=\left\lbrace{}j\in{}V_i\,|\,\|j-H(x(i))\| \leq\delta \right\rbrace.
+\]
+This is what we call the neighbourhood of node $i$. Note, however that this is not the same as a neighbourhood of a node in the interaction graph. Instead, we introduce a new graph, namely the {\it Hash Graph}.
+\end{definition}
+
+\begin{definition}[Hash Graph]\ \\
+Given a work graph $G=(V,E,w)$ with nodes $V\subset{}PK$, we derive an undirected and unweighted graph from the neighbourhoods determined above. We obtain 
+\[
+E=\left\lbrace{}(i,j)\in{}V\times{}V\,|\,j\in{}N(i)\right\rbrace{}.
+\]
+Note that it holds $i\in{}N(j)\Leftrightarrow{}j\in{}N(i)$. 
+\end{definition}
+
+\noindent{}The idea behind this is that if an agent $i$ decides to create a set of fake identities $\{s_{i1},\ldots,s_{in}\}$ then these identities will all have the same IP-address and therefore all will have the same hash 
+\[
+h(x(i))=h(x(s_{ij}))\,\, \text{f.a.}\,\, j\in\left\lbrace{}1,\ldots,n\right\rbrace .
+\]
+
+\noindent{}This will lead to a very big neighbourhood in the hash graph, which will be noticeable and collapsing all of these nodes will render the sybil attack unbeneficial. \vspace{1em}\\
+
+\noindent{}At this point, we felt that we had deviated too far from the topic a thesis in applied mathematics should have and decided to no longer pursue the line of reasoning. This does not mean that such a strategy could not be effective in mitigating the effects of sybil attacks.\vspace{1em}\\

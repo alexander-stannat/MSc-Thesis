@@ -1,0 +1,115 @@
+\chapter{Mathematical Framework for Accounting Mechanisms}
+\label{chap:Mathematical Framework for Accounting Mechanisms}
+\noindent{}We begin by introducing a mathematical framework for the setting in which we conduct our research, namely by rigorously formalising interactions (transactions) between nodes in the network. transaction between nodes. In \cite{Sybil-resistant Trust Mechanisms in Distributed Systems} Otte et al. introduced the concept of an {\it ordered interaction model} from which an {\it ordered interaction graph} and a {\it block graph} are derived. While this is a very elegant definition for a set of transactions and the derivation of a work graph from it, it is directly taylored to the TrustChain architecture and lacks the possibility of misreports and counterfeit interactions. Therefore we will not adopt it here, but instead derive a slightly different and more generic definition of a transaction set, which will be our equivalent to their ordered interaction model.\vspace{1em}\\
+
+
+\section{Transaction Sets}
+\label{sec:Transaction Sets}
+\noindent{}We start off with the definition of a simple network transaction, or interaction, which simply denotes the transferrence of data in between two nodes.\vspace{1em}\\
+
+\begin{definition}[Network Transactions]\ \\
+Let $V$ be the set of all agents in the network. A transaction $t$ between two nodes $i,j\in{}V$ is given by a tuple $(i,j,w,n)$, whereby $pr_1(t)$ is the contributer, while $pr_2(t)$ is the recipient of the work performed. Hence, the ordering of the two nodes in the transaction tuple is not arbitrary. Naturally, it always holds that $w\geq{}0$. $w$ corresponds to the size of the transaction, i.e. the amount of data transferred from $i$ to $j$. \vspace{1em}\\
+\end{definition}
+
+\noindent{}Note that a transaction can only ever go "one way". This means that a single transaction cannot contain the transference of data from node $i$ to node $j$ {\bf and} vice versa. \\
+
+\noindent{}As every node participates in a string of transactions in a given chronological order, we obtain a series of transactions for every node $i$, which we will refer to as a transaction sequence.\vspace{1em}\\
+
+\begin{definition}[Transaction Sequence]\ \\
+\label{def:Transaction Sequence}
+The transaction sequence of a node $i\in{}V$ is expressed as $TS_i:=(t^i_n)_{n\in\mathbb{N}_{\leq{}T_i}}$ where $t^i_n$ is the $n$-th transaction node $i$ participated in, either as a contributor or as a consumer. As above $t^i_n$ is given by a tuple $(j,k,w)$ where either $j=i$ or $k=i$. $T_i$ denotes the length of $i$'s transaction sequence, i.e. the number of transactions $i$ has participated in thus far. It grows as time progresses.\vspace{1em}\\
+\end{definition}
+
+\noindent{}Note that in this definition we implicitly assume a single node can only participate in one transaction at a time. Else, the ordering of transactions would become sonsensical. Next, we define a transaction function, which will denote the size of a transaction. As time goes on, transaction sequences obtain new entries and continue to grwo, which implies that $T_i$ is not a static value, but changes over time. We choose not to incorporate a temporal variable in this model and instead assume that a transaction sequence represents a "snapshot in time" as opposed to a dynamic variable.\vspace{1em}\\
+
+\begin{definition}[Transaction Function]\ \\
+\label{def:Transaction Function}
+\noindent{}For every node $i\in{}V$ we define a transaction function $t^i$, given by 
+\[
+t^i:\mathbb{N}_{\leq{}T_i}\times{}V\rightarrow{}\mathbb{R},
+\]
+\noindent{}where $t^i(m,j)$ corresponds to the amount of work node $i$ has leeched from or contributed to node $j$ in its $m$-th transaction, i.e. 
+\[
+t^i(m,j) = \left\lbrace 
+\begin{array}{lll}
+pr_3(t^i_m), & \textrm{if} & pr_2(t^i_m)=j \\
+-pr_3(t^i_m), & \textrm{if} & pr_1(t^i_m)=j \\
+0, & \multicolumn{2}{l}{\textrm{else}} \\
+\end{array}
+\right \vspace{1em}\\
+\]
+\end{definition}
+\noindent{}Note that it holds 
+\[
+t^i(m,j)>0\,\,\textrm{if } t^i_m=(i,j,w)
+\]
+\noindent{}and 
+\[
+t^i(m,j)<0\,\,\textrm{if } t^i_m=(j,i,w)
+\]
+\vspace{1em}\\
+
+\begin{remark}[]\ \\
+\label{rem:Remark1}
+In theory it should always hold for any pair of nodes $i,j\in{}V$:
+\[
+\forall{}i,j\in{}V,n\in\mathbb{N},\,t^i(n,j)=w\neq{}0:\exists{}m\in\mathbb{N},\,t^j(m,i)=-w
+\]
+\noindent{}What this means is that any transaction between nodes $i$ and $j$ that is contained in the transaction sequence of $i$ must also be contained in the transaction sequence of node $j$. This is quite trivially true. \vspace{1em}\\
+\end{remark}
+
+\noindent{}Finally, we introduce the set containing all transactions that have transpired in the network, denoted by 
+\[
+TS:=\left\lbrace{}TS_i\,|\,i\in{}V\right\rbrace
+\]
+
+\noindent{}This set contains all transaction sequences of all nodes in the network. Based on our remark \ref{rem:Remark1} we see that $TS$ must contain every transaction exactly twice.
+
+
+\section{Work Graphs}
+\label{sec:Work Graphs}
+\noindent{}Given the set of all transactions $TS$, one can transform the transaction sequences into a {\it work graph}. A work graph is a directed network graph visualising the interaction between nodes. It may be unidirectional or even a multigraph. The idea is that edges between vertices correspond to overall seed-leech relationships of nodes in the network. \vspace{1em}\\
+
+\begin{definition}[Work Graph]\ \\
+\label{def:Work Graph}
+A work graph is given by the tuple $G = (V, E, w)$, whereby $V$ is the set of vertices, i.e. agents in the network and $E$ is a set of directed edges between the community agents. An edge $(i,j)\in{}E$ pointing from node $i$ to node $j$ represents node $j$ performing work for node $i$. \\ The function $w:V\times{}V\rightarrow{}\mathbb{R}_{\geq{}0}$ denotes the weight of the edges, i.e. $w(i,j)$ represents the total amount of work performed by node $j$ for node $i$. If two nodes $i$ and $j$ are not connected then we set the edge weights $w(i,j)=w(j,i)=0$. We choose the set of edges $E\subset{}V\times{}V$ such that $(i,j)\in{}E$ if and only if $w(i,j)>0$. \vspace{1em}\\ 
+\end{definition}
+
+\noindent{}There are a number of different ways transactions in $TS$ can be aggregated to form edges in the work graph. In the {\it unidirectional, single-edge} case of the work graph the edges of the graph can be derived from the set of all transactions $TS$ by
+\[
+w(i,j) = \max\left\lbrace{}\sum\limits_{n\in\mathbb{N}}t^j(n,i), 0\right\rbrace = \max\left\lbrace{}-\sum\limits_{n\in\mathbb{N}}t^i(n,j), 0\right\rbrace
+\]
+and consequently, 
+\[
+w(j,i) = \max\left\lbrace{}\sum\limits_{n\in\mathbb{N}}t^i(n,j), 0\right\rbrace = \max\left\lbrace{}-\sum\limits_{n\in\mathbb{N}}t^j(n,i), 0\right\rbrace
+\]
+
+\noindent{}Here the weight of the edges corresponds to the net data flow in between two nodes. The edge is directed toward the node that has a positive deficit in the bilateral relationship. Note that there can only be a single edge connecting two nodes, which points from one to the other, i.e. for any pair of nodes $i,j\in{}V$ it holds $w(i,j)>0\,\,\Rightarrow\,\,w(j,i)=0$. This type of work graph is quite useful as it nicely captures the overall net contributions nodes have made to the network, epsecially when keeping definition (lazy freeriding) in mind. \vspace{1em}\\
+
+\noindent{}Note that there is one drawback to this approach, which lies in the fact that the single-edge graph neglects certain contributions made to the network. For instance, if two agents have donated the same amount of resources to one another then the weight of the edge connecting them is zero. Hence, the edge has "disappeared" and the nodes appear to be disconnected again. \textcolor{red}{\textbf{\hl{This will prove problematic at times and will enable a certain type of attack which we call a serial sybil attack in \ref{subsec:Accounting Mechanisms}.}}}\vspace{1em}\\
+
+\noindent{}Alternatively, in the case of a multigraph we can derive the edge weights as follows.
+\[
+w(i,j) = \sum\limits_{n\in\mathbb{N}}\max\left\lbrace{}t^j(n,i), 0 \right\rbrace = \sum\limits_{n\in\mathbb{N}}\max\left\lbrace{}-t^i(n,j),0\right\rbrace 
+\]
+\noindent{}and
+\[
+w(j,i) = \sum\limits_{n\in\mathbb{N}}\max\left\lbrace{}t^i(n,j), 0 \right\rbrace = \sum\limits_{n\in\mathbb{N}}\max\left\lbrace{}-t^j(n,i),0\right\rbrace
+\]
+
+\noindent{}In this particular type of graph an edge $(i,j)$ corresponds to the gross data flow from $j$ to $i$ without subtracting the work $i$ has done for $j$. A positive attribute of this this type of graph is that it's generally more informative as it doesn't reduce edge weights to net data flow. However, there are some disadvantages this type of graph may have. A particular example of this is given by a node $i$ that has contributed x units of data to another node $j$ and then leeches the same amount from $j$ later. The work graph in this scenario satisfies $w(i,j)=x=w(j,i)$. In a later chapter, we will discuss that in order for accounting mechanisms to be sybil-proof they must satisfy two , which satisfy \vspace{1em}\\ 
+
+
+\noindent{}Note that we can turn the edges around as well, such that an edge $(i,j)$ pointing from $i$ to $j$ corresponds to work performed by $i$ for $j$. However, we choose to stick with this particular definition with a particular set of accounting mechanisms in mind. Although, it is quite irrelevant. \vspace{1em}\\\noindent{}It may be somewhat counterintuitive for edges to be pointing from the recipient to the contributor. This is done with a particular set of reputation mechanisms in mind that we will elaborate on further later on. It may also be reasonable to invert the edges in between nodes in the graph, depending on the application. In that case we obtain
+
+\[
+w(i,j) = \sum\limits_{n\in\mathbb{N}}\max\left\lbrace{}t^i(n,j), 0 \right\rbrace = \sum\limits_{n\in\mathbb{N}}\max\left\lbrace{}-t^j(n,i),0\right\rbrace.
+\
+
+\section{Accounting Mechanisms \& Allocation Policies}
+\label{sec:Accounting Mechanisms & Allocation Policies}
+
+
+
+\section{Misbehaviour \& Attacks}
+\label{sec:Misbehaviour & Attacks}

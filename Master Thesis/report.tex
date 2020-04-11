@@ -1,0 +1,191 @@
+\documentclass[whitelogo]{tudelft-report}
+\usepackage{float}
+\usepackage{natbib}
+\usepackage{changes}
+%\usepackage{draftwatermark}
+%\SetWatermarkScale{1}
+%\usepackage{todonotes}
+\usepackage{verbatim}
+\usepackage{hyperref}
+\usepackage{color,soul}
+\usepackage[english]{babel}
+\usepackage{amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage{latexsym}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[justification=centering]{caption}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\theoremstyle{theorem}
+\newtheorem{theorem}{Theorem}[section]
+\theoremstyle{proposition}
+\newtheorem{proposition}{Proposition}[section]
+\theoremstyle{corollary}
+\newtheorem{corollary}{Corollary}[section]
+\theoremstyle{lemma}
+\newtheorem{lemma}{Lemma}[section]
+\theoremstyle{example}
+\newtheorem{example}{Example}[section]
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}[section]
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+\begin{document}
+%% Use Roman numerals for the page numbers of the title pages and table of
+%% contents.
+\frontmatter
+
+%% Uncomment following 19 lines for a cover with a picture on the lower half only
+%\title[tudelft-white]{Title}
+%\subtitle[tudelft-cyan]{Optional subtitle}
+%\author[tudelft-white]{J.\ Random Author}
+%\affiliation{Technische Universiteit Delft}
+%\coverimage{cover.jpg}
+%\titleoffsetx{10cm}
+%\titleoffsety{10cm}
+%\afiloffsetx{1cm}
+%\afiloffsety{18cm}
+%\covertext[tudelft-white]{
+%    \textbf{Cover Text} \\
+%    possibly \\
+%    spanning 
+%    multiple 
+%    lines
+%    \vfill
+%    ISBN 000-00-0000-000-0
+%}
+%\makecover
+
+%% Uncomment following 16 lines for a cover with a picture on the lower half only
+\title[tudelft-white]{{\fontsize{45}{49}\selectfont On the \vspace{0.1em}\\ Sybil-Proofness of Accounting Mechanisms in P2P\vspace{0.2em}\\ Networks}}%{{\HUGE \textbf{Sybil-Proof Accounting Mechanisms in P2P Networks}}}
+% \subtitle[tudelft-black]{Optional subtitle}
+\author[tudelft-white]{Alexander\ Stannat}
+\affiliation{Delft University of Technology}
+%\coverimage{tank.jpg}
+%\covertext[tudelft-white]{
+%    \textbf{Cover Text} \\
+%    possibly \\
+%    spanning 
+%    multiple 
+%    lines
+%    \vfill
+%    ISBN 000-00-0000-000-0
+%}
+%\setpagecolor{tudelft-cyan}
+\makecover[split]
+
+
+%% Include an optional title page.
+\input{title}
+\input{abstract}
+\input{preface}
+
+\tableofcontents
+
+%% Use Arabic numerals for the page numbers of the chapters.
+\mainmatter
+\input{introduction}
+
+\input{mathematical_framework}
+
+\input{sybil_gain}
+
+\input{representativeness}
+
+\input{impossibility_results}
+
+\input{sybil_proofness}
+
+%\input{physical_proximity}
+
+\input{conclusion}
+
+%% Use letters for the chapter numbers of the appendices.
+\appendix
+
+\input{appendix}
+
+\bibliography{report}
+\begin{thebibliography}{9}
+\bibitem{Ranking Systems: The PageRank Axioms}
+Altman, Alon, and Moshe Tennenholtz. "Ranking systems: the PageRank axioms." Proceedings of the 6th ACM conference on Electronic commerce. ACM, 2005.
+\bibitem{Big Data Meets Big Brother as China Moves to Rate its Citizens}
+Botsman, Rachel. "Big data meets Big Brother as China moves to rate its citizens." Wired UK 21 (2017).
+\bibitem{An Optimal Strategy to Solve the Prisoner's Dilemma}
+Bravetti, Alessandro, and Pablo Padilla. "An optimal strategy to solve the Prisoner’s Dilemma." Scientific reports 8.1 (2018): 1948.
+\bibitem{Jetse Thesis}
+Brouwer, Jetse. "Consensus-less Security: A truly scalable distributed ledger." Master Thesis. TU Delft 2020. TU Delft Education Repository. Web. Accessed 18.02.2020.
+\bibitem{NetFlow}
+Buechler, Matthew, et al. Decentralized reputation system for transaction networks. Technical report, University of Pennsylvania, 2015.
+\bibitem{Incentives build robustness in BitTorrent}
+Cohen, Bram. "Incentives build robustness in BitTorrent." Workshop on Economics of Peer-to-Peer systems. Vol. 6. 2003.
+\bibitem{Game Theory}
+Ferguson, T.S. "Game Theory, Second Edition" (Mathematics Department UCLA, 2014)
+\bibitem{Creating Trust through Verification of Interaction Records}
+Harms, Jan-Gerrit. "Creating trust through verification of interaction records." (2018).
+\bibitem{Bittorrent is an auction}
+Levin, Dave, et al. "Bittorrent is an auction: analyzing and improving bittorrent's incentives." ACM SIGCOMM Computer Communication Review 38.4 (2008): 243-254.
+\bibitem{A Survey of Peer-to-Peer Network Security Issues}
+Li, James. "A Survey of Peer-to-Peer Network Security Issues." Retrieved November 29 (2007): 2010.
+\bibitem{Personalised Hitting Time}
+Liu, Brandon K., David C. Parkes, and Sven Seuken. "Personalized hitting time for informative trust mechanisms despite sybils." Proceedings of the 2016 International Conference on Autonomous Agents \& Multiagent Systems. International Foundation for Autonomous Agents and Multiagent Systems, 2016.
+\bibitem{Bartercast: A Practical Approach to Prevent Lazy Freeriding in P2P Networks}
+Meulpolder, Michel, et al. "Bartercast: A practical approach to prevent lazy freeriding in p2p networks." 2009 IEEE International Symposium on Parallel \& Distributed Processing. IEEE, 2009.
+\bibitem{Bitcoin}
+Nakamoto, Satoshi. Bitcoin: A peer-to-peer electronic cash system. Manubot, 2019.
+\bibitem{Minimum-cut Community Detection}
+Newman, Mark EJ. "Detecting community structure in networks." The European Physical Journal B 38.2 (2004): 321-330.
+\bibitem{5 Rules for the Evolution of Cooperation}
+Nowak, Martin A. "Five rules for the evolution of cooperation." science 314.5805 (2006): 1560-1563.
+\bibitem{A Simple Rule for the Evolution of Cooperation on Graphs and Social Networks}
+Ohtsuki, Hisashi, et al. "A simple rule for the evolution of cooperation on graphs and social networks." Nature 441.7092 (2006): 502.
+\bibitem{How Should we Define Goodness}
+Ohtsuki, Hisashi, and Yoh Iwasa. "How should we define goodness?—reputation dynamics in indirect reciprocity." Journal of theoretical biology 231.1 (2004): 107-120.
+\bibitem{The leading eight: Social norms that can maintain cooperation by indirect reciprocity}
+Ohtsuki, Hisashi, and Yoh Iwasa. "The leading eight: social norms that can maintain cooperation by indirect reciprocity." Journal of theoretical biology 239.4 (2006): 435-444.
+\bibitem{Sybil-resistant Trust Mechanisms in Distributed Systems}
+Otte, P. "Sybil-resistant trust mechanisms in distributed systems." (2016).
+\bibitem{TrustChain: A Sybil-resistant scalable blockchain}
+Otte, Pim, Martijn de Vos, and Johan Pouwelse. "TrustChain: A Sybil-resistant scalable blockchain." Future Generation Computer Systems (2017).
+\bibitem{Tribler}
+Pouwelse, Johan A., et al. "TRIBLER: a social‐based peer‐to‐peer system." Concurrency and computation: Practice and experience 20.2 (2008): 127-138.
+\bibitem{PageRank}
+Page, Lawrence, et al. The PageRank citation ranking: Bringing order to the web. Stanford InfoLab, 1999. 
+\bibitem{On the Sybil-Proofness of Accounting Mechanisms}
+Seuken, Sven, and David C. Parkes. "On the Sybil-proofness of accounting mechanisms." (2011).
+\bibitem{Accounting Mechanisms for Distributed Work Systems}
+Seuken, Sven, Jie Tang, and David C. Parkes. "Accounting mechanisms for distributed work systems." Twenty-Fourth AAAI Conference on Artificial Intelligence. 2010.
+\bibitem{Work Accounting Mechanisms: Theory and Practice}
+Seuken, Sven, et al. "Work accounting mechanisms: Theory and practice." Working Paper. Department of Informatics. University of Zurich, 2014.
+\bibitem{Sybil-proof Accounting Mechanisms with Transitive Trust}
+Seuken, Sven, and David C. Parkes. "Sybil-proof accounting mechanisms with transitive trust." Proceedings of the International Foundation for Autonomous Agents and Multiagent Systems (2014).
+\bibitem{Cryptography made simple}
+Smart, Nigel P. Cryptography made simple. Vol. 481. Cham: Springer, 2016.
+\bibitem{A Random Walk Based Trust Ranking in Distributed Systems}
+Stannat, Alexander, and Johan Pouwelse. "A Random Walk based Trust Ranking in Distributed Systems." arXiv preprint arXiv:1903.05900 (2019).
+\bibitem{Hybrid Transitive Trust Mechanisms}
+Tang, Jie, Sven Seuken, and David C. Parkes. "Hybrid transitive trust mechanisms." Proceedings of the 9th International Conference on Autonomous Agents and Multiagent Systems: volume 1-Volume 1. International Foundation for Autonomous Agents and Multiagent Systems, 2010.
+\bibitem{Distributed systems: principles and paradigms}
+Tanenbaum, Andrew S., and Maarten Van Steen. Distributed systems: principles and paradigms. Prentice-Hall, 2007.
+\bibitem{Trust in Distributed Systems}
+van den Heuvel, Bram, and Dai, Yinghao. "Trust in Distributed Systems." (2019).  
+
+
+\bibitem{The Early Days of Mass Internet Piracy Were Awesome Yet Awful}
+andy@torrentfreak.com "The Early Days of Mass Internet Piracy Were Awesome Yet Awful". \texttt{https://torrentfreak.com/the-early-days-of-mass-internet-piracy-were-awesome- \\ yet-awful-180211/} (11.02.2018)
+
+\bibitem{Prisoner's Dilemma Image}
+PsychologyProf@gmail.com "Game Theory -- best strategy for Prisoner's Dilemma used in advice column for real life situation" \texttt{http://cogsciandtheworld.blogspot.com/2009/10/game-theory-best- \\ strategy-for-prisoners.html} (11.10.2009) 
+
+
+\end{thebibliography}
+
+\end{document}
+

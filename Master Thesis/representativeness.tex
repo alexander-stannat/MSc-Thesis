@@ -1,0 +1,282 @@
+\chapter{Representativeness of Accounting Mechanisms}
+\label{chap:Representativeness of Accounting Mechanisms}
+\noindent{}Since we now have two different definitions for $\omega^n_{+}$ and $\omega^n_{-}$, we must differentiate between strongly and weakly beneficial in terms of accounting values and in terms of work. Naturally, the question arises whether these two are equivalent. This is an important question as it is not feasible for us to determine the former ratio of cost to reward in units of work and therefore have to rely on the definition based on accounting values. However, it is the goal of any P2P filesharing network to ensure that there is no excessive data leakage, i.e. one wants to prevent sybil attacks that are strongly beneficial with respect to the work attackers can consume, while using accounting mechanisms as a proxy to enforce this. In order for accounting mechanisms to be able to do so, one requires an equivalence between the two. \vspace{1em}\\
+
+\noindent{}Let us briefly recap the definitions determined in chapter \ref{chap:Sybil Attack Gain}. In summary, we obtained the following definitions of sybil attack costs and rewards.
+
+\begin{align*}
+\omega_{+}^{n}(rep) &= \sum\limits_{i\in{}V'\backslash\lbrace{}j,s_1,\ldots,s_n\rbrace}\sum\limits_{s\in\lbrace{}j,s_1,\ldots,s_n\rbrace}S^M_i(G_i',s)\\
+\omega_{-}^{n}(rep) &= \sum_{i\in{}V''\backslash\lbrace{}j\rbrace}S^M_i(G_i'',j)\\
+\omega_{+}^{n}(work) &= \sum\limits_{n\in\mathbb{N}}\tilde{\omega}\cdot\mathbb{E}\left[\sum\limits_{i\in{}V'\backslash\lbrace{}j,s_{j1},\ldots,s_{jn}\rbrace}\sum\limits_{l=1}^{n}Y'^{(n)}_{is_{jl}} + Y'^{(n)}_{ij}\right]\\
+\omega_{-}^{n}(work) &= \sum\limits_{i\in{}V'\backslash\lbrace{}j,s_{j1},\ldots,s_{jn}\rbrace}\sum\limits_{s\in\lbrace{}j,s_1,\ldots,s_n\rbrace}w'(s,i).
+\end{align*}
+
+% - \sum\limits_{i\in{}V\backslash\lbrace{}j\rbrace}S^M_j(G_i,C_i) \\
+% - \sum\limits_{i\in{}V\backslash\lbrace{}j\rbrace}S_j^M(G_i,C_i) \\
+% - \sum\limits_{n\in\mathbb{N}}\tilde{\omega}\cdot\mathbb{E}\left[\sum\limits_{i\in{}V\backslash\lbrace{}j\rbrace}Y^{(n)}_{ij}\right] \\
+% \,\, - \,\, \sum\limits_{i\in{}V\backslash\lbrace{}j\rbrace}w(j,i)
+
+
+\section{Incongruence of Sybil Attack Profits}
+\label{sec:Incongruence of Sybil Attack Profits}
+\noindent{}However, we can come up with examples where the benefit defined in terms of work converges to $\infty$, but the ratio of accounting values does not. Inversely, there are examples of accounting mechanisms, for which there exists a strongly beneficial sybil attack in terms of accounting values, that is not strongly beneficial in terms of work. \vspace{1em}\\
+
+\begin{example}[]\ \\
+\label{ex:Strongly Beneficial in Terms of Work, but not Reputation}
+\noindent{}Let $G=(V,E,w)$ be an arbitrary work graph and $j$ a malicious node launching a sybil attack $\sigma^n_j$. Let every agent in the network have the same accounting mechanism $S^M$. Assume that there exists some $c>0$ such that for any given subjective work graph $G_i$ and any $i\in{}V$  it holds
+\[
+\sum\limits_{j\in{}V_i}S^M_i(G_i,j)=c.
+\]
+\noindent{}Now, let $G'=G\downarrow\sigma^n_j$ be the work graph after the attack has been carried out, such that the accounting mechanism $S^M$ satisfies 
+\[
+\lim\limits_{n\rightarrow\infty}\sum\limits_{k=1}^{n}S^M_i(G'_i,s_{jk})=c,
+\]
+
+\noindent{}where $S=\left\lbrace{}s_{j1},\ldots,s_{jn}\right\rbrace$ are the sybil nodes created by $j$. We now find that it obviously holds
+\[
+\lim\limits_{n\rightarrow\infty}\sum\limits_{k=1}^{n}S^M_i(G'_i,s_{jk})<\infty,
+\]
+while we assume that in this attack there are finite attack edges and hence it follows
+\[
+\lim\limits_{n\rightarrow\infty}\frac{\omega(rep)^n_{+}}{\omega(rep)^n_{-}}<\infty.
+\]
+However, as $\lim\limits_{n\rightarrow\infty}\sum\limits_{k=1}^{n}S^M_i(G'_i,s_{jk})=c$ it must follow that for every $\varepsilon>0$ there exists $N\in\mathbb{N}$ such that for all $n\geq{}N$ it holds 
+\[
+\sum\limits_{v\in{}V\backslash{}\left\lbrace{}j,s_{j1},\ldots,s_{jn}\right\rbrace}S^M_i(G'_i,v)<\varepsilon.
+\]
+\noindent{}And therefore it must follow that for any $\varepsilon>0$ there exists an $N\in\mathbb{N}$ such that for all $n\geq{}N$ it holds $\mathbb{P}(Y_{is_{jk}}=1)>1-\varepsilon$ f.a. $k=1,\ldots,n$. Hence, whenever either $j$ or any of its sybil nodes query the honest node $i$ for some work, they are very likely to be the highest ranking node in $C_i$ and will therefore be served as much data as they want. It therefore holds
+\[
+\lim\limits_{n\rightarrow\infty}\omega^n_{+}(work) \geq \tilde{\omega}\cdot{}\lim\limits_{n\rightarrow\infty}\mathbb{E}\left[\sum\limits_{s\in\lbrace{}j,s_{j1}\ldots,s_{jn}\rbrace}Y^{(1)}_{is}\right] = \infty.
+\]
+\noindent{}Due to the finite attack edges we know that it must hold $0< \omega^n_{-}(work) <\infty$ and it follows
+\[
+\lim\limits_{n\rightarrow\infty}\frac{\omega^n_{+}(work)}{\omega^n_{-}(work)}=\infty.
+\]
+\vspace{1em}\\
+
+\noindent{}Such an accounting mechanism could be given by the PageRank algorithm, where a node $j$ attacks the network with one edge connecting it to node $i$ with a large edge weight and then creates many sybils which benefit from this attack edge. As the number of sybils grows, nodes in the sybil region will obtain an increasingly large proportion of the values. This is known as link spamming. \vspace{1em}\\
+
+\noindent{}We can make this example more specific, by the following graph. 
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.9]{"Example of Ratio (1)".png}
+\caption{Example of Strongly Beneficial Sybil Attack in Terms of Work, but not Reputation}
+\label{fig:Example of Strongly Beneficial Sybil Attack in Terms of Work, but not Reputation}
+\end{center}
+\end{figure}
+
+\noindent{}In this graph, $i$ has the personalised pagerank algorithm as accounting mechanism $S^M_i$ with a very low reset probability $(\leq{}0.0001)$ \cite{PageRank}. $j$ launches a sybil attack with 3 nodes and $k$ is an honest node, having performed 5 units of work for $i$. $j$ performs the same amount of work for $i$ as an attack edge and then creates fake edges, connecting the sybils. These edges must have extremely high weights, in order for the sybil attack to be as effective as possible. Now, if $i$ computes the personalised pagerank scores for all nodes in its subjective work graph we find that $j$ and its sybil nodes have much higher reputation values than $k$. In this particular example for $N=1000$ it would be 
+\[
+k:10^{-5}, j:0,29, s_{j1}:0,14, s_{j2}:0,29, s_{j3}:0,29.
+\]
+Hence, it obviously holds $\frac{\omega^3_{+}(rep)}{\omega^3_{-}(rep)} = 4 < \infty$ \vspace{1em}\\
+
+\noindent{}Now, we want to compute $\frac{\omega^3_{+}(work)}{\omega^3_{-}(work)}$ and we will show that this is infinite. Let $s_{j1}$ now query some data from node $i$. It is guaranteed that $s_{j1}$ is the highest ranking node in $i$'s subjective work graph and will therefore be served some amount of data $X(=5)$, which changes the work graph into the one below. 
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.9]{"Example of Ratio (2)".png}
+\caption{Example of Strongly Beneficial Sybil Attack in Terms of Work, but not Reputation}
+\label{fig:Example of Strongly Beneficial Sybil Attack in Terms of Work, but not Reputation (2)}
+\end{center}
+\end{figure}
+
+\noindent{}It now obviously holds $\tilde{\omega}\cdot{}\mathbb{E}[Y_{is_{j1}}]=5$. However, seeing as the weights of the fake edges are meant to be extremely high, $s_{j1}$'s leech of 5 units of work barely affects the pagerank values at all. We obtain the new accounting values
+\[
+k:0,0001, j:0,286, s_{j1}:0,142, s_{j2}:0,0286, s_{j3}:0,286
+\]
+
+\noindent{}Hence, it follows $\mathbb{P}(Y^{(2)}_{is_{j1}}=1)=1$ and this continues for an arbitrarily long sequence of rounds. If at some point point the weight $w_i(s_{j1},i)$ becomes so large that it begins to affect the accounting values of the other sybils, then $j$ simply increases the weight of the fake edges again, and this game continues forever. Hence, we find that 
+\[
+\frac{\omega^3_{+}(work)}{\omega^3_{-}(work)}=\infty.
+\]
+
+\noindent{}We've shown that there exist accounting mechanisms such that there are sybil attacks that are strongly beneficial in terms of work, but not in terms of reputation. 
+\end{example}
+
+
+\begin{comment}
+\noindent{}The effectiveness of this attack is limited to node $i$, which is certainly problematic for a P2P network, but not as much as a sybil attack, through which the attacker could leech arbitrary amounts from several nodes (possibly even a significant proportion of the network). In fact, the upper example may not even qualify as a proper sybil attack. Instead this type of attack is often also referred to as an {\it Eclipse Attack}. Note that a strongly beneficial eclipse attack is not nearly as severe as a strongly beneficial sybil attack. In fact, a strongly beneficial eclipse attack may be less problematic than some types of weakly beneficial sybil attacks. This prompts us to introduce a new definition.\vspace{1em}\\
+\end{comment}
+
+\noindent{}Next, we introduce an example in which an attacker can accummulate infinite accounting values without necessarily gaining infinite work from it.
+
+\begin{example}[]\ \\
+\label{ex:Strongly Beneficial in Terms of Reputation, but not Work}
+\noindent{}Let $S^M_i(G_i,k)$ be the accounting mechanism given by the number of shortest paths from $i$ to every other node in the network that traverse node $k$, i.e. if $(SP^i_v)_{v\in{}V_i\backslash{}\left\lbrace{}i\right\rbrace}$ are the shortest paths connecting $i$ and nodes $v\in{}V_i$ then
+ 
+\[
+S^M_i(G_i,j)=\sum\limits_{v\in{}V_i\backslash\left\lbrace{}i\right\rbrace}1_{\left\lbrace{}j\in{}\,SP^i_v\right\rbrace}.
+\]
+
+\noindent{}Now let node $j$ be a sybil attacker creating attack $\sigma^n_j$ such that $G'=G\downarrow\sigma^n_j$. We assume $\sigma^n_j$ comprises one attack edge connecting $j$ to another agent $i$ and a large number of sybil nodes that all do some "work" for $j$. 
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=1]{"Sybil Attack on Shortest Paths".PNG}
+\caption{Example of Strongly Beneficial Sybil Attack in Terms of Reputation, but not Work}
+\label{fig:Example of Strongly Beneficial Sybil Attack in Terms of Reputation, but not Work}
+\end{center}
+\end{figure}
+
+\noindent{}Consequently, node $j$ will obtain the following accounting value from the perspective of $i$ 
+
+\[
+S^M_i(G_i',j)=\sum\limits_{v\in{}V_i'\backslash\left\lbrace{}i\right\rbrace}1_{\left\lbrace{}j\in{}\,SP^i_v\right\rbrace} \geq \sum\limits_{k=1}^{n}1_{\left\lbrace{}j\in{}\,SP^i_{s_{jk}}\right\rbrace} = n.
+\]
+
+\noindent{}Obviously, it then holds 
+\[
+\lim\limits_{n\rightarrow\infty}\omega^n_{+}(rep) = \lim\limits_{n\rightarrow\infty}\sum\limits_{s\in\lbrace{}j,s_{j1},\ldots,s_{jn}\rbrace}S^M_i(G_i',s) = \infty,
+\]
+\noindent{}while it also holds $\omega^n_{-}(rep)=1$ and therefore it is $\lim\limits_{n\rightarrow\infty}\frac{\omega^n_{+}(rep)}{\omega^n_{-}(rep)}=\infty.$ \vspace{1em}\\
+
+\noindent{}However, this does not imply that node $j$ will have the highest (or one of the highest) accounting values in the network. As a matter of fact from $k$'s perspective node $i$ itself will have a higher accounting value than node $j$. This is because any path that traverses $j$ must also traverse $i$, as $j$ only has one attack edge. This may hold for many other nodes in the network as well and therefore the likelihood of node $j$ being the highest ranking node in any other agent's choice set is not significantly close to 1. In the example given in figure \ref{fig:Example of Strongly Beneficial Sybil Attack in Terms of Reputation, but not Work} we find that if $i$ and $j$ both query node $k$ for some work, $i$ will be served and not $j$. In a large enough graph this will hold true for many other nodes. Hence it may follow $\lim\limits_{n\rightarrow\infty}\frac{\omega^n_{+}(work)}{\omega^n_{-}(work)}<\infty$. \vspace{1em}\\
+\end{example}
+
+\noindent{}This is a rather important result to obtain. The point is that we can determine $\omega^n_{+}$(rep) and $\omega^n_{-}$(rep) and can therefore quite easily determine whether a sybil attack is strongly beneficial in terms of accounting values. However, the goal of an accounting mechanism is to represent the level of cooperativeness of a node in the network and prevent strongly beneficial sybil attacks in terms of work. The accounting values are therefore nothing but a proxy for a node's standing in the network. And when investigating sybil attacks we therefore only want to prevent $\lim\limits_{n\rightarrow\infty}\frac{\omega^n_{+}({\rm work})}{\omega^n_{-}({\rm work})}=\infty$, while at the same time we are only able to determine $\lim\limits_{n\rightarrow\infty}\frac{\omega^n_{+}({\rm rep})}{\omega^n_{-}({\rm rep})}$. \vspace{1em}\\
+
+\section{Defining Representativeness}
+\label{sec:Defining Representativeness}
+\noindent{}This is rather problematic and we require the upper two concepts to be equivalent in order to evaluate the sybil-proofness of an accounting mechanism . If equivalence is not possible to achieve, we would like to find some restrictions on accounting mechanisms that make the latter stronger than the former. By this we mean that if a sybil attack is strongly beneficial in terms of reputation it must also be strongly beneficial in terms of work. Under this restriction we find that accounting mechanisms that are resistant to strongly beneficial sybil attacks in terms of reputation must also be resistant to them in terms of work. We call this property of accounting mechanisms {\it representativeness}. \vspace{1em}\\
+
+\begin{definition}[Representative]\ \\
+\noindent{}We say an accounting mechanism $S^M$ is {\it weakly representative} if it holds for any work graph $G=(V,E,w)$ and any sybil attack $\sigma_j^n$  \vspace{1em}\\
+
+\[
+\lim\limits_{n\rightarrow\infty}\frac{\omega^n_{+}(rep)}{\omega^n_{-}(rep)}<\infty\,\, \Longrightarrow \,\,\lim\limits_{n\rightarrow\infty}\frac{\omega^n_{+}(work)}{\omega^n_{-}(work)}<\infty. 
+\]
+
+\noindent{}Subsequently, we call an accounting mechanism $S^M$ {\it strongly representative} if it holds \vspace{1em}\\
+
+\[
+\lim\limits_{n\rightarrow\infty}\frac{\omega^n_{+}(rep)}{\omega^n_{-}(rep)}<\infty\,\, \Longleftrightarrow  \,\,\lim\limits_{n\rightarrow\infty}\frac{\omega^n_{+}(work)}{\omega^n_{-}(work)}<\infty.
+\]
+\end{definition}
+
+\noindent{}The question now arises, what requirements $S^M$ must satisfy, in order for it to be weakly and/or strongly representative. We claim that in order for the upper definition of weak representativeness to be true there must exist some function $f_{S^M}$ such that \vspace{1em}\\
+
+\[
+f_{S^M}\left(\frac{\omega^{n}_{+}({\rm rep})}{\omega^{n}_{-}({\rm rep})}\right) = \frac{\omega^{n}_{+}({\rm work})}{\omega^{n}_{-}({\rm work})}, \vspace{1em}\\
+\]
+
+\noindent{}where $f_{S^M}:\mathbb{R}_{\geq{}0}\rightarrow\mathbb{R}_{\geq{}0}$ should be nondecreasing and well-defined, i.e. $f_{S^M}(x)<\infty$ f.a. $x<\infty$. \vspace{1em}\\
+
+\noindent{}Additionally, for strong representativeness to be satisfied, $f_{S^M}$ needs to satisfy $\lim\limits_{x\rightarrow\infty}f_{S^M}(x)=\infty$.\vspace{1em}\\
+
+\noindent{}If for a given accounting mechanism $S^M$ we know that such a function exists, then we can guarantee that a sybil-resistance in terms of accounting values implies sybil-resistance in terms of work. Conversely, we know that if $f_{S^M}$ also satisfies $\lim\limits_{x\rightarrow\infty}f_{S^M}(x)=\infty$ then sybil-resistance in terms of work implies sybil-resistance in terms of accounting values. \vspace{1em}\\
+
+\begin{remark}[]\ \\
+\label{rem:Representativeness Function}
+\noindent{}Note that for any arbitrary accounting mechanism that satisfies path-responsiveness it must already hold
+
+\[
+\omega_{-}^{n}(work)=0 \,\,\Longrightarrow \,\, \omega_{-}^{n}(rep)=0,
+\]
+
+\noindent{}This is because any sybil attack with $\omega_{-}^{n}(work)=0$ cannot have any attack edges, i.e. all edges added to the work graph by the attacker will be within the sybil region $S$ and not connected to any outside nodes. This means that collapsing all sybil nodes will return an isolated node and by path-responsiveness an accounting value of $0$. From this we can conclude that 
+
+\[
+\frac{1}{\omega_{-}^{n}(work)} = \infty \,\, \Longrightarrow \,\, \frac{1}{\omega_{-}^{n}(rep)} = \infty
+\]
+
+\noindent{}and obviously
+
+\[
+\frac{1}{\omega_{-}^{n}(rep)} < \infty \,\, \Longrightarrow \,\, \frac{1}{\omega_{-}^{n}(work)} < \infty.
+\]
+
+\noindent{}Therefore we find that a function $f_{S^M}$ mapping 
+
+\[
+f_{S^M}(\omega^n_{+}(rep)) = \omega^n_{+}(work)
+\]
+
+\noindent{}with the same properties as mentioned above, suffices to ensure weak and strong representativeness. This $f_{S^M}$ then denotes the maximum amount of data a set of nodes with a given aggregate of reputation values could leech without making any contributions anymore after the initial $\omega_{-}^{n}(work)$. If for a given accounting mechanism $S^M$ we find that $f_{S^M}$ is not well-defined then we conclude the given $S^M$ is an inappropriate choice of accounting mechanism as it is not representative.\vspace{1em}\\
+\end{remark}
+
+\begin{comment}
+\noindent{}An obiouvs problem arises from this definition of $\omega_{+}^{n}(rep)$, namely the fact that we do not take into account that the accounting values obtained through the sybil attack might be distributed over the number of sybil identities, as opposed to all being attributed to the main attacking node $j$. This may lead to sybil attacks which are very beneficial in terms of accounting values, but not at all in terms of the work that can be consumed. The following example represents this well.
+
+\begin{example}[]\ \\
+Let $G=(V,E,w)$ be a work graph with honest node $i$ and attacker $j$. Let $j$ launch a sybil attack $\sigma^n$ with $n$ sybil identities $s_{j1},\ldots,s_{jn}$ and let $S^M()$ be the BarterCast accounting mechanism given by the maxflow algorithm. \cite{Bartercast: A Practical Approach to Prevent Lazy Freeriding in P2P Networks}. Let $G'$ be the work graph after the sybil attack, given by 
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.7]{"Sybil Attack on BarterCast".PNG}
+\caption{Sybil Attack on BarterCast}
+\label{fig:Sybil Attack on BarterCast}
+\end{center}
+\end{figure} 
+
+\noindent{}In this example, we obtain the values $\omega_{-}^{n}(rep)=1$ and $\omega_{+}^{n}(rep)=n$, which implies $\lim\limits_{n\rightarrow\infty}\frac{\omega_{+}^{n}(rep)}{\omega_{-}^{n}(rep)}=\infty$. However, we find that $S^M_{is_{jk}}=1$ f.a. $k=1,\ldots,n$ and because it holds $S^M_k(G_i,C_i)=3$, it is obvious that if $i$'s allocation policy is winner-takes-all, $\omega^{n}_{+}(work)=0$.
+\end{example}
+\end{comment}
+
+\noindent{}It should be noted here that for the most part it is impossible for us to explicitly determine a function $f_{S^M}$ for any accounting mechanism in an arbitrary work graph with an undefined sybil attack. While this means that it may not be practically applicable, it does hold significant theoretical weight with respect to identifying strongly beneficial sybil attacks and/or sybil-proof accounting mechanisms. This leads us to the main result of this chapter summarised in the theorem below. \vspace{1em}\\ 
+
+\begin{theorem}[]\ \\
+\label{th:Representativeness Theorem}
+\noindent{}If an accounting mechanisms $S^M$ does not allow for a strongly beneficial sybil attack $\sigma_j^n$ with respect to accounting values to exist, i.e.
+
+\[
+\forall\left(\sigma_j^n\right)_{n\in\mathbb{N}}:\lim\limits_{n\rightarrow\infty}\frac{\omega^{n}_{+}(rep)}{\omega^{n}_{-}(rep)}<\infty
+\]
+
+\noindent{}and it's (at least) weakly representative, then we find that it does not allow for any strongly beneficial sybil attacks in terms of work, i.e.
+
+\[
+\forall\left(\sigma_j^n\right)_{n\in\mathbb{N}}:\lim\limits_{n\rightarrow\infty}\frac{\omega^{n}_{+}(work)}{\omega^{n}_{-}(work)}<\infty
+\]
+
+\noindent{}In other words, an accounting mechanism that is \textbf{resistant to strongly beneficial sybil attacks in terms of accounting values}, and is at least \textbf{weakly representative}, is resistant to strongly beneficial sybil attacks in terms of work as well.\vspace{1em}\\ 
+
+\noindent{}An ideal accounting mechanism will satisfy both of these properties and if it doesn't, we will consider it an inappropriate choice.
+\end{theorem}
+
+\noindent{}This is a problem that has been widely disregarded in the literature so far, such as in \cite{A Random Walk Based Trust Ranking in Distributed Systems}. So far the effectiveness of sybil attacks has only been researched for generic definitions of $\omega_{+}^{n}$ and $\omega_{-}^{n}$, \cite{On the Sybil-Proofness of Accounting Mechanisms}. However, at closer inspection, we find that the more rigorous definitions introduced in chapter \ref{chap:Sybil Attack Gain} are indeed required. \vspace{1em}\\ 
+
+\noindent{}In order for us to make the upper theorem more concrete we introduce some examples below. We have already shown above in example \ref{ex:Strongly Beneficial in Terms of Work, but not Reputation} that the PageRank algorithm is not weakly representative and therefore it is obviously not strongly representative either.\vspace{1em}\\
+
+
+
+\begin{example}[Representativeness of BarterCast]\ \\
+\label{ex:Representativeness of BarterCast}
+\noindent{}Let $S^M_i$ be the BarterCast accounting mechanism \cite{Bartercast: A Practical Approach to Prevent Lazy Freeriding in P2P Networks} for some honest node $i$ in an arbitrary work graph $G=(V,E,w)$. Let $j$ be a malicious node launching some arbitrary sybil attack $(\sigma^n_j)_{n\in\mathbb{N}}$, such that it holds
+
+\[
+\lim\limits_{n\rightarrow\infty}\frac{\omega^n_{+}({\rm rep})}{\omega^n_{-}({\rm rep})} < \infty.
+\]
+
+\noindent{}Now, we know that for any node in the sybil region that consumes some data ($j$ included) its accounting values from the perspective of some agents will decrease by at least the amount that is leeched. Hence, we know that no agent in the sybil region can consume $\infty$ data, and because $\omega^n_{+}({\rm rep})<\infty$ there can only be finite nodes in the sybil region that gain data. Therefore it automatically follows
+
+\[
+\lim\limits_{n\rightarrow\infty}\frac{\omega^n_{+}({\rm work})}{\omega^n_{-}({\rm work})} < \infty.
+\]
+
+\noindent{}However, while BarterCast may be weakly representative, it is not sybil resistant in terms of accounting values, as has been shown by Otte et al (2016) \cite{Sybil-resistant Trust Mechanisms in Distributed Systems}. Therefore we can conclude that it is not a suitable accounting mechanism for the prevention of sybil attacks. 
+\end{example}
+
+
+\begin{example}[Representativeness of NetFlow]\ \\
+\label{ex:Representativeness of NetFlow}
+\noindent{}Let $S^M_i$ be the Netflow (limited contribution) accounting mechanism \cite{Sybil-resistant Trust Mechanisms in Distributed Systems} for some honest node $i$ in an arbitrary work graph $G=(V,E,w)$. Let $j$ be a malicious node launching some arbitrary sybil attack $(\sigma^n_j)_{n\in\mathbb{N}}$, such that it holds
+
+\[
+\lim\limits_{n\rightarrow\infty}\frac{\omega^n_{+}({\rm rep})}{\omega^n_{-}({\rm rep})} < \infty.
+\]
+
+\noindent{}Then we already know by the same reasoning as in example \ref{ex:Representativeness of BarterCast} that it must already hold
+
+\[
+\lim\limits_{n\rightarrow\infty}\frac{\omega^n_{+}({\rm work})}{\omega^n_{-}({\rm work})} < \infty.
+\]
+
+\noindent{}This is because the netflow mechanism is based on a variation of the BarterCast algorithm with an additional restriction introduced. Therefore we know that Netflow is weakly representative. However, Netflow does not satisfy strong representativeness. Due to the addition of node capacities, netflow achieves sybil resistance in terms of work, for any any sybil attack, regardless of its profit in terms of accounting values. Otte el al. (2016) have shown that no sybil attack will return an infinite benefit in terms of work for the attacker. We can think of plenty of sybil attacks which return an infinite benefit in terms of accounting values though and by this logic we know that it does not hold
+\[
+\lim\limits_{n\rightarrow\infty}\frac{\omega^n_{+}({\rm work})}{\omega^n_{-}({\rm work})} < \infty \Longrightarrow \lim\limits_{n\rightarrow\infty}\frac{\omega^n_{+}({\rm rep})}{\omega^n_{-}({\rm rep})} < \infty.
+\]
+\end{example}
+
+\noindent{}Recall theorem \ref{th:Representativeness Theorem} in which we stated that for sybil resistance to hold, an accounting mechanism needs to be at least weakly representative and resistant to strongly beneficial sybil attacks in terms of accounting values. Now that we have covered the concept of representativeness we look into what requirements need to be satisfied by accounting mechanisms for them to be resistant to sybil attacks in terms of accounting values and what requirements they must satisfy for them \textbf{not} to be resistant. 

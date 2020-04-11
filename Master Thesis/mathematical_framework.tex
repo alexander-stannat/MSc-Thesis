@@ -1,0 +1,810 @@
+\chapter{Mathematical Framework for Accounting Mechanisms}
+\label{chap:Mathematical Framework for Accounting Mechanisms}
+\noindent{}We begin by introducing a mathematical framework for the setting in which we conduct our research, namely by rigorously formalising interactions (transactions) between nodes in the network. In \cite{Sybil-resistant Trust Mechanisms in Distributed Systems} Otte et al. (2016) introduced the concept of an {\it ordered interaction model} from which an {\it ordered interaction graph} and a {\it block graph} are derived. While this is a very elegant definition for a set of transactions and the derivation of a work graph from it, it is directly tailored to the TrustChain architecture and lacks the possibility of misreports and counterfeit interactions. Therefore we will not adopt it here, but instead derive a slightly different and more generic definition of a transaction set, which will be our equivalent to their ordered interaction model.\vspace{1em}\\
+
+
+\section{Network Transactions}
+\label{sec:Network Transactions}
+\noindent{}We start off with the definition of a simple network transaction, or interaction, which simply denotes the transference of data in between two nodes.\vspace{1em}\\
+
+\begin{definition}[Agent Transaction]\ \\
+\label{def:Agent Transaction}
+\noindent{}Let $V$ be the set of all agents in the network and let $pr_1,pr_2,pr_3$ denote the canonical projections on the cartesian product of 3 sets. A transaction $t\in{}V^2\times\mathbb{R}_{>0}$ between two nodes $i,j\in{}V$ is given by a tuple $(i,j,w)$, whereby $pr_1(t)$ is the contributer and $pr_2(t)$ is the recipient of the work performed. $w$ or $pr_3(t)$ corresponds to the size of the transaction, i.e. the amount of data transferred from $pr_1(t)$ to $pr_2(t)$. \vspace{1em}\\ %Finally, $id\in\mathbb{R}$ is the unique transaction identifier.
+\end{definition}
+
+\noindent{}Note that for any transaction $t$ it must always hold $pr_1(t)\neq{}pr_2(t)$, i.e. nodes cannot transact with themselves. Secondly, transactions are unidirectional. This means that a single transaction cannot contain the transference of data from node $i$ to node $j$ {\bf and} vice versa. Hence, the ordering of the two nodes in the transaction tuple is not arbitrary, but determined by which of the two is making the contribution and who is receiving it. Lastly, it naturally always holds that $w\geq{}0$. \\
+
+\noindent{}As every node participates in a string of transactions in a given chronological order, we obtain a series of transactions for every node $i$, which we will refer to as a transaction sequence.\vspace{1em}\\
+
+\begin{definition}[Transaction Sequence]\ \\
+\label{def:Transaction Sequence}
+\noindent{}The transaction sequence of a node $i\in{}V$ is expressed as $TS_i:=(t_{i,n})_{n\in\mathbb{N}_{\leq{}T_i}}$ where $t_{i,n}$ is the $n$-th transaction node $i$ participated in, either as a contributor or as a consumer. As above $t_{i,n}$ is given by a tuple $(j,k,w)$ where either $j=i$ or $k=i$. $T_i$ denotes the length of $i$'s transaction sequence, i.e. the number of transactions $i$ has participated in thus far. It grows as time progresses.\vspace{1em}\\
+\end{definition}
+
+\noindent{}Note that in this definition we implicitly assume that concurrent transactions can be deterministically serialised. Else, the ordering of transactions would become nonsensical. As time goes on, transaction sequences obtain new entries and continue to grow, which implies that $T_i$ is not a static value, but changes over time. We choose not to incorporate a temporal variable in this model and instead assume that a transaction sequence represents a "snapshot in time" as opposed to a dynamic variable. Next, we define a transaction function, which will denote the size of a transaction.\vspace{1em}\\
+
+\begin{definition}[Transaction Function]\ \\
+\label{def:Transaction Function}
+\noindent{}For every node $i\in{}V$ we define a transaction function $t_i$, given by 
+\[
+t_i:\mathbb{N}_{\leq{}T_i}\times{}V\rightarrow{}\mathbb{R},
+\]
+\noindent{}where $t_i(m,j)$ corresponds to the amount of work node $i$ has leeched from or contributed to node $j$ in its $m$-th transaction, i.e. 
+\[
+t_i(m,j) = \left\lbrace 
+\begin{array}{lll}
+pr_3(t_{i,m}), & \textrm{if} & pr_2(t_{i,m})=j \\
+-pr_3(t_{i,m}), & \textrm{if} & pr_1(t_{i,m})=j \\
+0, & \multicolumn{2}{l}{\textrm{otherwise}} \\
+\end{array}.
+\right.
+\]
+\end{definition}
+\noindent{}Note that it holds 
+\[
+t_i(m,j)>0\,\,\,\,\textrm{if } pr_1(t_{i,m})=i
+\]
+\noindent{}and 
+\[
+t_i(m,j)<0\,\,\,\,\textrm{if } pr_2(t_{i,m})=i.
+\]
+\noindent{}It is obvious that the two conditions above can never both be satisfied simultaneously. This is due to our restriction made in definition \ref{def:Agent Transaction}, where we stated that for any transaction $t$ it must always hold $pr_1(t)\neq{}pr_2(t).$\vspace{1em}\\ 
+
+
+\begin{remark}[Symmetry of Transaction Functions]\ \\
+\label{rem:Symmetry of Transaction Functions}
+\noindent{}In theory it should always hold for any pair of nodes $i,j\in{}V$ and any value $w\neq{}0$  
+\[
+\left|\left\lbrace{}n\in\mathbb{N}_{\leq{}T_i}\,|\,t_i(n,j)=w\right\rbrace\right| = \left|\left\lbrace{}m\in\mathbb{N}_{\leq{}T_j}\,|\,t_j(m,i)=-w\right\rbrace\right|.\vspace{1em}\\
+\]
+
+%\[
+%\forall{}i,j\in{}V,n\in\mathbb{N},\,t_i(n,j)=w\neq{}0:\exists{}m\in\mathbb{N},\,t_j(m,i)=-w
+%\]
+
+\noindent{}What this means is that any transaction between nodes $i$ and $j$ that is contained in the transaction sequence of $i$ must also be contained in the transaction sequence of node $j$. This is quite trivially true if the transaction sequences of both parties contain all transactions that they have participated in. We call this property {\it symmetry of transaction functions}.\vspace{1em}\\
+\end{remark}
+
+\noindent{}Finally, we introduce the set containing all transactions that have transpired in the network, denoted by 
+\[
+TS:=\left\lbrace{}TS_i\,|\,i\in{}V\right\rbrace .
+\]
+
+\noindent{}This set contains all transaction sequences of all nodes in the network. Based on our remark \ref{rem:Symmetry of Transaction Functions} we see that $TS$ must contain every transaction exactly twice.\vspace{1em}\\
+
+\noindent{}Recall that in a distributed system there is no central authority and therefore no central database keeping record of all transaction sequences. Hence, an agent can only know their own transaction sequence and those of agents who've shared their transaction sequences with them. Agents are unlikely to be aware of the transaction sequences of all agents in the network, or of who is in the in the network in the first place. Hence no agent can know the transaction set $TS$. \vspace{1em}\\
+
+\noindent{}Agents query one another's transaction sequences which are then shared and disseminated along the network. In \cite{Creating Trust through Verification of Interaction Records} Harms et al. (2018) propose a record dissemination protocol, which is based on the TrustChain architecture, discussed in section \ref{sec:Blockchains & TrustChain}. We will not delve into the details of mechanisms facilitating this distribution of transaction sequences, but will simply assume that there is one in place and continue. \vspace{1em}\\
+
+\begin{definition}[Agent Information]\ \\
+\label{def:Agent Information}
+Let $i\in{}V$ be an arbitrary, but fixed agent in the network. An interaction $(j,k,w)$ between two agents $j,k\in{}V$, that $i$ receives a report about from $j$ is written as $t_{j,m}^i$, where the $m$ means that it's the $m$-th transaction in the transaction sequence $j$ has shared with $i$. The transaction sequence $j$ reports to $i$ is then denoted by $TS_j^i:=(t_{j,m}^i)_{m\leq{}T_j^i}$. Here $T_j^i$ is the length of $TS_j^i$. We derive the transaction function of $j$ that $i$ has information on as 
+\[
+t_j^i(m,k)=\left\lbrace 
+\begin{array}{lll}
+pr_3(t_{j,m}^i), & \textrm{if} & pr_2(t_{j,m}^i)=k \\
+-pr_3(t_{j,m}^i), & \textrm{if} & pr_1(t_{j,m}^i)=k \\
+0, & \multicolumn{2}{l}{\textrm{otherwise}} \\
+\end{array}.
+\right. \vspace{1em}\\
+\]
+\noindent{}When aggregated into a set of all transaction sequences, $i$ obtains the {\it subjective} transaction set 
+\[
+TS^i:=\left\lbrace{}TS_j^i\,|\,j\in{}V\right\rbrace.
+\]
+\noindent{}Recall that $TS$ contained every transaction exactly twice. This is no longer true for $TS^i$ as different agents may report transaction sequences inconsistently. This means agent information may be contradictory or flawed. \vspace{1em}\\
+\end{definition}
+
+\noindent{}So far, we have not ensured that agents sharing their transaction sequences will do so honestly and consistently. Agents may choose to add transactions that haven't occurred to their transaction sequence or drop transactions from their sequence. Agents may even refuse to share their transaction history entirely. This type of behaviour is what we defined earlier as {\it misreports}, which we will define more rigorously now. \vspace{1em}\\
+
+\begin{definition}[Misreport Attack]\ \\
+\label{def:Misreport Attack}
+Let $i\in{}V$ be an arbitrary but fixed agent with subjective transaction set $TS^i$. We say that a misreport between two agents $j,k\in{}V$ has occurred if there exists a $w\neq{}0$ such that 
+
+\[
+\left|\left\lbrace{}n\in\mathbb{N}_{\leq{}T_j^i}\,|\,t_j^i(n,k)=w\right\rbrace\right| \neq \left|\left\lbrace{}m\in\mathbb{N}_{\leq{}T_k^i}\,|\,t_k^i(m,j)=-w\right\rbrace\right|.
+\]
+\end{definition} 
+
+\noindent{}Put in words this simply means that a misreport between two agents $j$ and $k$ has occurred if there exists an agent $i$ who receives reported transaction sequences $TS_j^i$ and $TS_k^i$ such that the there exists a transaction between $j$ and $k$, which is contained in the reported transaction sequence of one of the two, but not in both. \vspace{1em}\\
+
+\noindent{}Note that we say a misreport {\it has occurred} instead of a misreport was {\it committed by} as it is not clear to agent $i$ which of the two agents $j$ and $k$ is responsible for the misreport. If a transaction is contained in the reported transaction sequence of agent $k$ and not in that of $j$, then either $k$ may have fabricated a transaction or $j$ may have dropped a transaction from their sequence. From the perspective of $i$ these two cases are indistinguishable.\vspace{1em}\\
+
+\section{Work Graphs}
+\label{sec:Work Graphs}
+\noindent{}Given the set of all transactions $TS$, one can transform the transaction sequences into a {\it work graph} with the help of a mapping function. A work graph is a directed network graph visualising the interactions between nodes. It may be unidirectional or even a double-edged graph. The idea is that edges between vertices correspond to overall seed-leech relationships of nodes in the network. \vspace{1em}\\
+
+\begin{definition}[Work Graph]\ \\
+\label{def:Work Graph}
+\noindent{}A work graph is given by the tuple $G = (V, E, w)$, whereby $V$ is the set of vertices, i.e. agents in the network and $E$ is a set of directed edges between the agents. An edge $(i,j)\in{}E$ pointing from node $i$ to node $j$ represents node $j$ performing work for node $i$. \vspace{1em}\\ The function $w:V\times{}V\rightarrow{}\mathbb{R}_{\geq{}0}$ denotes the weight of the edges, i.e. $w(i,j)$ represents the total amount of work performed by node $j$ for node $i$. If two nodes $i$ and $j$ are not connected then we set the edge weights $w(i,j)=w(j,i)=0$. We choose the set of edges $E\subset{}V\times{}V$ such that $(i,j)\in{}E$ if and only if $w(i,j)>0$. Note that it must always hold $w(i,i)=0$ f.a. $i\in{}V$ as we do not allow for agents to transact with themselves.\vspace{1em}\\ 
+\end{definition}
+
+\noindent{}There are a number of different ways transactions in $TS$ can be aggregated to form edges in the work graph. In the {\it unidirectional, single-edge} case of the work graph the edges of the graph can be derived from the set of transaction functions by
+\[
+w(i,j) = \max\left\lbrace{}\sum\limits_{n\in\mathbb{N}_{\leq{}T_j}}t_j(n,i), 0\right\rbrace = \max\left\lbrace{}-\sum\limits_{n\in\mathbb{N}_{\leq{}T_i}}t_i(n,j), 0\right\rbrace
+\]
+and conversely, 
+\[
+w(j,i) = \max\left\lbrace{}\sum\limits_{n\in\mathbb{N}_{\leq{}T_i}}t_i(n,j), 0\right\rbrace = \max\left\lbrace{}-\sum\limits_{n\in\mathbb{N}_{\leq{}T_j}}t_j(n,i), 0\right\rbrace.
+\]
+
+\noindent{}Here the weight of the edges corresponds to the net data flow in between two nodes. The edge is directed toward the node that has a positive deficit in the bilateral relationship. Note that there can only be a single edge connecting two nodes, which points from one to the other, i.e. for any pair of nodes $i,j\in{}V$ it holds $w(i,j)>0\,\,\Rightarrow\,\,w(j,i)=0$. This type of work graph is quite useful as it nicely captures the overall net contributions nodes have made to the network. Another advantage this type of work graphs has is its simplicity as there is never more than one edge connecting two nodes. \vspace{1em}\\
+
+\noindent{}Note that there is one drawback to this approach, which lies in the fact that the single-edge graph neglects certain contributions made to the network. For instance, if two agents have donated the same amount of resources to one another then the weight of the edge connecting them is zero. Hence, this type of graph lacks informativeness as it only captures net contributions.\vspace{1em}\\
+
+\noindent{}An alternative to this are double-edged graphs in which case, we can derive the edge weights as follows
+\[
+w(i,j) = \sum\limits_{n\in\mathbb{N}_{\leq{}T_j}}\max\left\lbrace{}t_j(n,i), 0 \right\rbrace = \sum\limits_{n\in\mathbb{N}_{\leq{}T_i}}\max\left\lbrace{}-t_i(n,j),0\right\rbrace 
+\]
+\noindent{}and
+\[
+w(j,i) = \sum\limits_{n\in\mathbb{N}_{\leq{}T_i}}\max\left\lbrace{}t_i(n,j), 0 \right\rbrace = \sum\limits_{n\in\mathbb{N}_{\leq{}T_j}}\max\left\lbrace{}-t_j(n,i),0\right\rbrace.
+\]
+
+\noindent{}In this particular type of graph an edge $(i,j)$ corresponds to the gross data flow from $j$ to $i$ without subtracting the work $i$ has done for $j$. A positive attribute of this this type of graph is that it's generally more informative as it doesn't reduce edge weights to net data flow. Throughout this thesis we will always assume a double-edged work graph.\vspace{1em}\\
+
+\noindent{}Given a transaction set $TS$, we can derive this type of work graph using the mapping function mentioned above. We write $G=g(TS)$ where $g$ maps the transaction set $TS$ to the work graph $G$, according to the classifications above. \vspace{1em}\\
+
+\noindent{}It may be somewhat counterintuitive for edges to be pointing from the recipient to the contributor. Note that we can invert the edges as well, such that an edge $(i,j)$ pointing from $i$ to $j$ corresponds to work performed by $i$ for $j$, in that case we obtain. 
+\[
+w(i,j) = \sum\limits_{n\in\mathbb{N}_{\leq{}T_i}}\max\left\lbrace{}t_i(n,j), 0 \right\rbrace = \sum\limits_{n\in\mathbb{N}_{\leq{}T_j}}\max\left\lbrace{}-t_j(n,i),0\right\rbrace.
+\]
+
+\noindent{}However, we choose to stick with the former direction with a particular set of accounting mechanisms in mind. Although, this is quite irrelevant. For an example of how to derive a work graph from a transaction set see the example below.\vspace{1em}\\
+
+\begin{example}[]\ \\
+\label{ex:Example Transaction Set and Work Graph}
+\noindent{}Take the tabular below as the transaction sequences of 4 agents $i,j,k,h\in{}V$. Then the mapping function $g$ returns the corresponding work graph $G$ with directed double-edges derived from the transaction set $TS$ as seen in figure 3.1. \vspace{1em}\\
+
+\begin{comment}
+
+
+\begin{tabular}{c|c|c|c}
+$i$ & $k$ & $j$ & $h$ \\
+\hline
+$(i,j,3)$ & $(k,j,2)$ & $(j,h,4)$ & $(h,i,9)$ \\
+$(h,i,9)$ & $(i,k,2)$ & $(j,i,1)$ & $(j,h,4)$ \\
+$(j,i,1)$ &           & $(i,j,3)$ &           \\  
+$(i,k,2)$ & 		  & $(k,j,2)$ & 
+\end{tabular}
+\end{example}
+
+
+\end{comment}
+
+\begin{figure}[H]
+\includegraphics[scale=0.6]{"Example Objective Work Graph".PNG}
+\label{fig:Example Work Graph}
+\caption{Example Work Graph}
+\end{figure}
+\end{example}
+
+
+\begin{remark}[]\ \\
+\label{rem:P2P, Twitter, Facebook}
+\noindent{}Note that in our case we introduce the work graph with regard to peer-to-peer filesharing, keeping the application of the {\it Tribler} network in mind \cite{Tribler}. This means that the work performed, i.e. the weight of the edges, corresponds to the amount of data transferred from one node to another, by seeding and leeching respectively. \vspace{1em}\\
+
+\noindent{}However, with our examples of social networks, such as Facebook and Twitter from chapter \ref{chap:Introduction} in mind, we would like to extend our model to entail these networks and any kind of P2P network in general. In the case of these social networks we can apply the exact same concepts, but reinterpret the transactions between agents as "follow" or "friendship" relations, etc. The weights of these edges could then, for instance, be determined by the number of likes and/or retweets a user receives from a follower/friend. \vspace{1em}\\
+\end{remark}
+
+\begin{example}[]\ \\
+\label{ex:Example Graphs (P2P, Twitter, Facebook)}
+In the case of {\it Facebook} a friendship may correspond to an undirected edge connecting two vertices, while the amount of likes and/or mentions these people receive from one another, could be represented by another pair of edges connecting the two. An example of such a work graph is given in figure \ref{fig:Facebook Example Graph} below.
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.9]{"Facebook Example Graph".PNG}
+\caption{Facebook Example Graph}
+\label{fig:Facebook Example Graph}
+\end{center}
+\end{figure}
+
+\noindent{}A follower relationship on {\it Twitter} could be represented by an edge pointing from the follower to the followed, while the edge weight may correspond to the number of tweets that have been liked or retweeted, etc. In this particular application a bidirectional graph will be more reasonable than a unidrectional one, as can be seen in figure \ref{fig:Twitter Example Graph} below.
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.8]{"Twitter Example Graph".PNG}
+\caption{Twitter Example Graph}
+\label{fig:Twitter Example Graph}
+\end{center}
+\end{figure}
+ 
+\end{example}
+
+\noindent{}Recall the fact that agents in the network were not aware of all transactions that have occurred and definition \ref{def:Agent Information}, in which we stated that agents build a subjective transaction set based on agent reports. It follows from this that the work graph defined above is unlikely to be known by any node in the network. Instead, agents build, what is referred to, as a subjective work graph from their subjective transaction sets. This follows the same paradigm as above with one difference, which arises due to the possibility of misreporting. \vspace{1em}\\
+
+\noindent{}As mentioned in definition \ref{def:Misreport Attack} agents may report contradictory transaction sequences. This results in a work graph with edge weights given by tuples in $\mathbb{R}_{\geq{}0}\times\mathbb{R}_{\geq{}0}$, whereby one entry of the tuple corresponds to the aggregated data flow between the two nodes, as reported by one of them, while the other corresponds to the same value, but reported by the other. \vspace{1em}\\
+
+\begin{definition}[Subjective Work Graph]\ \\
+\label{def:Subjective Work Graph}
+\noindent{}A subjective work graph from the perspective of node $i$ is given by a tuple $G_i=(V_i,E_i,w_i)$ where $V_i\subset{}V$ and $E_i\subset{}V_i\times{}V_i$. As in the definition of the work graph an edge $(j,k)\in{}E_i$ pointing from $j$ to $k$ represents work performed for $j$ by $k$.\vspace{1em}\\
+
+\noindent{}For two nodes $j,k\in{}V_i$ the value $w_i(j,k)$ denotes the weight of the edge connecting $j$ and $k$, as reported by both nodes in question to node $i$. Seeing as two nodes may report different transaction sequences, $w_i(j,k)$ is determined by a tuple $w_i(j,k) = (w_j^i(j,k), w_k^i(j,k))$. As before, if two nodes are not connected (from the perspective of $i$), we set $w^i(j,k)=0=w^i(k,j)$ and we choose the set of edges $E_i$ such that $(j,k)\in{}E_i$ if and only if either $w_j^i(j,k)>0$ or $w_k^i(j,k)>0$. As in definition \ref{def:Work Graph}, we do not allow edges $w_i(j,j)$ for any $j\in{}V_i$.
+\end{definition}
+
+\noindent{}The transaction sequences in $TS_i$ can be aggregated into edge weights analogously to our earlier definition of the work graph (\ref{def:Work Graph}). In the {\it unidrectional, single-edge} case the edge weights of the subjective work graph $G_i$ are determined by 
+
+\[
+w^i(j,k)=\left( \max\left\lbrace{}\sum\limits_{n\in\mathbb{N}_{\leq{}T_k^i}}t_k^i(n,j), 0\right\rbrace, \max\left\lbrace{}-\sum\limits_{n\in\mathbb{N}_{\leq{}T_j^i}}t_j^i(n,k), 0\right\rbrace \right)
+\]
+\noindent{}and consequently
+\[
+w^i(k,j) = \left(\max\left\lbrace{}\sum\limits_{n\in\mathbb{N}_{\leq{}T_j^i}}t_j^i(n,k), 0\right\rbrace, \max\left\lbrace{}-\sum\limits_{n\in\mathbb{N}_{\leq{}T_k^i}}t_k^i(n,j), 0\right\rbrace\right).
+\]
+
+\noindent{}Alternatively, we can aggregate the transaction sets $TS^i$ into a {\it unidrectional double-edge graph} just as in the case of the work graph by setting
+
+\[
+w^i(j,k) = \left(\sum\limits_{n\in\mathbb{N}_{\leq{}T_k^i}}\max\left\lbrace{}t_k^i(n,j), 0 \right\rbrace , \sum\limits_{n\in\mathbb{N}_{\leq{}T_j^i}}\max\left\lbrace{}-t_j^i(n,k),0\right\rbrace\right) 
+\]
+\noindent{}and
+\[
+w^i(k,j) = \left(\sum\limits_{n\in\mathbb{N}_{\leq{}T_j^i}}\max\left\lbrace{}t_j^i(n,k), 0 \right\rbrace , \sum\limits_{n\in\mathbb{N}_{\leq{}T_k^i}}\max\left\lbrace{}-t_k^i(n,j),0\right\rbrace\right).
+\]
+
+\noindent{}This results in every two nodes being assigned 4 values. If no misreport has occured in between two nodes $j$ and $k$ we replace the tuple of edge weights with a single value, as the tuple contains the same value twice, in which case we have $w^i(j,k)=w^i_j(j,k)=w^i_k(j,k)$. \vspace{1em}\\
+
+\begin{remark}[]\ \\
+\label{rem:Edge Weights connected to i}
+\noindent{}For the edges that are directly connected to agent $i$ itself, $i$ need not rely on the reports from the nodes it is connected to. It always knows with certainty the correct weight of these edges. Hence we find that $w_i(i,j)$ and $w_i(j,i)$ will be given by a single value as opposed to a tuple. We set $w^i(i,j)=w^i_i(i,j)$ and $w^i(j,i)=w_i^i(j,i)$. \vspace{1em}\\
+\end{remark}
+
+\noindent{}When aggregating subjective transaction sequences into a subjective work graph, we apply a mapping function $g_i$ and we write $G_i=g_i(TS^i)$. As mentioned above in definition \ref{def:Work Graph}, we opt for the multi-edge case for the same reasons as discussed above. Given below is an example of how a subjective transaction set $TS^i$ can be aggregated into a subjective work graph. \vspace{1em}\\
+
+\begin{example}[]\ \\
+\label{ex:Example Transaction Reports and Subjective Work Graphs}
+\noindent{}Take the tabular below as the subjective transaction sequences of 3 agents $i,k,h\in{}V_i$ from the perspective of honest agent $i$. Then the map function $g_i$ returns the corresponding subjective work graph $G_i$ with directed double-edges derived from the transaction set $TS^i$ as seen in figure 3.4 below. \vspace{1em}\\
+
+\begin{comment}
+
+
+\begin{minipage}{\textwidth}
+\centering
+\begin{minipage}{0.45\textwidth}
+\begin{figure}[H]
+\begin{tabular}{ l | c | r }
+$i$ & $k$ & $h$ \\
+\hline
+$(i,k,3)$ & $(i,k,3)$ & $(h,i,4)$ \\
+$(h,i,4)$ & $(h,k,2)$ & $(h,k,2)$ \\
+$(i,k,4)$ & $(h,k,3)$ & $(k,h,3)$ \\
+%$()$ & $()$ & $()$ \\
+\end{tabular}
+\end{figure}
+\end{minipage}
+
+
+\end{comment}
+
+\begin{figure}[H]
+\includegraphics[scale=0.7]{"Example Subjective Work Graph".PNG}
+\label{fig:Example Subjective Work Graph}
+\caption{Example Subjective Work Graph}
+\end{figure}
+\end{example}
+
+
+\begin{remark}[]\ \\
+\label{rem:Edge Weights (Misreport)}
+\noindent{}If from the perspective of $i$ no misreport has occurred between two agents $j$ and $k$, the reported edge weights will satisfy $w_j^i(j,k)=w_k^i(j,k)$, which means $w^i(j,k)$ will be given by a single value. The question arises whether the occurrence of a misreport directly implies $w_j^i(j,k)\neq{}w_k^i(j,k)$. \vspace{1em}\\
+
+\noindent{}We find that this is not, in fact true. Neither in the single-edge case, nor in the double-edge case. As a proof look at the following examples. In a single-edge graph assume $j$ and $k$ report the following transaction sequences to $i$
+
+\[
+TS_j^i=((j,k,5), (j,k,3), (k,j,1))\quad\textit{and}\quad{}TS_k^i=((j,k,4), (j,k,3)).
+\]
+\noindent{}Then the edge weights between nodes $j$ and $k$ in $i$'s subjective work graph will be given by $w^i(k,j)=(7,7)$ and $w^i(j,k)=(0,0)$. Hence we have a misreport, but still it holds $w_j^i(j,k)=w_k^i(j,k)$ and $w_j^i(k,j)=w_k^i(k,j)$.\vspace{1em}\\
+
+\noindent{}For the case of a double-edge graph we can think of a similar example with the same result. Let $j$ and $k$ report the transactions
+
+\[
+TS_j^i=((j,k,5), (j,k,3), (k,j,1))\quad\textit{and}\quad{}TS_k^i=((j,k,6), (j,k,2), (k,j,1)).
+\]
+\noindent{}In this case $i$ will aggregate the transactions and obtain the edge weights $w^i(k,j)=(8,8)$ and $w^i(j,k)=(1,1)$.\vspace{1em}\\
+\noindent{}Hence, we find that the occurrence of a misreport does not directly imply an unequal pair of reported edge weights. When one keeps in mind the fact that agents misreport with the intention to make themselves appear more cooperative it may seem somewhat counterintuitive for two agents to perform misreports which will yield the same edge weights, as lying about the value of an edge weight always makes one of the two nodes appear more and the other less altruistic. However, there are cases in which there exists an incentive for such misreports to occur.\vspace{1em}\\
+
+\noindent{}These types of misreports are however invisible in the subjective work graph as the edge weights are the same. They are therefore impossible to detect from only looking at the subjective work graph. Later on we will introduce two mechanisms of misreport-prevention, one of which can prevent this type of misreport. If we limit our scope to misreports that are detectable and visible in the subjective work graph we can introduce a slightly new definition for misreports. \vspace{1em}\\ 
+\end{remark}
+
+\begin{definition}[Misreport Attack on Subjective Work Graph]\ \\
+\label{def:Misreport on Subjective Work Graph}
+\noindent{}Let $i$ be an arbitrary but fixed agent with subjective work graph $G_i=(V_i,E_i,w_i)$. We say that a misreport between agents $j$ and $k$ has occurred if it holds for the edge weights $i$ derived from transaction sequences $TS_j^i$ and $TS_k^i$, $w^i_j(j,k)\neq{}w^i_k(j,k)$.
+\end{definition}
+
+\noindent{}Now that we have derived a method of mapping the work that nodes have performed for one another onto a graph, we can introduce a mechanism for ranking agents by their levels of perceived cooperativeness, called accounting mechanism.\vspace{1em}\\
+
+\section{Accounting Mechanisms \& Allocation Policies}
+\label{sec:Accounting Mechanisms & Allocation Policies}
+\noindent{}The intuition behind an accounting mechanism is that it evaluates agents based on their level of cooperativeness in the network. In \cite{Sybil-proof Accounting Mechanisms with Transitive Trust} Seuken \& Parkes (2014) introduce an accounting mechanism as a function $S^M$ which takes as input a subjective work graph from the perspective of a node $i$ and a set of agents that request some work from that agent $i$. The superscript $M$ denotes some measure or algorithm that the accounting mechanism is based on. We deviate slightly from this notation as we see no reason for the swarm of leechers to be a variable to the accounting mechanism.\vspace{1em}\\
+
+\begin{definition}[Accounting Mechanism]\ \\
+\label{def:Accounting Mechanism}
+\noindent{}Let $i\in{}V$ be an arbitrary, but fixed agent in the network with subjective work graph $G_i=(V_i,E_i,w_i)$. Given some graph theoretical centrality measure $M$, we define an accounting mechanism as a mapping which takes as input nodes $j\in{}V_i$ as well as the subjective work graph of $i$, $G_i$, and returns a value denoted 
+\[
+S^M_i(G_i,j) \in \mathbb{R}\quad\textit{f.a. }j\in{}V_i\backslash\lbrace{}i\rbrace.
+\]
+
+\noindent{}Technically, the input of $S^M_i(\cdot,j)$ does not need to be the subjective work graph of $i$, but could be any graph $G$. However, in practice it only makes sense for the subjective work graph to be used. Else, the values produced will be completely irrelevant.\vspace{1em}\\
+
+\noindent{}Here $S^M_i(G_i,j)$ determines the perceived cooperativeness of node $j$ from the information $i$ has gathered in the network. Every node $i$ then obtains a set of {\it accounting values} for all nodes in its subjective work graph, excluding itself, which we will denote
+\[
+S^M_i(G_i):=\left\lbrace{}S^M_i(G_i,j)\,|\,j\in{}V_i\backslash\lbrace{}i\rbrace\right\rbrace.
+\]
+\end{definition}
+
+\noindent{}There are infinite possibilities to define accounting mechanisms and choosing the appropriate one for a particular setting is a rather difficult task indeed. Later we will introduce a set of restrictions that accounting mechanisms must satisfy in order to be resilient against certain types of attacks and misbehaviour while simultaneously incentivising cooperativeness. Below, we introduce a set of generic examples for the reader to better understand this concept intuitively.\vspace{1em}\\
+
+\begin{example}[Degree-based Accounting Mechanism]\ \\
+\label{ex:Degree-based Accounting Mechanism}
+\noindent{}As an example of a centrality measure $M$ on a work graph $G$ one may choose the degree centrality of nodes $j\in{}V$ denoted
+\[
+deg_{G}(j):=\sum\limits_{k\in{}V}w(k,j) - w(j,k).
+\]
+\noindent{}Based on $M$ we can derive an accounting mechanism $S^M$, and obtain for node $i$ with subjective work graph $G_i$
+\[
+S^M_i(G_i,j):=\sum\limits_{k\in{}V_i}w_i^k(k,j) - w_i^k(j,k).
+\]
+\noindent{}Note that we choose $w_i^k$ instead of $w_i^j$ to prevent $j$ from successfully increasing $S^M_i(G_i,j)$ through misreports. Although this is not the point of the example.\vspace{1em}\\
+\end{example}
+
+\begin{example}[BarterCast Accounting Mechanism]\ \\
+\label{ex:BarterCast Accounting Mechanism}
+\noindent{}The BarterCast accounting mechanism is based on the maximum flow centrality measure $M$, which is determined by the maximum amount of data that can flow through any path connecting two nodes and can be determined by the ford-fulkerson algorithm \cite{Bartercast: A Practical Approach to Prevent Lazy Freeriding in P2P Networks}. The BarterCast accounting mechanism is then given by
+\[
+S^M_i(G_i,j)=\frac{\textrm{arctan}(maxflow(i,j)-maxflow(j,i))}{\pi/2}.
+\]
+\noindent{}This is a very popular accounting mechanism which satisfies a nice property, later referred to as transitive trust. The values it assigns to nodes in the network are bounded from above by the weights of the outgoing edges from $i$, which is meant to limit the accounting values a node obtains from above by the amount of work this node has (indirectly) performed for $i$.\vspace{1em}\\
+\end{example}
+
+\begin{example}[Netflow Accounting Mechanism]\ \\
+\label{ex:Netflow Accounting Mechanism}
+\noindent{}The Netflow (limited contribution) accounting mechanism is based on the maxflow centrality measure. An agent $i$ determining scores of other agents in the network, will assign every node $j\in{}V_i$ the value 
+
+\[
+c_j:=\max\left\lbrace{}maxflow(i,j)-maxflow(j,i), 0\right\rbrace.
+\]
+
+\noindent{}Then $i$ creates the new subjective work graph $G_i^N$, where every node $j$ is assigned the capacity $c_j$ then the netflow accounting mechanisms is given by 
+
+\[
+S^M_i(G_i,j):=maxflow_{G_i^N}(i,j).
+\]
+
+\noindent{}An advantage of this accounting mechanism is that it's very resistant against sybil attacks, however a drawback is its lack of informativeness.\vspace{1em}\\
+\end{example}
+
+\noindent{}A node $i$ holding a particular file will receive requests to share data by a set of agents in the network that are interested in the file, which we referred to earlier as a swarm of leechers. In their model, Seuken \& Parkes (2014) refer to this set of agents as a {\it choice set} \cite{Sybil-proof Accounting Mechanisms with Transitive Trust}.\vspace{1em}\\
+
+\begin{definition}[Choice Set]\ \\
+\label{def:Choice Set}
+\noindent{}The choice set of some node $i$ is denoted as $C_i\subset{}V\backslash\lbrace{}i\rbrace$. It contains all nodes that $i$ can seed to at a particular point in time. It can be of variable size and may even be empty depending on how many nodes happen to query node $i$ for some contributions.\vspace{1em}\\
+\end{definition}
+
+\noindent{}The agent now has to decide whom to contribute to based on their respective accounting values and choice set. This is done with the help of another mapping, we call {\it allocation policy}. \vspace{1em}\\
+
+\begin{definition}[Allocation Policy]\ \\
+\label{def:Allocation Policy}
+\noindent{}Given an agent $i$ with subjective work graph $G_i$, choice set $C_i$ and a set of accounting values $S^M_i(G_i):=\left\lbrace{}S^M_i(G_i,j)\,|\,j\in{}V_i\backslash\lbrace{}i\rbrace\right\rbrace$, an allocation policy is a mapping that takes as input the set of accounting values from the perspective of $i$ and its choice set and returns a set of agents in the choice set that $i$ should make a contribution to. It's denoted
+\[
+A_i:\mathbb{R}^{|V_i|-1}\times{}\mathcal{P}(V)\rightarrow\mathcal{P}(V)
+\]
+\noindent{}with $A_i(S^M_i(G_i),C_i)\subset{}C_i.$\vspace{1em}\\
+\end{definition}
+
+\noindent{}There are infinite possible different allocation policies and we will introduce a few as examples here. \vspace{1em}\\
+
+\begin{example}[Top $n$ policy]\ \\
+\label{ex:Top n Policy}
+Given a reputation algorithm $M$, subjective work graph $G_i$ and choice set $C_i$ of agent $i$ the top $n$ policy is given by 
+\[
+A_i(S^M_i(G_i),C_i)=\argmax\limits_{C'_i\subset{}C_i \,\, |C_i|=n}{\left\lbrace{}S^M_i(G_i,j)\,|\,j\in{}C_i\right\rbrace}.
+\]
+\noindent{}If there are several nodes with the same accounting values then nodes are chosen at random among these.\vspace{1em}\\
+\end{example}
+
+\noindent{}As a more specific case of the Top $n$ policy, we have the winner-takes-all policy given below.
+
+\begin{example}[Winner-takes-all Policy]\ \\
+\label{ex:Winner-takes-all}
+Given some measure $M$, subjective work graph $G_i$ and choice set $C_i$ of agent $i$, the winner-takes-all policy is determined by 
+\[
+A_i(S^M_i(G_i),C_i)=\argmax{\left\lbrace{}S^M_i(G_i,j)\,|\,j\in{}C_i\right\rbrace}.
+\]
+\noindent{}This means $i$ decides to perform all of its possible work for the node with the highest accounting value in the choice set. If there are several nodes who all have the same (highest) accounting values, then the "winner" is chosen at random amongst them.\vspace{1em}\\
+\end{example}
+
+\noindent{}A contributing node may also decide to divide its available bandwidth into equally sized chunks and to share data among several nodes in its choice set.\vspace{1em}\\ 
+
+\begin{example}[Banning Policy]\ \\
+\label{ex:Banning Policy}
+\noindent{}Given some $M$, subjective work graph $G_i$ and choice set $C_i$ of agent $i$ the banning policy is given by 
+\[
+A_i(S^M_i(G_i),C_i)=\left\lbrace{}j\in{}C_i\,|\,S^M_i(G_i,j)\geq\delta\right\rbrace 
+\]
+\noindent{}for some arbitrary, but fixed $\delta>0$. This means $i$ decides to contribute to every node in its choice set whose accounting value exceeds a given lower bound. \vspace{1em}\\
+\end{example}
+
+\noindent{}The upper definitions can be refined in such a way that the possible contribution made by $i$ is divided into differently sized portions which are then distributed among different agents in the choice set, whereby the contribution each agent receives is weighted by its accounting value in relation to the values of the remaining nodes. The two below are examples of such allocation policies.\vspace{1em}\\
+
+\begin{example}[Distribution Policy]\ \\
+\label{ex:Distribution Policy}
+\noindent{}Given some $M$, subjective work graph $G_i$ and choice set $C_i$ of agent $i$ the distribution policy is given by 
+\[
+A_i(S^M_i(G_i),C_i)=C_i,
+\]
+\noindent{}where every node $j\in{}C_i$ receives 
+\[
+\tilde{\omega}\cdot\frac{S^M_i(G_i,j)}{\sum\limits_{k\in{}C_i}S^M_i(G_i,k)}.
+\]
+\noindent{}Here, $\tilde{\omega}$ is the amount of work $i$ can perform given its bandwith limitations. In case there is only one node $j$ in $i$'s choice set with accounting value $S^M_i(G_i,j)=0$, we set the amount that $j$ received from $i$ to $\tilde{\omega}.$ If there are several nodes in $C_i$ with $S^M_i(G_i,j)=0$ then every node in $C_i$ is served $\tilde{\omega}\cdot\frac{1}{|C_i|}$. \vspace{1em}\\
+\end{example}
+
+\noindent{}Note that this allocation policy only makes sense in the case of accounting mechanisms that only return values $\geq{}0$. \vspace{1em}\\
+
+\begin{example}[Rank-weighted Distribution Policy]\ \\
+\label{ex:Rank-weighted Distribution Policy}
+\noindent{}Given some $M$, subjective work graph $G_i$ and choice set $C_i$ of agent $i$, we call 
+\[
+r_{S^M_i(G_i),C_i}:C_i\rightarrow\left\lbrace{}1,\ldots,|C_i|\right\rbrace
+\]
+\noindent{}the ranking, where $r_{S^M(G_i),C_i}(k)$ denotes the rank of node $k$ in $C_i$, i.e. if $k$ has the second smallest accounting value in $C_i$ then $r_{S^M_i(G_i),C_i}(k)=2$. If several nodes $k_1,\ldots,k_n$ in $C_i$ have the same accounting values they are assigned the same values of $r_{S^M_i(G_i),C_i}(k_i)$ f.a. $i\leq{}n$. The nodes following these equally ranked nodes then obtain rank $r_{S^M_i(G_i),C_i}(k_i) + 1$, so we do not "skip" ranks as in the standard competition ranking. \vspace{1em}\\
+
+\noindent{}The rank-weighted distribution policy is given by $A_i(S^M_i(G_i),C_i)=C_i$, where every node $j\in{}C_i$ receives
+\[
+\tilde{\omega}\cdot\frac{r_{S^M_i(G_i),C_i}(j)}{\sum\limits_{k\in{}C_i}r_{S^M_i(G_i),C_i}(k)}. \vspace{1em}\\
+\]
+\end{example}
+
+\noindent{}Note that there are infinite possibilities for allocation policies and the ones above are just some intuitive examples.\vspace{1em}\\
+
+\noindent{}Up until now our problem of incentivising cooperation through accounting mechanisms seems like a relatively easy one to solve. There are a number of different graph theoretical centrality measures that come to mind which would be suitable for accounting mechanisms to accurately capture the cooperativeness of nodes as well as many allocation policies which could effectively penalise and therefore mitigate selfish bahviour. However, additional complications arise when agents in the network begin to attack and "cheat" the system. We have already introduced the definition of a misreport attack in definition \ref{def:Misreport Attack}. However, there are a large number of other ways agents can behave maliciously making the problem much harder to solve, most notably through {\it sybil attacks}, which we will elaborate on later. \vspace{1em}\\
+
+\section{Misbehaviour \& Attacks}
+\label{sec:Misbehaviour & Attacks}
+\noindent{}Recall that it was our overarching goal to incentivise cooperative behaviour in a P2P network and therefore to prevent malicious behaviour from participants. There are many types of malicious behaviour and attacks one can perform on P2P networks. We will place special emphasis on 3 types of malicious behaviour, namely {\it misreporting attacks, Sybil attacks and lazy freeriding}. 
+
+
+\subsection{Lazy Freeriding}
+\label{subsec:Lazy Freeriding}
+\noindent{}The most common form of malicious behaviour is known as {\it lazy freeriding}, which means excessively consuming data without making proportionate contributions. So far, we have not rigorously defined what it means to be cooperative and what it means to be a lazy freerider.\vspace{1em}\\
+
+\begin{definition}[Lazy Freeriding]\ \\
+\label{def:Lazy Freeriding}
+\noindent{}Given an agent $i$ with respective transaction set $TS_i$, we say that $i$ is a lazy freerider if the aggregated amount of data they have consumed is much larger than the amount they have contributed, i.e. for some fixed $c\leq{}0$ it holds
+
+\[
+\sum\limits_{j\in{}V}\sum\limits_{n\in\mathbb{N}_{\leq{}T_i}}t_i(n,j)\leq{}c.
+\]
+
+\noindent{}We can rewrite this in terms of the work graph as
+
+\[
+\sum\limits_{j\in{}V}w(j,i) - w(i,j)\leq{}c.
+\]
+
+\noindent{}Alternatively, we can label a node $i$ a lazy freerider if the ratio of contribution to consumption exceeds some arbitrary but fixed lower bound $c'\leq{}1$. 
+
+\[
+\frac{\sum\limits_{j\in{}V}\sum\limits_{n\in\mathbb{N}}\max\left\lbrace{}t_i(n,j), 0\right\rbrace}{\sum\limits_{j\in{}V}\sum\limits_{n\in\mathbb{N}}-\min\left\lbrace{}t_i(n,j), 0\right\rbrace}\leq{}c',
+\]
+
+\noindent{}or written in terms of edge weights in the work graph
+
+\[
+\frac{\sum\limits_{j\in{}V}w(j,i)}{\sum\limits_{j\in{}V}w(i,j)}\leq{}c'.
+\]
+
+\noindent{}Each of these two definitions captures the concept of lazy freeriding from a slightly different angle. We prefer the latter definition, seeing as we find the proportion of up-to downloads more appropriate than strictly the difference between the two. This is because we think the difference should be allowed to be bigger as the absolute values of the two grow. In later experiments we will stick the former though, as we will limit the number of interactions nodes can have. In that case the former definition of lazy freeriding becomes more informative. \vspace{1em}\\
+\end{definition}
+
+\noindent{}This is the problem accounting mechanisms were introduced to prevent. Accounting mechanisms are meant to prevent lazy freeriding and facilitate cooperation by punishing selfish behaviour and rewarding altruistic behaviour. This is done by assigning nodes that contribute more and consume less than other nodes, higher accounting values, such that they are more likely to receive work later on. Below, we introduce a sufficient, but not necessary requirement for an accounting mechanism to prevent lazy freeriding. \vspace{1em}\\
+
+\begin{definition}[Positive-Report Responsiveness]\ \\
+\label{def:Positive-Report Responsiveness}
+\noindent{}Given a subjective work graph $G_i=(V_i,E_i,w_i)$ derived from a subjective transaction set $TS^i$ and agent $j$ with transaction set $TS_j^i$ of length $T_j^i$. If $i$ learns of another transaction, $j$ has participated in \[t_{j,T_j^i+1}^i=(j,k,r),\] with $r>0$. Then $i$ updates their transaction set to obtain 
+
+\[
+TS'^i_j=TS^i_j\cup\left\lbrace{}t_{j,T^i_j+1}^i\right\rbrace
+\]
+and derives a new subjective work graph $G_i'=(V_i',E_i',w_i')$ with the updated edge
+\[
+w'^i_j(k,j)=w^i_j(k,j)+r.
+\] 
+\noindent{}Then it must hold
+
+\[
+S^M_i(G_i',j)\geq{}S^M_i(G_i,j)
+\]
+and
+\[
+S^M_i(G_i',k)\leq{}S^M_i(G_i,k). \vspace{1em}\\
+\]
+
+\noindent{}More rigorously, we define an accounting mechanism to be {\it strictly positive-report responsive} if there exists some $\varepsilon>0$ such that it holds under the exact same conditions above for any transaction of weight $\geq{}r$ or any sequence of transactions (between the same parties) of aggregated weight $\geq{}r$:
+
+\[
+S^M_i(G_i',j) - S^M_i(G_i,j)\geq{}\varepsilon
+\]
+
+\noindent{}and
+
+\[
+S^M_i(G_i',k) - S^M_i(G_i,k)\leq{}-\varepsilon .
+\]
+\end{definition}
+\noindent{}As an example of a combination of accounting mechanism and allocation policy that prevents lazy freeriding very effectively we look at the banning policy in combination with an accounting mechanism that satisfies strict positive-report responsiveness.
+
+\begin{example}[]\ \\
+\label{ex:Lazy Freeriding prevented by Positive-Report Responsiveness}
+\noindent{}Let $i\in{}V$ be a lazy freerider and let all agents in the network adopt the banning policy together with an accounting mechanism $S^M$ that satisfies strict positive-report responsiveness for some $\varepsilon > 0$. Lastly, assume $i$'s transaction sequence is reported to all other nodes in the network without any misreports. Then there exists a fixed $c'\in\mathbb{R}$ such that regardless of which nodes $i$ queries and how many contributions $i$ makes to others, it will always hold
+\[
+\lim\limits_{T_i\rightarrow\infty}\sum\limits_{j\in{}V}\sum\limits_{n\in\mathbb{N}_{\leq{}T_i}}t_i(n,j) \geq{} c'.
+\]
+\end{example}
+\begin{proof}
+\noindent{}The main idea behind this is that if $i$ leeches continuously from the network, due to the strict positive-report responsiveness and the assumed misreport-proofness its accounting values will go beneath $\delta$ after a finite number of transactions, from the perspective of all honest nodes in the network. At this point $i$ will no longer have a positive probability of being served by another node due to the banning policy of all other honest nodes.\vspace{1em}\\
+\end{proof}
+ 
+\noindent{}The upper example may make it seem like the banning policy is a very good allocation policy for a P2P network, but it actually has a major drawback, namely the fact that it acts as a bottleneck for the distribution of data. This is because agents will stop serving one another under certain conditions. However, bandwidth cannot be stockpiled and hence there is no reason for a node not to make contributions to other nodes in the network. The point behind an allocation policy is that it's supposed to choose the nodes in the choice set that have priority and not exclude nodes entirely. Hence, despite it very effectively preventing lazy freeriding it is not an ideal allocation policy.\vspace{1em}\\ 
+ 
+\subsection{Misreports}
+\label{subsec:Misreports}
+\noindent{}We have already defined misreport attacks in definitions \ref{def:Misreport Attack} and \ref{def:Misreport on Subjective Work Graph} and have seen in example \ref{ex:Degree-based Accounting Mechanism} the effects it can have on the values accounting mechanisms return. But so far, we have not yet discussed how to prevent them or at least how to render them ineffective. \vspace{1em}\\
+
+\noindent{}In \cite{Accounting Mechanisms for Distributed Work Systems} Seuken \& Parkes (2010) introduce the definition of misreport-proof as follows.\vspace{1em}\\
+
+\begin{definition}[Misreport-Proofness on the Choice Set]\ \\
+\label{def:Misreport-Proofness on the Choice Set}
+An accounting mechanism $S^M_i$ of agent $i$ with subjective work graph $G_i$ and choice set $C_i$ is misreport-proof if for any agent $j\in{}C_i$ that commits a misreport attack, leading to the subjective work graph $G_i'$ it holds
+\begin{align*}
+S_i^M(G_i',j)&\leq{}S_i^M(G_i,j) \\ 
+S_i^M(G_i',k)&\geq{}S_i^M(G_i,k)\quad\textit{f.a. }k\in{}C_i\backslash\lbrace{}j\rbrace .
+\end{align*}
+\end{definition}
+
+
+\noindent{}This particular definition of misreport-proofness was introduced with a mechanism called DropEdge in mind. We will introduce this mechanism below. However, with the TrustChain datastructure in mind, this definition can be strengthened to misreport-proofness on the entire work graph. \vspace{1em}\\
+
+\begin{definition}[Misreport-Proofness]\ \\
+\label{def:Misreport-Proofness}
+An accounting mechanism $S^M_i$ of agent $i$ with subjective work graph $G_i$ is misreport-proof if for any agent $j\in{}V_i$ that commits a misreport attack, leading to the subjective work graph $G_i'$ it holds
+\begin{align*}
+S_i^M(G_i',j)&= S_i^M(G_i,j) \\ 
+S_i^M(G_i',k)&= S_i^M(G_i,k)\quad\textit{f.a. }k\in{}V_i\backslash\lbrace{}j\rbrace .
+\end{align*}
+\end{definition}
+
+\noindent{}In \cite{Sybil-proof Accounting Mechanisms with Transitive Trust} Seuken \& Parkes (2014) introduce a mechanism called {\it Drop-Edge}. Notation-wise we deviate slightly from their definition while maintaining the same concept.\vspace{1em}\\
+
+\begin{definition}[Drop-Edge Mechanism]\ \\
+\label{def:Drop-Edge Mechanism}
+\noindent{}Given agent $i$ with subjective work graph $G_i$ the Drop-Edge mechanism is given by a mapping $D$ from the space of subjective work graphs into itself, such that
+\[
+D(G_i,C_i):=G_i^D
+\]
+\noindent{}with edge weights $w^i_D$ satisfying 
+\begin{align*}
+\forall(j,k)|&i\in\lbrace{}j,k\rbrace\,:\,w^i_D(j,k)=w^i_i(j,k) \\ 
+\forall(j,k)|&j,k\in{}C_i\,:\,w^i_D=0 \\
+\forall(j,k)|&j\in{}C_i\,k\not\in{}C_i\,:\,w^i_D(j,k)=w^i_k(j,k) \\
+\forall(j,k)|&k\in{}C_i\,j\not\in{}C_i\,:\,w^i_D(j,k)=w^i_k(j,k) \\
+\forall(j,k)|&j,k\not\in{}C_i,i\not\in\lbrace{}j,k\rbrace\,:\,w^i_D(j,k)=\max\left\lbrace{}w_j^i(j,k),w_k^i(j,k)\right\rbrace
+\end{align*}
+\noindent{}Missing values in the max operator are set to $0$.
+\end{definition}
+
+\noindent{}They proved that this mechanism successfully disincentivises misreporting by eliminating any reward a misreport will have for the node that commits the misreport. Consequently, we find that for any accounting mechanism $S^M_i$, $S^M_i\circ{}D$ is misreport-proof on the choice set and $i$ obtains a subjective work graph with single edge weights $w^i_D(j,k)$ for any $j,k\in{}V_i$.\vspace{1em}\\
+
+\begin{remark}
+\label{rem:DropEdge does not prevent agents from benefitting from other agents misreports}
+\noindent{}Note that this mechanism is {\bf only} misreport-proof on the choice set and not misreport-proof in the sense of definition \ref{def:Misreport-Proofness}. It's also only resistant to misreport attacks on the subjective work graph, and not misreport attacks in the sense of definition \ref{def:Misreport Attack}. Another point to mention here is that while an agent can never benefit from their own misreport they may be able to benefit from another agent's misreport. Recall that we mentioned in remark \ref{rem:Edge Weights (Misreport)} that some agents may misreport in such a way that the edge weights in the subjective work graph remain consistent. In such a case it is in both parties' best interest to misreport about a transaction and both parties benefit from this misreport. DropEdge does not prevent this type of misreporting. In DropEdge this means that even if a node reports honestly and its transaction partner misreports it may obtain higher accounting values than it would have if both agents had reported honestly. One might at first think that this is unlikely to occur as it is not in the interest of both participants, but the example given below shows that this is not actually the case. \vspace{1em}\\ 
+\end{remark}
+
+\begin{example}[]\ \\
+\noindent{}Let $i$ be an honest agent with accounting mechanism $S^M_i$ where $M$ is given by the personalised PageRank as given by Stannat et al. (2019) \cite{A Random Walk Based Trust Ranking in Distributed Systems}. Now let $G_i$ be the subjective work graph of agent $i$ as seen in figure \ref{fig:Misreport on PageRank and Drop-Edge} below.\vspace{1em}\\
+
+\noindent{}We see that in the figure on the right $j$ has committed a misreport, namely it has reported (a) transaction(s) of weight 1 from $j$ to $k$. If $k$ is honest then $k$ reports an edge weight $w(j,k)=0$. Now, if $k$ is in the choice set of $i$ and $j$ is not and if $i$ applies the DropEdge mechanism to its accounting mechanism $S^M_i$ then $k$ is rewarded by $j$'s misreport.\vspace{1em}\\
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.9]{"Misreport on PageRank with DropEdge".PNG}
+\caption{Misreport on PageRank and Drop-Edge}
+\label{fig:Misreport on PageRank and Drop-Edge}
+\end{center}
+\end{figure}
+
+\noindent{}If both agents $k$ and $j$ were to misreport on this edge weight such that $w_i(j,k)=(1,1)$ then $k$ would also "get away" wit this misreport, despite the DropEdge mechanism, so long as $j$ is not in $i$'s choice set. This is proof that the DropEdge mechanism isn't misreport-proof in the sense of definition \ref{def:Misreport-Proofness} and that it is only resistant to misreports on the subjective work graph according to definition \ref{def:Misreport on Subjective Work Graph}. \vspace{1em}\\
+\end{example}
+
+\noindent{}In order to achieve general misreport-proofness, we have a stronger mechanism which we introduced earlier in chapter \ref{chap:Introduction} as TrustChain \cite{TrustChain: A Sybil-resistant scalable blockchain}. We will now formalise TrustChain mathematically as a way of enhancing transactions to render misreports detectable. The concept of TrustChain entails two definitions which we will not introduce here in any detail, namely those of hash functions and digital signatures. We assume the reader to be familiar with these basic cryptographic concepts and refer to Smart et al. (2016) for the details of these concepts \cite{Cryptography made simple}. \vspace{1em}\\ 
+
+\begin{definition}[TrustChain]\ \\
+\label{def:TrustChain}
+\noindent{}Let $j,k$ be two arbitrary agents in the network. As in definition \ref{def:Agent Transaction} we write a transaction $t$ as a tuple containing the two participants and the amount of data transferred, but add a set of additional values to it. A transaction in the TrustChain datastructure from $j$ to $k$, of weight $w$ is then denoted $\tilde{t}$ and given by 
+
+\[
+(j,k,w,id,hash_j,hash_k,sig_j,sig_k).
+\]
+
+\noindent{}The value $id$ is the unique identifier of the transaction such that no two transactions between the same nodes can be confused. The values $hash_j$ and $hash_k$ are hash pointers to the transactions that precede the given transaction in the transaction sequences of both participants. I.e. if $(j,k,5,id,hash_j,hash_k,sig_j,sig_k)$ corresponds to $\tilde{t}_{j,n}$ and $\tilde{t}_{k,m}$ then $hash_j$ and $hash_k$ are given by a hash function $h$ applied to $\tilde{t}_{j,n-1}$ and $\tilde{t}_{k,m-1}$. If $n=1$ or $m=1$ then we set $hash_j=0$ or $hash_k=0$. Finally $sig_j$ and $sig_k$ are the digital signatures of $j$ and $k$. \vspace{1em}\\
+
+\noindent{}Consequently, we write the transaction sequences as $\tilde{TS}_i$, the transaction functions as $\tilde{t}_i$ and the transaction set as $\tilde{TS}$. Nodes share their transaction sequences $\tilde{TS}_i$ with one another just like before and every agent $i$ then obtains a subjective transaction set $\tilde{TS}^i$ as before. \vspace{1em}\\ 
+
+\noindent{}Now $i$ can derive the subjective work graph from its subjective transaction set $\tilde{TS}^i$ analogously to definition \ref{def:Work Graph} with the help of a mapping function $g$ and obtain $\tilde{G_i}=g(\tilde{TS})$. \vspace{1em}\\ 
+\end{definition} 
+
+
+\begin{example}[]\ \\
+\noindent{}As a visualisation of a set of transactions in the TrustChain data structure we see the images in figures \ref{fig:Trustchain Transaction Structure} and \ref{fig:Trustchain Hash Pointers} given below \vspace{1em}\\
+\label{ex:TrustChain Transactions}
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.9]{"Trustchain Block Structure".png}
+\caption{TrustChain Transaction Structure \cite{TrustChain: A Sybil-resistant scalable blockchain}}
+\label{fig:Trustchain Transaction Structure}
+\end{center}
+\end{figure}
+
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.55]{"Trustchain".png}
+\caption{TrustChain Hash Pointers \cite{TrustChain: A Sybil-resistant scalable blockchain}}
+\label{fig:Trustchain Hash Pointers}
+\end{center}
+\end{figure}
+\end{example}
+
+
+\begin{theorem}[]\ \\
+\label{th:Trustchain makes misreports detectable in finite time}
+\noindent{}Given an adequate transaction reporting scheme TrustChain makes any misreport detectable in finite time.
+\end{theorem}
+\begin{proof}
+\noindent{}The proof to this has been given by Harms et al. (2018), in which a History-Exchange policy was introduced which we will not elaborate on. \cite{Creating Trust through Verification of Interaction Records}.
+\end{proof}
+
+
+\begin{theorem}[]\ \\
+\label{th:Trustchain makes positive-report responsive accounting mechanisms misreport-proof}
+\noindent{}Any positive-report responsive accounting mechanism $S^M$ on a subjective work graph $\tilde{G_i}$, derived from the TrustChain based subjective transaction set $\tilde{TS^i}$ is misreport-proof in accordance with defintion \ref{def:Misreport-Proofness}.
+\end{theorem}
+\begin{proof}
+\noindent{}Let $i$ be the node with subjective transaction set $\tilde{TS^i}$ and let $j$ be a malicious agent attempting to misreport to $i$. There are 4 ways $j$ can go about this. 
+\begin{itemize}
+\item[$(i)$] $j$ drops a transaction $\tilde{t}_{j,n}$ $(n<\tilde{T}_j)$ from its transaction sequence $\tilde{TS_j}$.
+\item[$(ii)$] $j$ drops transaction $\tilde{t}_{j,\tilde{T}_j}$ from its transaction sequence $\tilde{TS_j}$.
+\item[$(iii)$] $j$ adds a transaction $\tilde{t}_{j,\tilde{T}_{j+1}}$ to the end of its transaction sequence. 
+\item[$(iv)$] $j$ adds a transaction $\tilde{t}$ into its transaction sequence, but not at the end.
+\end{itemize}
+\noindent{}We will prove that all 4 of these types of attacks are prevented, or at least exposed by the TrustChain mechanism. \vspace{1em}\\
+
+\begin{itemize}
+\item[$(i)$] If $j$ drops transaction $\tilde{t}_{j,n}$ from its transaction sequence and reports the altered sequence to $i$, $i$ will be able to detect the misreport, by looking at the hash pointer in $\tilde{t}_{j,n+1}$ and comparing it to the hash value generated by $\tilde{t}_{j,n-1}$. $i$ will then notice that these hash values don't add up and will conclude that $j$ has committed a misreport.\vspace{1em}\\
+
+\item[$(ii)$] Assume $j$ drops transaction $\tilde{t}_{j,\tilde{T}_j}$ from its transaction sequence $\tilde{TS}_j$ and the other participant $k$ keeps this transaction in their sequence $\tilde{TS}_k$. Then once $i$ has queried $k$'s transaction sequence, $i$ will notice the misreport. Because $S^M$ is positive-report responsive, we know that for one of the two agents there is no incentive to drop this transaction and therefore we know that one of the two will always keep it, so long as there is no collusion. \vspace{1em}\\
+
+\noindent{}$i$ will now receive the reports $\tilde{TS}_k^i$ and $\tilde{TS}_j^i$ where the former contains the dropped transaction $\tilde{t}$, while the latter does not. Due to the fact that $\tilde{t}$ contains the hashes of transactions in $j$'s and $k$'s transaction sequences, $i$ will know of the misreport and will be able to attribute it to $j$, due to the digital signatures in the transaction. \vspace{1em}\\
+
+\item[$(iii)$]If $j$ adds a transaction to its transaction sequence $\tilde{TS}_j$ that has not actually occurred, we face the same situation as in point $(ii)$, where there is one transaction sequence with a missing final block. Just as before $i$ will be able to determine this, due to the same reason as discussed above. And using the digital signature scheme $i$ can determine that $j$ was responsible for the misreport and not $k$. \vspace{1em}\\
+
+\item[$(iv)$]Lastly, if $j$ attempts to fraudulently add a transaction $\tilde{t}$ into its transaction sequence $\tilde{TS}_j$, let's say in between transactions $\tilde{t}_{j,m}$ and $\tilde{t}_{j,m+1}$ then looking at the hash values in $\tilde{t}_{j,m+1}$, $i$ will see that they reference $\tilde{t}_{j,m}$ and not $\tilde{t}$. Seeing as looking at the hash values in $\tilde{t}_{j,m+2}$ returns transaction $\tilde{t}_{j,m+1}$ $i$ can see that the misreported transaction was $\tilde{t}$. The misreport has been identified.\vspace{1em}\\ 
+\end{itemize}
+
+\noindent{}We now write $TC(\tilde{G_i}):=G_i^{TC}$, with edge weights $w_{TC}^i$ that are given by a single value as opposed to a tuple through
+\begin{align*}
+\forall{}(j,k)&\,|\,i\in\lbrace{}j,k\rbrace{}: w^i_{TC}(j,k)=w_i^i(j,k) \\
+\forall{}(j,k)&\,|\,i\not\in\lbrace{}j,k\rbrace{},w^i_j(j,k)\neq{}w^i_k(j,k):\, w^i_{TC}(j,k)=\max\left\lbrace w^i_j(j,k), w^i_k(j,k)\right\rbrace . \\
+\end{align*}
+\noindent{}If one of the two values is zero, because one of the two nodes has not shared their chain yet, then we set the weight of the edge to $0$. Note that the trick of taking the $\max$ only works because the only misreport that may not be detected right away is that of dropping a transaction from one's chain. This only works in subjective work graphs with double edges.\vspace{1em}\\
+
+\noindent{}Hence, we find that $S^M_i\circ{}TC$ is misreport-proof in the sense of definition \ref{def:Misreport on Subjective Work Graph} for any accounting mechanism $S^M_i$ that satisfies positive-report responsiveness.
+\end{proof}
+
+\begin{comment}
+\begin{remark}[]\ \\
+\label{rem:Jetse Fair Witness Selection Protocol}
+\noindent{}In \cite{Jetse Thesis} Brouwer et al. (2020) introduce a supplementary mechanism on top of the TrustChain architecture, which they refer to as a "fair witness selection protocol". This mechanism adds additional signatures from randomly selected agents in the network to every transaction which validate the interaction. The witnesses are chosen based on the hash value of the transaction such that the sets of selected witnesses from adjacent transactions overlap. This prevents the block-withholding attack mentioned in $(ii)$ in the proof above, without the requirement for positive-report responsiveness. In their work Brouwer et al. show that they can reduce the probability of a block-withholding to attack to the chance of a SHA-256 hash collision. Given the fact that this probability is in the order of magnitute of the probability of brute-forcing a private key, we know that the probability of such a misreport going undetected is as high as the probability of a misreport of type $(iv)$ going undetected. This leads to the following corrollary.\vspace{1em}\\
+\end{remark}
+
+\begin{corollary}[]\ \\
+\label{cor:Trustchain is misreport-proof without positive-report responsiveness}
+\noindent{}The remark above in combination with theorem \ref{th:Trustchain makes positive-report responsive accounting mechanisms misreport-proof} let's us conclude that any accounting mechanism linked to TrustChain is misreport-proof in the sense of definition \ref{def:Misreport-Proofness}.
+\end{corollary}
+\end{comment}
+
+\noindent{}Note that in theorem \ref{th:Trustchain makes positive-report responsive accounting mechanisms misreport-proof} above, we can even weaken the assumption of positive-report responsiveness to one where any transaction report between two agents $i$ and $j$ will increase the accounting value of at least one of the two. This way any form of block-withholding attack is disincentivised. This holds for almost all reasonable accounting mechanisms and the only way a block-withholding attack could go unnoticed is if both transaction parties lose some accounting values in response to the transaction. Any reasonable accounting mechanism would not satisfy this however. \vspace{1em}\\
+
+\noindent{}Knowing that the TrustChain mechanism renders any accounting mechanism misreport-proof, we assume in all further analysis of accounting mechanisms that the transaction set has been built up on the TrustChain structure. Hence, from here on out we will no longer analyse misreport-proofness and solely focus on preventing freeriding and sybil attacks. \vspace{1em}\\
+
+
+\subsection{Sybil Attacks}
+\label{subsec:Sybil Attacks}
+\noindent{}We have already introduced the concept of sybil attacks in which agents create multiple fake accounts which report counterfeit transactions amongst one another to the network, in chapter \ref{chap:Introduction}. We will formalise this type of attack mathematically below. Note that the mechanisms we introduced in subsection \ref{subsec:Misreports} cannot prevent this type of attack as it is fundamentally different from a misreport attack.\vspace{1em}\\
+
+\noindent{}DropEdge cannot prevent this as both parties involved in the fake transaction have added it to their transaction sequence and hence it holds for two sybil nodes $s_1,s_2$ and any honest node $i$, $w_i^{s_1}(s_1,s_2)=w_i^{s_2}(s_1,s_2)$. TrustChain cannot prevent this type of attack either as both parties involved in the fake transaction give their digital signatures on it and include it in their transaction sequence in accordance with the hash pointers.\vspace{1em}\\
+
+\begin{definition}[Sybil Attack]\ \\
+\label{def:Sybil Attack}
+\noindent{}Given an objective work graph $G=(V,E,w)$, a sybil attack by agent $j\in{}V$ is given by a set of $n$ new identities $S=\left\lbrace{}s_{j_1},\ldots{},s_{j_n}\right\rbrace$ and a set of edges $E_S\subset{}S\cup\left\lbrace{}j\right\rbrace\times{}S\cup\left\lbrace{}j\right\rbrace$ with edge weights $w_S:S\cup{}\{j\} \times S\cup{}\{j\}\rightarrow{}\mathbb{R}$. Additionally, there must be a set of attack edges $E_{attack}$, i.e. $w_{attack}:V\backslash\lbrace{}j\rbrace\times{}S\cup\left\lbrace{}j\right\rbrace\rightarrow\mathbb{R}_{\geq{}0}$. We label a sybil attack by node $j\in{}V$ with $n$ fake identites $\sigma^n_j$. \vspace{1em}\\
+
+\noindent{}The new work graph after the sybil attack is given by $G':=G\downarrow\sigma^n_j=(V',E',w')=(V\cup{}S,E\cup{}E_S\cup{}E_{attack},w')$, where 
+
+\[
+w'(u,v)=\left\lbrace 
+\begin{array}{lll}
+w(u,v), & \textrm{if} & u,v\in{}V\backslash{}\lbrace{}j\rbrace \\
+w_S(u,v), & \textrm{if} & u,v\in{}S\cup\lbrace{}j\rbrace \\
+w_{attack}(u,v), & \textrm{if} & u\in{}V\backslash\lbrace{}j\rbrace, v\in{}S\cup\lbrace{}j\rbrace \\
+\end{array} .
+\right. \vspace{1em}\\
+\]
+
+\noindent{}We define a sybil attack on a subjective work graph equivalently by $G'_i:=G_i\downarrow{}\sigma^n_j$.\vspace{1em}\\
+\end{definition}
+
+\noindent{}Attack edges correspond to real transactions in which the attacker makes a legitimate donation to some nodes in the honest part of the network from one or more of the nodes they create. These are the basis of every sybil attack and in a network in which the accounting mechanism satisfies a property called path-responsiveness, they are a requirement for the attack to have any effect. In the case of an accounting mechanism that does not satisfy this property they may also be dropped.\vspace{1em}\\
+
+\begin{definition}[Path-Responsiveness]\ \\
+\label{def:Path-responsiveness}
+\noindent{}Given a subjective work graph $G_i=(V_i,E_i,w_i)$ we say that an accounting mechanism $S^M$ satisfies path-responsiveness if it holds 
+
+\[
+S^M_i(G_i,k)>0\Rightarrow\exists{}j_1,\ldots,j_n\in{}V_i:\,w_i(i,j_1),w_i(j_1,j_2),\ldots,w_i(j_{n-1},j_n),w_i(j_n,k)>0.
+\]
+\begin{comment}
+\noindent{}Analogously, it must hold
+\[
+S^M_i(G_i,k)<0\Rightarrow\exists{}j_1,\ldots,l_n\in{}V_i:\,w_i(j_1,i),w_i(j_n,j_{n-1}),w_i(k,j_n)>0
+\]
+\end{comment}
+\end{definition}
+
+
+\noindent{}This means that in order for a node $k$ to have a positive value in the accounting mechanism from the perspective of another node $i$ there needs to exist at least one path connecting $i$ and $k$. This path needs to correspond to work indirectly performed by $k$ for $i$ through the other nodes in the path. \vspace{1em}\\
+
+\noindent{}Path-responsiveness is a rather important definition in the context of sybil attacks and sybil-resistance of accounting mechanisms. It is useful as it prevents agents from obtaining accounting values $\geq{}0$ without performing at least some honest work. \vspace{1em}\\
+
+\noindent{}The edges in $E_S$ are the edges connecting agents in the sybil region to one another. These are the "fake edges" which represent work that hasn't actually been performed. The point behind them is to amplify the reputation agents in the sybil region have honestly obtained through the attack edges.\vspace{1em}\\
+
+\noindent{}Note that it is common for the sybil region to be densely connected and containing many nodes, forming a separated cluster in the network with relatively few edges connecting it to the honest region of the network, seeing as these types of edges are given by actual work, which is costly. The obvious way to detect such a type of attack would be through community detection algorithms such as the {\it minimum-cut method} that detect densely connected regions in the work graph \cite{Minimum-cut Community Detection}. However, sybil attacks can take many different forms and shapes and therefore this is not a feasible solution for {\it all} types of sybil attacks. Depending on which accounting mechanism and allocation policy are used, sybil attacks may look very different than others. As we can see in examples \ref{ex:Sybil Attack on Degree Accounting Mechanism} and \ref{ex:Sybil Attack on Maxflow}.\vspace{1em}\\
+
+\begin{example}[]\ \\
+\label{ex:Sybil Attack on Degree Accounting Mechanism}
+\noindent{}Let $G_i$ be an arbitrary subjective work graph of agent $i$ with the degree-based accounting mechanism $S^{deg}_i$ given in example \ref{ex:Degree-based Accounting Mechanism}. A typical sybil attack on this accounting mechanism by malicious agent $j$ would be given by $j$ creating $n$ sybils that all connect to $j$ and reporting these edges to $i$, i.e. $w_i(s_{jk},j)=c$ f.a. $k=1,\ldots,n$. A visualisation of this can be found in figure \ref{fig:Sybil Attack on Degree-based Accounting Mechanism} below. In the case of the degree-based accounting mechanism there is no need for attack edges as $S^{deg}_i$ does not satisfy path-responsiveness.\vspace{1em}\\
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.5]{"Sybil Attack on Deg-based Accounting Mechanism".PNG}
+\caption{Sybil Attack on Degree-based Accounting Mechanism}
+\label{fig:Sybil Attack on Degree-based Accounting Mechanism}
+\end{center}
+\end{figure}
+\end{example}
+
+
+\begin{example}[]\ \\
+\label{ex:Sybil Attack on Maxflow}
+\noindent{}Let $G_i$ be an arbitrary subjective work graph of agent $i$ with the Maxflow accounting mechanism $S^M_i$ given in example \ref{ex:BarterCast Accounting Mechanism}. A typical sybil attack by agent $j$ on this accounting mechanism would be given by $j$ creating $n$ sybil identities that all perform some counterfeit work for $j$ as visualised in figure \ref{fig:Sybil Attack on Maxflow Accounting Mechanism} below.\vspace{1em}\\
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.75]{"Parallel Sybil Attack".PNG}
+\caption{Sybil Attack on Maxflow Accounting Mechanism}
+\label{fig:Sybil Attack on Maxflow Accounting Mechanism}
+\end{center}
+\end{figure}
+\end{example}
+
+
+\noindent{}In \cite{On the Sybil-Proofness of Accounting Mechanisms} Seuken \& Parkes (2011) differentiate between {\it active} and {\it passive} sybil attacks. In a passive sybil attack, attack edges are only connected to one and the same node, i.e. $w'(k,s)=0$ f.a. $s\in{}S,k\in{}V\backslash\lbrace{}j\rbrace$. In an active sybil attack every node in the sybil region may be connected to the honest region of the network, as visualised in figure \ref{fig:Passive vs Active Sybil Attack} below. In \cite{Sybil-resistant Trust Mechanisms in Distributed Systems} by Otte et al. (2016) a sybil attack is defined such that it is perpetrated by a set of nodes $J\subset{}V$. This was done to combine both definitions of active and passive sybil attacks in one. We find this definition slightly ineffective as it seems to combine sybil attacks with collusion attacks, in one definition. Collusion attacks occur when several independent actors collude to achieve a common goal, which are obviously different from a single agent creating multiple fake identities. Hence, our definition above deviates from the existing ones a bit.\vspace{1em}\\ 
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.75]{"Passive vs Active Sybil Attack".PNG}
+\caption{Passive vs Active Sybil Attacks}
+\label{fig:Passive vs Active Sybil Attack}
+\end{center}
+\end{figure}
+
+\noindent{}Seeing as in the active sybil attack defined above, the work graph does not reveal who the sybil attacker is and who their fake identities are (this is only the case in \cite{Sybil-resistant Trust Mechanisms in Distributed Systems} and in \cite{On the Sybil-Proofness of Accounting Mechanisms}), we can simply drop the $j$ from $\sigma^n_j$. \noindent{}In the following chapters we will analyse this type of attack and its effects in much more detail. \vspace{1em}\\
+
+\noindent{}We conclude this section by stating that one aims to devise accounting mechanisms that are resistant to such types of attacks. By this we mean that an accounting mechanism should by design dampen the effect that fake identities and fake accounts have on the increase in accounting values and the consequent increase in work they can consume. Ideally, they should not increase at all, however this is rather difficult to achieve. In the following chapter we will further analyse the effects of sybil attacks and their gain for the perpetrating node. \vspace{1em}\\

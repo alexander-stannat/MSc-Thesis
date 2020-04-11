@@ -1,0 +1,40 @@
+\babel@toc {english}{}
+\contentsline {section}{\numberline {1}Introduction}{1}% 
+\contentsline {subsection}{\numberline {1.1}The Evolution of Cooperation}{1}% 
+\contentsline {subsection}{\numberline {1.2}Mechanisms for Social Cooperation}{1}% 
+\contentsline {subsection}{\numberline {1.3}Reputation and Behaviour on the Internet}{2}% 
+\contentsline {subsection}{\numberline {1.4}Reputation vs. Trust}{3}% 
+\contentsline {subsection}{\numberline {1.5}BitTorrent and Tit-for-tat}{5}% 
+\contentsline {subsection}{\numberline {1.6}Blockchains and TrustChain}{6}% 
+\contentsline {section}{\numberline {2}Sybil Attacks and Misreports}{8}% 
+\contentsline {section}{\numberline {3}Thesis Goal}{9}% 
+\contentsline {section}{\numberline {4}Problem Description}{10}% 
+\contentsline {section}{\numberline {5}A mathematical Framework for Accounting Mechanisms}{10}% 
+\contentsline {subsection}{\numberline {5.1}Sybil Attack Profit}{18}% 
+\contentsline {subsection}{\numberline {5.2}Interaction Model}{19}% 
+\contentsline {subsection}{\numberline {5.3}Experimental Evaluation}{21}% 
+\contentsline {section}{\numberline {6}Requirements for Accounting Mechanisms}{35}% 
+\contentsline {subsection}{\numberline {6.1}Equivalence of Accounting Mechanisms}{50}% 
+\contentsline {subsection}{\numberline {6.2}Symmetric or asymmetric Reputation Systems}{51}% 
+\contentsline {section}{\numberline {7}A Mathematical Framework for Physical Proximity}{51}% 
+\contentsline {section}{\numberline {8}A two-layered Trust Model}{52}% 
+\contentsline {section}{\numberline {9}A mathematical Framework for Trust and Reputation Mechanisms}{54}% 
+\contentsline {subsection}{\numberline {9.1}Strategy-Proofness of Trust Mechanisms}{55}% 
+\contentsline {subsection}{\numberline {9.2}Question: What is the Difference between Trust, Reputation and Accounting Mechanisms}{55}% 
+\contentsline {subsection}{\numberline {9.3}Accounting Mechanisms}{55}% 
+\contentsline {subsubsection}{\numberline {9.3.1}Allocation Policies}{56}% 
+\contentsline {subsection}{\numberline {9.4}Reputation Mechanisms}{56}% 
+\contentsline {subsection}{\numberline {9.5}Trust Rankings}{56}% 
+\contentsline {subsection}{\numberline {9.6}Different Types of Attacks}{57}% 
+\contentsline {subsection}{\numberline {9.7}Sybil-proofness of Accounting Mechanisms}{58}% 
+\contentsline {section}{\numberline {10}Requirements for a Trust/Reputation/Accounting Mechanism}{58}% 
+\contentsline {subsection}{\numberline {10.1}Axioms defining Reputation Mechanism}{59}% 
+\contentsline {subsubsection}{\numberline {10.1.1}Execution \& Assignment Errors}{60}% 
+\contentsline {subsection}{\numberline {10.2}ESS Analysis}{61}% 
+\contentsline {subsection}{\numberline {10.3}Relative Payoff}{61}% 
+\contentsline {section}{\numberline {11}Existing Mechanisms and Algorithms}{61}% 
+\contentsline {section}{\numberline {12}Information Exchange Protocol}{63}% 
+\contentsline {section}{\numberline {13}Related Work}{63}% 
+\contentsline {section}{\numberline {14}Possible Solutions}{63}% 
+\contentsline {section}{\numberline {15}Questions}{65}% 
+\contentsline {section}{\numberline {16}Appendix}{66}% 

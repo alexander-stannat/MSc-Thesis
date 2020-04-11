@@ -1,0 +1,49 @@
+\BOOKMARK [0][-]{chapter.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.1.1}{The Evolution of Social Cooperation}{chapter.1}% 2
+\BOOKMARK [1][-]{section.1.2}{Cooperation and Behaviour on the Internet}{chapter.1}% 3
+\BOOKMARK [1][-]{section.1.3}{Cooperation in Peer-to-peer Filesharing Networks}{chapter.1}% 4
+\BOOKMARK [2][-]{subsection.1.3.1}{BitTorrent \046 Direct Reciprocity}{section.1.3}% 5
+\BOOKMARK [2][-]{subsection.1.3.2}{Tribler \046 Indirect Reciprocity}{section.1.3}% 6
+\BOOKMARK [1][-]{section.1.4}{Blockchains and TrustChain to Enhance Online Cooperation}{chapter.1}% 7
+\BOOKMARK [0][-]{chapter.2}{Research Question}{}% 8
+\BOOKMARK [1][-]{section.2.1}{Thesis Summary and Contributions}{chapter.2}% 9
+\BOOKMARK [0][-]{chapter.3}{Mathematical Framework for Accounting Mechanisms}{}% 10
+\BOOKMARK [1][-]{section.3.1}{Network Transactions}{chapter.3}% 11
+\BOOKMARK [1][-]{section.3.2}{Work Graphs}{chapter.3}% 12
+\BOOKMARK [1][-]{section.3.3}{Accounting Mechanisms \046 Allocation Policies}{chapter.3}% 13
+\BOOKMARK [1][-]{section.3.4}{Misbehaviour \046 Attacks}{chapter.3}% 14
+\BOOKMARK [2][-]{subsection.3.4.1}{Lazy Freeriding}{section.3.4}% 15
+\BOOKMARK [2][-]{subsection.3.4.2}{Misreports}{section.3.4}% 16
+\BOOKMARK [2][-]{subsection.3.4.3}{Sybil Attacks}{section.3.4}% 17
+\BOOKMARK [0][-]{chapter.4}{Mathematical Framework for Sybil Attack Gain}{}% 18
+\BOOKMARK [1][-]{section.4.1}{Determining Cost \046 Profit of Sybil Attacks}{chapter.4}% 19
+\BOOKMARK [2][-]{subsection.4.1.1}{Interaction Model}{section.4.1}% 20
+\BOOKMARK [2][-]{subsection.4.1.2}{Choosing an Allocation Policy}{section.4.1}% 21
+\BOOKMARK [2][-]{subsection.4.1.3}{Experimental Evaluation}{section.4.1}% 22
+\BOOKMARK [1][-]{section.4.2}{Redefining Cost \046 Profit in Terms of Accounting Values}{chapter.4}% 23
+\BOOKMARK [0][-]{chapter.5}{Representativeness of Accounting Mechanisms}{}% 24
+\BOOKMARK [1][-]{section.5.1}{Incongruence of Sybil Attack Profits}{chapter.5}% 25
+\BOOKMARK [1][-]{section.5.2}{Defining Representativeness}{chapter.5}% 26
+\BOOKMARK [0][-]{chapter.6}{On the Impossibility of Sybil-Proofness}{}% 27
+\BOOKMARK [1][-]{section.6.1}{Analysis of Existing Impossibility Results}{chapter.6}% 28
+\BOOKMARK [1][-]{section.6.2}{Improving Existing Impossibility Results}{chapter.6}% 29
+\BOOKMARK [2][-]{subsection.6.2.1}{Parallel-Report Responsiveness}{section.6.2}% 30
+\BOOKMARK [2][-]{subsection.6.2.2}{Extending the Model to Multiple Hops}{section.6.2}% 31
+\BOOKMARK [2][-]{subsection.6.2.3}{Serial-Report Responsiveness}{section.6.2}% 32
+\BOOKMARK [0][-]{chapter.7}{On the Sybil-Proofness of Accounting Mechanisms}{}% 33
+\BOOKMARK [1][-]{section.7.1}{Characterising Sybil Attacks}{chapter.7}% 34
+\BOOKMARK [1][-]{section.7.2}{Requirements for Sybil-Proofness to Parallel and Serial Attacks}{chapter.7}% 35
+\BOOKMARK [2][-]{subsection.7.2.1}{Pyramid Sybil Attacks}{section.7.2}% 36
+\BOOKMARK [1][-]{section.7.3}{Bounding the Profit of Arbitrary Passive Sybil Attacks}{chapter.7}% 37
+\BOOKMARK [1][-]{section.7.4}{Final Results on Sybil-proofness}{chapter.7}% 38
+\BOOKMARK [0][-]{chapter.8}{Conclusion and Discussion}{}% 39
+\BOOKMARK [1][-]{section.8.1}{Future Work}{chapter.8}% 40
+\BOOKMARK [1][-]{section.8.2}{Further Discussion and Ethical Ramifications}{chapter.8}% 41
+\BOOKMARK [0][-]{appendix.A}{Appendix}{}% 42
+\BOOKMARK [1][-]{section.A.1}{Reputation Dynamics in Indirect Reciprocity}{appendix.A}% 43
+\BOOKMARK [2][-]{subsection.A.1.1}{Axioms defining Reputation Mechanism}{section.A.1}% 44
+\BOOKMARK [2][-]{subsection.A.1.2}{Requirements for Reputation Mechanisms}{section.A.1}% 45
+\BOOKMARK [2][-]{subsection.A.1.3}{Leading 8}{section.A.1}% 46
+\BOOKMARK [1][-]{section.A.2}{Sybil Resistance Based on Physical Proximity}{appendix.A}% 47
+\BOOKMARK [2][-]{subsection.A.2.1}{A Two-Layered Trust Model}{section.A.2}% 48
+\BOOKMARK [0][-]{appendix*.47}{Bibliography}{}% 49

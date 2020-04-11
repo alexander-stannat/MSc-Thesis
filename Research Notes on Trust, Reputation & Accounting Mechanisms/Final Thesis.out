@@ -1,0 +1,37 @@
+\BOOKMARK [1][-]{section.0.1}{Introduction}{}% 1
+\BOOKMARK [2][-]{subsection.0.1.1}{The Evolution of Cooperation}{section.0.1}% 2
+\BOOKMARK [2][-]{subsection.0.1.2}{Mechanisms for Social Cooperation}{section.0.1}% 3
+\BOOKMARK [2][-]{subsection.0.1.3}{Reputation and Behaviour on the Internet}{section.0.1}% 4
+\BOOKMARK [2][-]{subsection.0.1.4}{Reputation vs. Trust}{section.0.1}% 5
+\BOOKMARK [2][-]{subsection.0.1.5}{BitTorrent and Tit-for-tat}{section.0.1}% 6
+\BOOKMARK [2][-]{subsection.0.1.6}{Blockchains and TrustChain}{section.0.1}% 7
+\BOOKMARK [1][-]{section.0.2}{Sybil Attacks and Misreports}{}% 8
+\BOOKMARK [1][-]{section.0.3}{Thesis Goal}{}% 9
+\BOOKMARK [1][-]{section.0.4}{Problem Description}{}% 10
+\BOOKMARK [1][-]{section.0.5}{A mathematical Framework for Accounting Mechanisms}{}% 11
+\BOOKMARK [2][-]{subsection.0.5.1}{Sybil Attack Profit}{section.0.5}% 12
+\BOOKMARK [2][-]{subsection.0.5.2}{Interaction Model}{section.0.5}% 13
+\BOOKMARK [2][-]{subsection.0.5.3}{Experimental Evaluation}{section.0.5}% 14
+\BOOKMARK [1][-]{section.0.6}{Requirements for Accounting Mechanisms}{}% 15
+\BOOKMARK [2][-]{subsection.0.6.1}{Equivalence of Accounting Mechanisms}{section.0.6}% 16
+\BOOKMARK [2][-]{subsection.0.6.2}{Symmetric or asymmetric Reputation Systems}{section.0.6}% 17
+\BOOKMARK [1][-]{section.0.7}{A Mathematical Framework for Physical Proximity}{}% 18
+\BOOKMARK [1][-]{section.0.8}{A two-layered Trust Model}{}% 19
+\BOOKMARK [1][-]{section.0.9}{A mathematical Framework for Trust and Reputation Mechanisms}{}% 20
+\BOOKMARK [2][-]{subsection.0.9.1}{Strategy-Proofness of Trust Mechanisms}{section.0.9}% 21
+\BOOKMARK [2][-]{subsection.0.9.2}{Question: What is the Difference between Trust, Reputation and Accounting Mechanisms}{section.0.9}% 22
+\BOOKMARK [2][-]{subsection.0.9.3}{Accounting Mechanisms}{section.0.9}% 23
+\BOOKMARK [2][-]{subsection.0.9.4}{Reputation Mechanisms}{section.0.9}% 24
+\BOOKMARK [2][-]{subsection.0.9.5}{Trust Rankings}{section.0.9}% 25
+\BOOKMARK [2][-]{subsection.0.9.6}{Different Types of Attacks}{section.0.9}% 26
+\BOOKMARK [2][-]{subsection.0.9.7}{Sybil-proofness of Accounting Mechanisms}{section.0.9}% 27
+\BOOKMARK [1][-]{section.0.10}{Requirements for a Trust/Reputation/Accounting Mechanism}{}% 28
+\BOOKMARK [2][-]{subsection.0.10.1}{Axioms defining Reputation Mechanism}{section.0.10}% 29
+\BOOKMARK [2][-]{subsection.0.10.2}{ESS Analysis}{section.0.10}% 30
+\BOOKMARK [2][-]{subsection.0.10.3}{Relative Payoff}{section.0.10}% 31
+\BOOKMARK [1][-]{section.0.11}{Existing Mechanisms and Algorithms}{}% 32
+\BOOKMARK [1][-]{section.0.12}{Information Exchange Protocol}{}% 33
+\BOOKMARK [1][-]{section.0.13}{Related Work}{}% 34
+\BOOKMARK [1][-]{section.0.14}{Possible Solutions}{}% 35
+\BOOKMARK [1][-]{section.0.15}{Questions}{}% 36
+\BOOKMARK [1][-]{section.0.16}{Appendix}{}% 37
